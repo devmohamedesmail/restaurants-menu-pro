@@ -1,1 +1,95 @@
-{}
+{
+  "landing": {
+    "hero": {
+      "title": "Transform Your Restaurant with Digital Menus",
+      "subtitle": "Modern, Interactive, and Easy to Manage",
+      "description": "Say goodbye to printed menus and hello to a seamless digital experience. Update your menu in real-time, showcase stunning food images, and delight your customers.",
+      "cta": "Get Started Free",
+      "cta_secondary": "Watch Demo"
+    },
+    "benefits": {
+      "title": "Why Choose Digital Menus?",
+      "subtitle": "Discover the advantages that will revolutionize your restaurant",
+      "items": {
+        "cost_effective": {
+          "title": "Cost Effective",
+          "description": "Save money on printing costs and menu updates. Make changes instantly without reprinting."
+        },
+        "easy_updates": {
+          "title": "Easy Updates",
+          "description": "Update prices, add new dishes, or remove items in seconds from any device."
+        },
+        "visual_appeal": {
+          "title": "Visual Appeal",
+          "description": "Showcase your dishes with high-quality images that make customers hungry."
+        },
+        "multilingual": {
+          "title": "Multilingual Support",
+          "description": "Serve international customers with menus in multiple languages."
+        },
+        "analytics": {
+          "title": "Smart Analytics",
+          "description": "Track popular dishes and customer preferences to optimize your menu."
+        },
+        "eco_friendly": {
+          "title": "Eco-Friendly",
+          "description": "Reduce paper waste and contribute to a sustainable environment."
+        }
+      }
+    },
+    "features": {
+      "title": "Powerful Features",
+      "subtitle": "Everything you need to manage your digital menu",
+      "items": {
+        "qr_code": {
+          "title": "QR Code Access",
+          "description": "Customers scan and view your menu instantly on their phones."
+        },
+        "real_time": {
+          "title": "Real-Time Updates",
+          "description": "Changes appear immediately across all customer devices."
+        },
+        "customizable": {
+          "title": "Fully Customizable",
+          "description": "Match your brand with custom colors, fonts, and layouts."
+        },
+        "responsive": {
+          "title": "Mobile Optimized",
+          "description": "Perfect viewing experience on all devices and screen sizes."
+        },
+        "categories": {
+          "title": "Smart Categories",
+          "description": "Organize your menu with categories and filters for easy navigation."
+        },
+        "allergens": {
+          "title": "Allergen Info",
+          "description": "Display allergen information and dietary options clearly."
+        }
+      }
+    },
+    "how_it_works": {
+      "title": "How It Works",
+      "subtitle": "Get started in 3 simple steps",
+      "steps": {
+        "step1": {
+          "title": "Create Your Menu",
+          "description": "Add your dishes, prices, and images through our easy-to-use dashboard."
+        },
+        "step2": {
+          "title": "Generate QR Code",
+          "description": "Get your unique QR code and place it on tables or at the entrance."
+        },
+        "step3": {
+          "title": "Start Serving",
+          "description": "Customers scan and enjoy browsing your beautiful digital menu."
+        }
+      }
+    },
+    "cta_section": {
+      "title": "Ready to Go Digital?",
+      "description": "Join thousands of restaurants already using digital menus to enhance customer experience.",
+      "button": "Start Your Free Trial",
+      "no_credit_card": "No credit card required"
+    }
+  }
+}
