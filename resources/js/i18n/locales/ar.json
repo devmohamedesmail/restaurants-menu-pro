@@ -269,7 +269,21 @@
     "currency-en-placeholder": "USD, $",
     "currency-ar-placeholder": "ريال، ر.س",
     "saving": "جاري الحفظ...",
-    "update-settings": "تحديث الإعدادات"
+    "update-settings": "تحديث الإعدادات",
+    "title-en-required": "العنوان بالإنجليزية مطلوب",
+    "title-ar-required": "العنوان بالعربية مطلوب",
+    "description-en-required": "الوصف بالإنجليزية مطلوب",
+    "description-ar-required": "الوصف بالعربية مطلوب",
+    "keywords-en-required": "الكلمات المفتاحية بالإنجليزية مطلوبة",
+    "keywords-ar-required": "الكلمات المفتاحية بالعربية مطلوبة",
+    "email-invalid": "البريد الإلكتروني غير صالح",
+    "email-required": "البريد الإلكتروني مطلوب",
+    "phone-required": "رقم الهاتف مطلوب",
+    "address-required": "العنوان مطلوب",
+    "currency-en-required": "العملة بالإنجليزية مطلوبة",
+    "currency-ar-required": "العملة بالعربية مطلوبة",
+    "update-success": "تم تحديث الإعدادات بنجاح!",
+    "update-error": "فشل تحديث الإعدادات. يرجى التحقق من النموذج."
   },
     "common": {
     "change": "تغيير",

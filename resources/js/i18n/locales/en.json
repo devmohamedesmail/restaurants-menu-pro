@@ -269,7 +269,21 @@
     "currency-en-placeholder": "USD, $",
     "currency-ar-placeholder": "ريال، ر.س",
     "saving": "Saving...",
-    "update-settings": "Update Settings"
+    "update-settings": "Update Settings",
+    "title-en-required": "English title is required",
+    "title-ar-required": "Arabic title is required",
+    "description-en-required": "English description is required",
+    "description-ar-required": "Arabic description is required",
+    "keywords-en-required": "English keywords are required",
+    "keywords-ar-required": "Arabic keywords are required",
+    "email-invalid": "Invalid email address",
+    "email-required": "Email is required",
+    "phone-required": "Phone number is required",
+    "address-required": "Address is required",
+    "currency-en-required": "English currency is required",
+    "currency-ar-required": "Arabic currency is required",
+    "update-success": "Settings updated successfully!",
+    "update-error": "Failed to update settings. Please check the form."
   },
     "common": {
     "change": "Change",

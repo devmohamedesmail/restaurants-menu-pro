@@ -43,12 +43,15 @@ class setting_controller extends Controller
 
     public function update_settings(Request $request)
     {
+        
         $setting = Setting::first();
         if ($setting) {
             $setting->title_en = $request->title_en;
             $setting->title_ar = $request->title_ar;
             $setting->description_en = $request->description_en;
             $setting->description_ar = $request->description_ar;
+            $setting->keywords_en = $request->keywords_en;
+            $setting->keywords_ar = $request->keywords_ar;
             $setting->email = $request->email;
             $setting->phone = $request->phone;
             $setting->address = $request->address;
@@ -76,6 +79,8 @@ class setting_controller extends Controller
             $setting->title_ar = $request->title_ar;
             $setting->description_en = $request->description_en;
             $setting->description_ar = $request->description_ar;
+            $setting->keywords_en = $request->keywords_en;
+            $setting->keywords_ar = $request->keywords_ar;
             $setting->email = $request->email;
             $setting->phone = $request->phone;
             $setting->address = $request->address;
