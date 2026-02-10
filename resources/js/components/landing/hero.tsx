@@ -1,6 +1,7 @@
 import React from 'react'
 import { Sparkles, ArrowRight } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import { Link } from '@inertiajs/react';
 
 export default function Hero() {
     const { t } = useTranslation();
@@ -28,13 +29,13 @@ export default function Hero() {
                     </p>
 
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 animate-fade-in-up delay-300 px-4">
-                        <button className="w-full sm:w-auto group relative px-6 sm:px-8 py-3 sm:py-4 bg-primary text-white rounded-xl font-semibold text-sm sm:text-base overflow-hidden transition-all hover:shadow-lg hover:shadow-primary/25 hover:scale-105">
+                        <Link href={'/login'} className="w-full sm:w-auto group relative px-6 sm:px-8 py-3 sm:py-4 bg-primary text-white rounded-xl font-semibold text-sm sm:text-base overflow-hidden transition-all hover:shadow-lg hover:shadow-primary/25 hover:scale-105">
                             <span className="relative z-10 flex items-center justify-center gap-2">
                                 {t('landing.hero.cta')}
                                 <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
                             </span>
                             <div className="absolute inset-0 bg-gradient-to-r from-primary to-primary/80 opacity-0 group-hover:opacity-100 transition-opacity" />
-                        </button>
+                        </Link>
 
                         <button className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 border-2 border-border rounded-xl font-semibold text-sm sm:text-base hover:border-primary/50 hover:bg-primary/5 transition-all">
                             {t('landing.hero.cta_secondary')}
