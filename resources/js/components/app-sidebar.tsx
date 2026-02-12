@@ -1,5 +1,5 @@
 import { Link } from '@inertiajs/react';
-import { BookOpen, Folder, LayoutGrid ,Settings} from 'lucide-react';
+import { BookOpen, Flag, Folder, LayoutGrid, MapPinHouse, Settings, Users } from 'lucide-react';
 import { NavFooter } from '@/components/nav-footer';
 import { NavMain } from '@/components/nav-main';
 import { NavUser } from '@/components/nav-user';
@@ -33,19 +33,34 @@ const footerNavItems: NavItem[] = [
 ];
 
 export function AppSidebar() {
-    const {t}=useTranslation();
+    const { t } = useTranslation();
     const mainNavItems: NavItem[] = [
-    {
-        title: 'Dashboard',
-        href: dashboard(),
-        icon: LayoutGrid,
-    },
-     {
+        {
+            title: 'Dashboard',
+            href: dashboard(),
+            icon: LayoutGrid,
+        },
+        {
             title: t('dashboard.setting'),
             href: '/admin/settings',
             icon: Settings,
         },
-];
+        {
+            title: t('dashboard.users'),
+            href: '/admin/users',
+            icon: Users,
+        },
+        {
+            title: t('dashboard.countries'),
+            href: '/admin/countries',
+            icon: MapPinHouse,
+        },
+        {
+            title: t('dashboard.banners'),
+            href: '/admin/banners',
+            icon: Flag,
+        },
+    ];
     return (
         <Sidebar collapsible="icon" variant="inset">
             <SidebarHeader>

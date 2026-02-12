@@ -37,7 +37,7 @@ export default function Register() {
                                     tabIndex={1}
                                     autoComplete="name"
                                     name="name"
-                                    placeholder="Full name"
+                                    placeholder={t('auth.enter-full-name')}
                                 />
                                 <InputError
                                     message={errors.name}

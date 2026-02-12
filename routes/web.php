@@ -1,12 +1,13 @@
 <?php
 
+use App\Http\Controllers\admin\setting_controller;
+use App\Http\Controllers\admin\country_controller;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use Laravel\Fortify\Features;
-use App\Http\Controllers\admin\setting_controller;
 
 Route::get('/', function () {
-    return Inertia::render('index', [
+    return Inertia::render('vendor/create-store/index', [
         'canRegister' => Features::enabled(Features::registration()),
     ]);
 })->name('home');
@@ -25,4 +26,14 @@ require __DIR__.'/settings.php';
 Route::controller(setting_controller::class)->group(function () {
     Route::get('/admin/settings', 'settings')->name('settings');
     Route::post('/admin/settings/update', 'update_settings')->name('update.settings');
+});
+
+
+
+Route::controller(country_controller::class)->group(function () {
+    Route::get('/admin/countries', 'index')->name('countries.page');
+    Route::post('/admin/store/country', 'store')->name('country.store');
+    Route::get('/admin/edit/country/{id}', 'edit')->name('country.edit');
+    Route::post('/admin/update/country/{id}', 'update')->name('country.update');
+    Route::get('/admin/delete/country/{id}', 'delete')->name('country.delete');
 });

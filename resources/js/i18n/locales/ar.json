@@ -168,10 +168,10 @@
     "verify-email": "تحقق من عنوان بريدك الإلكتروني",
     "email-verification": "التحقق من البريد الإلكتروني",
     "verify-email-description": "شكراً لتسجيلك! قبل البدء، هل يمكنك التحقق من عنوان بريدك الإلكتروني بالنقر على الرابط الذي أرسلناه للتو؟ إذا لم تستلم البريد الإلكتروني، سنرسل لك آخر بكل سرور.",
-    "name":" الاسم ",
-    "enter-name":" ادخل الاسم ",
-    "name-placeholder":" ادخل الاسم ",
-    "account":" الحساب "
+    "name": " الاسم ",
+    "enter-name": " ادخل الاسم ",
+    "name-placeholder": " ادخل الاسم ",
+    "account": " الحساب "
   },
   "dashboard": {
     "title": " لوحه التحكم",
@@ -236,7 +236,7 @@
     "banners": "البنرات",
     "plans": " الخطط "
   },
-   "setting": {
+  "setting": {
     "page-title": "الإعدادات",
     "page-description": "إدارة إعدادات التطبيق والتكوين",
     "seo-localization": "السيو والترجمة",
@@ -285,7 +285,7 @@
     "update-success": "تم تحديث الإعدادات بنجاح!",
     "update-error": "فشل تحديث الإعدادات. يرجى التحقق من النموذج."
   },
-    "common": {
+  "common": {
     "change": "تغيير",
     "remove": "إزالة",
     "upload-image": "انقر للرفع أو اسحب وأفلت",
@@ -307,5 +307,29 @@
     "name-ar": "الاسم (عربي)",
     "edit": " تعديل ",
     "delete": " حذف "
+  },
+  "countries": {
+    "title": " إدارة الدول ",
+    "description": " إضافة وتحرير وحذف الدول لمطعمك ",
+    "add-country": " إضافة دولة جديدة ",
+    "add-description": "إنشاء إدخال دولة جديدة",
+    "country-name-en": "اسم الدولة (بالإنجليزية)",
+    "country-name-ar": "اسم الدولة (بالعربية)",
+    "enter-country-name-en": "أدخل اسم الدولة بالإنجليزية",
+    "enter-country-name-ar": "أدخل اسم الدولة بالعربية",
+    "currency-en": " العملة (بالإنجليزية)",
+    "currency-ar": "العملة (بالعربية)",
+    "enter-currency-en": "أدخل العملة بالإنجليزية",
+    "enter-currency-ar": "أدخل العملة بالعربية",
+    "country-code": "رمز الدولة",
+    "enter-country-code": "أدخل رمز الدولة (مثلاً، US، SA)",
+    "search-countries": "ابحث عن دول...",
+    "fill-country-details": "يرجى ملء تفاصيل الدولة",
+    "add-new-country": "أضف دولة",
+    "manage-countries-desc": "قم بإضافة وتحرير أو إزالة الدول بسهولة للحفاظ على دقة بيانات موقع مطعمك وتحديثها.",
+    "no-countries": "  لا يوجد دول ",
+    "confirm-delete-country": "هل أنت متأكد من رغبتك في حذف هذه الدولة؟",
+    "delete-country": "حذف الدولة",
+    "edit-country": "تعديل الدولة"
   }
 }
