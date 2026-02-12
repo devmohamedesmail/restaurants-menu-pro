@@ -28,7 +28,7 @@ class AppServiceProvider extends ServiceProvider
         $this->configureDefaults();
 
          // app settings
-        Inertia::share('app_settings', function () {
+        Inertia::share('settings', function () {
             return Setting::first();
         });
 
