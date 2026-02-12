@@ -3,6 +3,7 @@
 use App\Http\Controllers\admin\setting_controller;
 use App\Http\Controllers\admin\country_controller;
 use App\Http\Controllers\admin\users_controller;
+use App\Http\Controllers\admin\banners_controller;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use Laravel\Fortify\Features;
@@ -43,5 +44,14 @@ Route::controller(country_controller::class)->group(function () {
 Route::controller(users_controller::class)->group(function () {
     Route::get('/admin/users', 'show_users')->name('users.page');
     Route::get('/admin/users/change/role/{id}', 'admin_users_change_role')->name('admin.users.change.role');
+});
 
+
+
+Route::controller(banners_controller::class)->group(function () {
+    Route::get('/admin/banners', 'index')->name('banners.page');
+    Route::post('/admin/store/banner', 'store')->name('banner.store');
+    Route::get('/admin/edit/banner/{id}', 'edit')->name('banner.edit');
+    Route::post('/admin/update/banner/{id}', 'update')->name('banner.update');
+    Route::get('/admin/delete/banner/{id}', 'delete')->name('banner.delete');
 });
