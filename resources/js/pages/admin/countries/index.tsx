@@ -8,7 +8,7 @@ import { Input } from '@/components/ui/input'
 import { Plus, Edit, Trash2, Search } from 'lucide-react'
 import CountryDialog from '@/components/country-dialog'
 
-
+declare function route(name: string, params?: any): string
 interface Country {
     id: number
     name_en: string

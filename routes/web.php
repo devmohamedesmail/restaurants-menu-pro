@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\admin\setting_controller;
 use App\Http\Controllers\admin\country_controller;
+use App\Http\Controllers\admin\users_controller;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use Laravel\Fortify\Features;
@@ -36,4 +37,11 @@ Route::controller(country_controller::class)->group(function () {
     Route::get('/admin/edit/country/{id}', 'edit')->name('country.edit');
     Route::post('/admin/update/country/{id}', 'update')->name('country.update');
     Route::get('/admin/delete/country/{id}', 'delete')->name('country.delete');
+});
+
+
+Route::controller(users_controller::class)->group(function () {
+    Route::get('/admin/users', 'show_users')->name('users.page');
+    Route::get('/admin/users/change/role/{id}', 'admin_users_change_role')->name('admin.users.change.role');
+
 });
