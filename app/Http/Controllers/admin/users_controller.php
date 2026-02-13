@@ -21,14 +21,30 @@ class users_controller extends Controller
 
 
 
-    public function admin_users_change_role($id){
+    public function update(Request $request, $id){
         try {
-            $user = User::find($id);
-            $user->role = $user->role === 'admin' ? 'user' : 'admin';
-            $user->save();
-            return redirect()->back();
+            $validated = $request->validate([
+                'name' => 'required|string|max:255',
+                'email' => 'required|email|max:255|unique:users,email,' . $id,
+                'role' => 'required|in:user,admin,manager,store_owner',
+            ]);
+
+            $user = User::findOrFail($id);
+            $user->update($validated);
+            
+            return redirect()->back()->with('success', 'User updated successfully');
         } catch (\Throwable $th) {
-            return Inertia::render("admin/404/index",["error"=>$th]);
+            return redirect()->back()->with('error', 'Failed to update user');
+        }
+    }
+
+    public function delete($id){
+        try {
+            $user = User::findOrFail($id);
+            $user->delete();
+            return redirect()->back()->with('success', 'User deleted successfully');
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('error', 'Failed to delete user');
         }
     }
 }

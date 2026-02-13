@@ -355,7 +355,17 @@
     "name": "الاسم",
     "email": "البريد الإلكتروني",
     "role": "الدور",
-    "change-role": "تغيير الدور"
+    "change-role": "تغيير الدور",
+    "edit-user": "تعديل المستخدم",
+    "delete-user": "حذف المستخدم",
+    "update-user": "تحديث المستخدم",
+    "confirm-delete-user": "هل أنت متأكد من حذف هذا المستخدم؟ لا يمكن التراجع عن هذا الإجراء.",
+    "select-role": "اختر الدور",
+    "user-role": "مستخدم",
+    "admin-role": "مدير",
+    "manager-role": "مدير فرع",
+    "store-owner-role": "صاحب متجر",
+    "edit-user-details": "تعديل معلومات المستخدم والدور"
   },
   "banner": {
     "welcome-to-our-restaurant": " مرحباً بكم في مطعمنا ",

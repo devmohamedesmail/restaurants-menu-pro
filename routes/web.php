@@ -44,7 +44,8 @@ Route::controller(country_controller::class)->group(function () {
 
 Route::controller(users_controller::class)->group(function () {
     Route::get('/admin/users', 'show_users')->name('users.page');
-    Route::get('/admin/users/change/role/{id}', 'admin_users_change_role')->name('admin.users.change.role');
+    Route::post('/admin/users/update/{id}', 'update')->name('admin.users.update');
+    Route::get('/admin/users/delete/{id}', 'delete')->name('admin.users.delete');
 });
 
 

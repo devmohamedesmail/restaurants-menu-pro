@@ -5,8 +5,24 @@ import AppLayout from '@/layouts/app-layout'
 import { Card, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
 import { Badge } from '@/components/ui/badge'
-import { Search, UserCog } from 'lucide-react'
+import {
+    Dialog,
+    DialogContent,
+    DialogDescription,
+    DialogFooter,
+    DialogHeader,
+    DialogTitle,
+} from '@/components/ui/dialog'
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from '@/components/ui/select'
+import { Search, Pencil, Trash2 } from 'lucide-react'
 
 // Declare global route function from Laravel
 declare function route(name: string, params?: any): string
@@ -27,6 +43,14 @@ interface Props {
 export default function UsersPage({ users }: Props) {
     const { t } = useTranslation()
     const [searchTerm, setSearchTerm] = useState('')
+    const [editDialogOpen, setEditDialogOpen] = useState(false)
+    const [deleteDialogOpen, setDeleteDialogOpen] = useState(false)
+    const [selectedUser, setSelectedUser] = useState<User | null>(null)
+    const [formData, setFormData] = useState({
+        name: '',
+        email: '',
+        role: '',
+    })
 
     const filteredUsers = users.filter((user) =>
         user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -34,12 +58,69 @@ export default function UsersPage({ users }: Props) {
         user.role.toLowerCase().includes(searchTerm.toLowerCase())
     )
 
-    const handleRoleChange = (userId: number) => {
-        router.get(route('admin.users.change.role', userId))
+    const handleEditClick = (user: User) => {
+        setSelectedUser(user)
+        setFormData({
+            name: user.name,
+            email: user.email,
+            role: user.role,
+        })
+        setEditDialogOpen(true)
+    }
+
+    const handleDeleteClick = (user: User) => {
+        setSelectedUser(user)
+        setDeleteDialogOpen(true)
+    }
+
+    const handleUpdate = () => {
+        if (selectedUser) {
+            router.post(route('admin.users.update', selectedUser.id), formData, {
+                onSuccess: () => {
+                    setEditDialogOpen(false)
+                    setSelectedUser(null)
+                },
+            })
+        }
+    }
+
+    const handleDelete = () => {
+        if (selectedUser) {
+            router.get(route('admin.users.delete', selectedUser.id), {}, {
+                onSuccess: () => {
+                    setDeleteDialogOpen(false)
+                    setSelectedUser(null)
+                },
+            })
+        }
     }
 
     const getRoleBadgeVariant = (role: string) => {
-        return role === 'admin' ? 'default' : 'secondary'
+        switch (role) {
+            case 'admin':
+                return 'default'
+            case 'manager':
+                return 'secondary'
+            case 'store_owner':
+                return 'outline'
+            default:
+                return 'secondary'
+        }
+    }
+
+    const getRoleLabel = (role: string) => {
+        switch (role) {
+            case 'user':
+                return t('users.user-role')
+            case 'admin':
+                return t('users.admin-role')
+            case 'manager':
+                return t('users.manager-role')
+            case 'store_owner':
+                return t('users.store-owner-role')
+            default:
+                return role
+        }
     }
 
     return (
@@ -136,18 +217,29 @@ export default function UsersPage({ users }: Props) {
                                                 </td>
                                                 <td className="px-6 py-4 whitespace-nowrap">
                                                     <Badge variant={getRoleBadgeVariant(user.role)}>
-                                                        {user.role}
+                                                        {getRoleLabel(user.role)}
                                                     </Badge>
                                                 </td>
                                                 <td className="px-6 py-4 whitespace-nowrap text-sm">
-                                                    <Button
-                                                        size="sm"
-                                                        variant="outline"
-                                                        onClick={() => handleRoleChange(user.id)}
-                                                    >
-                                                        <UserCog className="w-4 h-4 mr-2" />
-                                                        {t('users.change-role')}
-                                                    </Button>
+                                                    <div className="flex items-center gap-2">
+                                                        <Button
+                                                            size="sm"
+                                                            variant="outline"
+                                                            onClick={() => handleEditClick(user)}
+                                                        >
+                                                            <Pencil className="w-4 h-4 mr-2" />
+                                                            {t('common.edit')}
+                                                        </Button>
+                                                        <Button
+                                                            size="sm"
+                                                            variant="outline"
+                                                            onClick={() => handleDeleteClick(user)}
+                                                            className="text-red-600 hover:text-red-700 hover:bg-red-50 dark:hover:bg-red-950"
+                                                        >
+                                                            <Trash2 className="w-4 h-4 mr-2" />
+                                                            {t('common.delete')}
+                                                        </Button>
+                                                    </div>
                                                 </td>
                                             </tr>
                                         ))
@@ -158,6 +250,105 @@ export default function UsersPage({ users }: Props) {
                     </CardContent>
                 </Card>
             </div>
+
+            {/* Edit User Dialog */}
+            <Dialog open={editDialogOpen} onOpenChange={setEditDialogOpen}>
+                <DialogContent>
+                    <DialogHeader>
+                        <DialogTitle>{t('users.edit-user')}</DialogTitle>
+                        <DialogDescription>
+                            {t('users.edit-user-details')}
+                        </DialogDescription>
+                    </DialogHeader>
+                    <div className="space-y-4 py-4">
+                        <div className="space-y-2">
+                            <Label htmlFor="name">{t('users.name')}</Label>
+                            <Input
+                                id="name"
+                                value={formData.name}
+                                onChange={(e) =>
+                                    setFormData({ ...formData, name: e.target.value })
+                                }
+                            />
+                        </div>
+                        <div className="space-y-2">
+                            <Label htmlFor="email">{t('users.email')}</Label>
+                            <Input
+                                id="email"
+                                type="email"
+                                value={formData.email}
+                                onChange={(e) =>
+                                    setFormData({ ...formData, email: e.target.value })
+                                }
+                            />
+                        </div>
+                        <div className="space-y-2">
+                            <Label htmlFor="role">{t('users.role')}</Label>
+                            <Select
+                                value={formData.role}
+                                onValueChange={(value) =>
+                                    setFormData({ ...formData, role: value })
+                                }
+                            >
+                                <SelectTrigger>
+                                    <SelectValue placeholder={t('users.select-role')} />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    <SelectItem value="user">
+                                        {t('users.user-role')}
+                                    </SelectItem>
+                                    <SelectItem value="admin">
+                                        {t('users.admin-role')}
+                                    </SelectItem>
+                                    <SelectItem value="manager">
+                                        {t('users.manager-role')}
+                                    </SelectItem>
+                                    <SelectItem value="store_owner">
+                                        {t('users.store-owner-role')}
+                                    </SelectItem>
+                                </SelectContent>
+                            </Select>
+                        </div>
+                    </div>
+                    <DialogFooter>
+                        <Button
+                            variant="outline"
+                            onClick={() => setEditDialogOpen(false)}
+                        >
+                            {t('common.cancel')}
+                        </Button>
+                        <Button onClick={handleUpdate}>
+                            {t('users.update-user')}
+                        </Button>
+                    </DialogFooter>
+                </DialogContent>
+            </Dialog>
+
+            {/* Delete Confirmation Dialog */}
+            <Dialog open={deleteDialogOpen} onOpenChange={setDeleteDialogOpen}>
+                <DialogContent>
+                    <DialogHeader>
+                        <DialogTitle>{t('users.delete-user')}</DialogTitle>
+                        <DialogDescription>
+                            {t('users.confirm-delete-user')}
+                        </DialogDescription>
+                    </DialogHeader>
+                    <DialogFooter>
+                        <Button
+                            variant="outline"
+                            onClick={() => setDeleteDialogOpen(false)}
+                        >
+                            {t('common.cancel')}
+                        </Button>
+                        <Button
+                            variant="destructive"
+                            onClick={handleDelete}
+                        >
+                            {t('common.delete')}
+                        </Button>
+                    </DialogFooter>
+                </DialogContent>
+            </Dialog>
         </AppLayout>
     )
 }
