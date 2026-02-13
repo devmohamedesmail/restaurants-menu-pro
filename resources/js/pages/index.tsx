@@ -5,6 +5,7 @@ import Footer from '@/components/landing/footer';
 import CTA from '@/components/landing/cta';
 import Features from '@/components/landing/features';
 
+
 export default function Home() {
     return (
         <div className="min-h-screen bg-background">

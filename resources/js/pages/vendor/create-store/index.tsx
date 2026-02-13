@@ -10,15 +10,14 @@ import { Label } from '@/components/ui/label'
 import InputError from '@/components/input-error'
 import { CheckCircle2, Store, User, ArrowRight, ArrowLeft, Languages } from 'lucide-react'
 import { usePage } from '@inertiajs/react'
-import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
-} from '@/components/ui/select'
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue, } from '@/components/ui/select'
 import ImagePicker from '@/components/ui/image-picker'
 
+
+
+
+
+declare function route(name: string, params?: any): string
 export default function RegisterStore({ countries }: any) {
     const { t, i18n } = useTranslation()
     const {app_settings}:any = usePage().props;
@@ -27,21 +26,21 @@ export default function RegisterStore({ countries }: any) {
     const totalSteps = 2
 
     const validationSchema = Yup.object({
-        name: Yup.string().required(t('store.full-name-required')),
-        email: Yup.string().email(t('store.invalid-email')).required(t('store.email-required')),
-        password: Yup.string().min(8, t('store.password-min')).required(t('store.password-required')),
+        name: Yup.string().required(t('auth.full-name-required')),
+        email: Yup.string().email(t('auth.invalid-email')).required(t('auth.email-required')),
+        password: Yup.string().min(8, t('auth.password-min')).required(t('auth.password-required')),
         password_confirmation: Yup.string()
-            .oneOf([Yup.ref('password')], t('store.passwords-must-match'))
-            .required(t('store.confirm-password-required')),
-        store_name: Yup.string().required(t('store.store-name-required')),
-        country_id: Yup.string().required(t('store.country-required')),
-        store_email: Yup.string().email(t('store.invalid-email')).nullable(),
+            .oneOf([Yup.ref('password')], t('auth.passwords-must-match'))
+            .required(t('auth.confirm-password-required')),
+        store_name: Yup.string().required(t('common.store-name-required')),
+        country_id: Yup.string().required(t('common.country-required')),
+        store_email: Yup.string().email(t('common.invalid-email')).nullable(),
         store_phone: Yup.string().nullable(),
         store_address: Yup.string().nullable(),
         store_description: Yup.string().nullable(),
         image: Yup.mixed()
-            .required(t('store.store-logo-required'))
-            .test('fileSize', t('store.file-size-limit'), (value) => {
+            .required(t('common.store-logo-required'))
+            .test('fileSize', t('common.file-size-limit'), (value) => {
                 if (!value) return true
                 return value instanceof File && value.size <= 2 * 1024 * 1024 // 2MB
             }),
@@ -89,17 +88,17 @@ export default function RegisterStore({ countries }: any) {
             if (values.banner) formData.append('banner', values.banner)
 
             try {
-                // await router.post(route('register.store'), formData, {
-                //     onSuccess: () => {
-                //         router.visit('/store/dashboard')
-                //     },
-                //     onError: (errors) => {
-                //         setIsSubmitting(false)
-                //         Object.keys(errors).forEach((key) => {
-                //             formik.setFieldError(key, errors[key])
-                //         })
-                //     },
-                // })
+                await router.post(route('register.store'), formData, {
+                    onSuccess: () => {
+                        router.visit('/store/dashboard')
+                    },
+                    onError: (errors) => {
+                        setIsSubmitting(false)
+                        Object.keys(errors).forEach((key) => {
+                            formik.setFieldError(key, errors[key])
+                        })
+                    },
+                })
             } catch (error) {
                 setIsSubmitting(false)
             }
@@ -429,7 +428,7 @@ export default function RegisterStore({ countries }: any) {
                                             >
                                                 <SelectTrigger className="w-full h-11">
                                                     <Languages className="w-4 h-4 mr-2" />
-                                                    <SelectValue placeholder={t('store.choose-country')} />
+                                                    <SelectValue placeholder={t('common.choose-country')} />
                                                 </SelectTrigger>
 
                                                 <SelectContent>

@@ -4,12 +4,13 @@ use App\Http\Controllers\admin\setting_controller;
 use App\Http\Controllers\admin\country_controller;
 use App\Http\Controllers\admin\users_controller;
 use App\Http\Controllers\admin\banners_controller;
+use App\Http\Controllers\vendor\create_store;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use Laravel\Fortify\Features;
 
 Route::get('/', function () {
-    return Inertia::render('vendor/create-store/index', [
+    return Inertia::render('index', [
         'canRegister' => Features::enabled(Features::registration()),
     ]);
 })->name('home');
@@ -55,3 +56,31 @@ Route::controller(banners_controller::class)->group(function () {
     Route::post('/admin/update/banner/{id}', 'update')->name('banner.update');
     Route::get('/admin/delete/banner/{id}', 'delete')->name('banner.delete');
 });
+
+
+
+
+// ====================================================================================
+
+
+Route::controller(create_store::class)->group(function () {
+    // Route::get('/store/home/{store_name?}/{store_id?}/{table?}', 'store_home')->name('store.home');
+    Route::get('/register/store', 'index')->name('register.store.page');
+    Route::post('/register/store', 'register_store')->name('register.store');
+    Route::get('/store/dashboard', 'dashboard')->name('store.dashboard');
+
+    // Get dashboard data (categories, meals, stats)
+    Route::get('/store/dashboard/data', 'getDashboardData')->name('store.dashboard.data');
+
+});
+
+
+
+
+
+
+
+
+
+
+

@@ -43,6 +43,10 @@ export default function Hero() {
                     </div>
                 </div>
             </div>
+
+            <div className='flex justify-end items-center p-4 bg-red-500 w-full'>
+                <Link href='/register/store' className='bg-primary text-white px-4 py-2 rounded-md'>Register Store</Link>
+            </div>
         </section>
     )
 }

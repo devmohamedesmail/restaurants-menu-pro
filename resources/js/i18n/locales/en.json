@@ -171,7 +171,16 @@
     "name": "Name",
     "enter-name": "Enter Name",
     "name-placeholder": "Enter Name",
-    "account": "Account"
+    "account": "Account",
+    "full-name-required": "Full name is required",
+    "invalid-email": "Invalid email address",
+    "email-required": "Email is required",
+    "password-min": "Password must be at least 8 characters",
+    "password-required": "Password is required",
+    "passwords-must-match": "Passwords must match",
+    "confirm-password-required": "Confirm password is required",
+    "store-name-required": "Store name is required",
+    "country-required": "Country is required"
   },
   "dashboard": {
     "title": "Dashboard",
@@ -307,7 +316,11 @@
     "name-ar": "Name (Arabic)",
     "edit": "Edit",
     "delete": "Delete",
-    "actions": "Actions"
+    "actions": "Actions",
+    "store-name-required": "Store name is required",
+    "country-required": "Country is required",
+    "store-logo-required": "Store logo is required",
+    "choose-country": "Choose Country"
   },
   "countries": {
     "title": "Countries Management",
@@ -344,7 +357,7 @@
     "role": "Role",
     "change-role": "Change Role"
   },
-    "banner": {
+  "banner": {
     "welcome-to-our-restaurant": "Welcome to Our Restaurant",
     "delicious-menu": "Delicious Menu",
     "discover-delicious-meals": "Discover Delicious Meals",
@@ -386,5 +399,37 @@
     "update": "Update Banner",
     "updating": "Updating...",
     "cancel": "Cancel"
+  },
+  "errors": {
+    "404": {
+      "title": "Page Not Found",
+      "subtitle": "Oops! We can't find that page",
+      "description": "The page you're looking for doesn't exist or has been moved. Let's get you back on track.",
+      "go-home": "Go to Homepage",
+      "go-back": "Go Back"
+    },
+    "403": {
+      "title": "Access Denied",
+      "subtitle": "You don't have permission",
+      "description": "Sorry, you don't have the necessary permissions to access this page. Please contact your administrator if you believe this is an error.",
+      "go-home": "Go to Homepage",
+      "contact-admin": "Contact Administrator"
+    },
+    "500": {
+      "title": "Server Error",
+      "subtitle": "Something went wrong",
+      "description": "We're experiencing technical difficulties. Our team has been notified and is working to fix the issue. Please try again later.",
+      "try-again": "Try Again",
+      "go-home": "Go to Homepage",
+      "report-issue": "Report Issue"
+    },
+    "503": {
+      "title": "Service Unavailable",
+      "subtitle": "We'll be back soon",
+      "description": "Our service is temporarily unavailable due to maintenance or high traffic. We're working hard to restore service as quickly as possible.",
+      "refresh": "Refresh Page",
+      "go-home": "Go to Homepage",
+      "check-status": "Check Status"
+    }
   }
 }
