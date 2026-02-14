@@ -249,7 +249,8 @@
     "countries": "Countries",
     "banners": "Banners",
     "plans": "Plans",
-    "stores": "Stores"
+    "stores": "Stores",
+    "roles": "Roles"
   },
   "setting": {
     "page-title": "Settings",
@@ -460,6 +461,25 @@
     "owner": "Owner",
     "created-at": "Created At",
     "manage-stores-desc": "Easily view, add, edit, or remove stores to keep your platform organized and up-to-date."
+  },
+  "roles": {
+    "title": "Roles Management",
+    "description": "Create and manage user roles and permissions",
+    "add-role": "Add New Role",
+    "edit-role": "Edit Role",
+    "delete-role": "Delete Role",
+    "search-roles": "Search roles...",
+    "no-roles-found": "No roles found",
+    "role-name": "Role Name",
+    "role-slug": "Role Slug",
+    "enter-role-name": "Enter role name",
+    "enter-role-slug": "Enter role slug (e.g., admin, manager)",
+    "confirm-delete-role": "Are you sure you want to delete this role? This action cannot be undone.",
+    "fill-role-details": "Please fill in the role details",
+    "manage-roles-desc": "Easily add, edit, or remove roles to manage user permissions and access levels.",
+    "role-name-required": "Role name is required",
+    "role-slug-required": "Role slug is required",
+    "created-at": "Created At"
   },
   "errors": {
     "404": {

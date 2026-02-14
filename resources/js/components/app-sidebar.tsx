@@ -51,6 +51,11 @@ export function AppSidebar() {
             icon: Users,
         },
         {
+            title: t('dashboard.roles'),
+            href: '/admin/roles',
+            icon: Users,
+        },
+        {
             title: t('dashboard.countries'),
             href: '/admin/countries',
             icon: MapPinHouse,

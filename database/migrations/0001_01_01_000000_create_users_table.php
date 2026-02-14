@@ -17,7 +17,11 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->longText('avatar')->nullable();
             $table->string('phone')->nullable();
-            $table->enum('role' , ['user','admin','manager','store_owner'])->default('user');       
+            $table->foreignId('role_id')
+              ->nullable()
+              ->constrained('roles')
+              ->cascadeOnDelete();   
+
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

@@ -5,6 +5,7 @@ use App\Http\Controllers\admin\CountryController;
 use App\Http\Controllers\admin\SettingController;
 use App\Http\Controllers\admin\StoresController;
 use App\Http\Controllers\admin\UsersController;
+use App\Http\Controllers\admin\RoleController;
 use App\Http\Controllers\vendor\CreateStore;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -48,6 +49,14 @@ Route::controller(UsersController::class)->group(function () {
     Route::get('/admin/users', 'show_users')->name('users.page');
     Route::post('/admin/users/update/{id}', 'update')->name('admin.users.update');
     Route::get('/admin/users/delete/{id}', 'delete')->name('admin.users.delete');
+});
+
+
+Route::controller(RoleController::class)->group(function () {
+    Route::get('/admin/roles', 'index')->name('roles.page');
+    Route::post('/admin/roles', 'store')->name('roles.store');
+    Route::post('/admin/roles/{id}', 'update')->name('roles.update');
+    Route::get('/admin/roles/{id}/delete', 'destroy')->name('roles.delete');
 });
 
 
