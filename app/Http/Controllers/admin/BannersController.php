@@ -9,7 +9,7 @@ use App\Models\Banner;
 use Inertia\Inertia;
 
 
-class banners_controller extends Controller
+class BannersController extends Controller
 {
     private function uploadToCloudinary($file, $folder)
     {

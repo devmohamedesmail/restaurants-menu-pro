@@ -7,7 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
-class users_controller extends Controller
+class UsersController extends Controller
 {
        // show_users
     public function show_users(){

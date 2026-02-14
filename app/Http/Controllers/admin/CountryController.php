@@ -7,7 +7,7 @@ use App\Models\Country;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
-class country_controller extends Controller
+class CountryController extends Controller
 {
     
     public function index()

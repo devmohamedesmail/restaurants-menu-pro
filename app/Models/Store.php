@@ -20,6 +20,9 @@ class Store extends Model
         'image',
         'description',
         'banner',
+        'is_active',
+        'is_featured',
+        'is_verified',
     ];
 
 
@@ -49,5 +52,10 @@ class Store extends Model
     // Define relationship to Table model
     public function tables(){
         return $this->hasMany(Table::class);
+    }
+
+    // Define relationship to User model (store owner)
+    public function user(){
+        return $this->belongsTo(User::class);
     }
 }

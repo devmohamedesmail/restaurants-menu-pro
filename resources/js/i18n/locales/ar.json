@@ -243,7 +243,8 @@
     "users": "المستخدمون",
     "countries": "الدول",
     "banners": "البنرات",
-    "plans": " الخطط "
+    "plans": " الخطط ",
+    "stores": " المتاجر "
   },
   "setting": {
     "page-title": "الإعدادات",
@@ -320,7 +321,18 @@
     "store-name-required": "اسم المتجر مطلوب",
     "country-required": "الدولة مطلوبة",
     "store-logo-required": "شعار المتجر مطلوب",
-    "choose-country": "اختر الدولة"
+    "choose-country": "اختر الدولة",
+    "status": "الحالة",
+    "active": "نشط",
+    "inactive": "غير نشط",
+    "featured": "مميز",
+    "verified": "موثق",
+    "activate": "تفعيل",
+    "deactivate": "إلغاء التفعيل",
+    "feature": "وضع علامة مميز",
+    "unfeature": "إزالة علامة مميز",
+    "verify": "توثيق",
+    "unverify": "إلغاء التوثيق"
   },
   "countries": {
     "title": " إدارة الدول ",
@@ -409,6 +421,40 @@
     "update": "تحديث البنر",
     "updating": "جارٍ التحديث...",
     "cancel": "إلغاء"
+  },
+  "stores": {
+    "title": "إدارة المتاجر",
+    "description": "عرض وإدارة جميع المتاجر",
+    "add-store": "إضافة متجر جديد",
+    "edit-store": "تعديل المتجر",
+    "delete-store": "حذف المتجر",
+    "search-stores": "ابحث عن متاجر...",
+    "no-stores-found": "لم يتم العثور على متاجر",
+    "try-different-search": "حاول بحثًا مختلفًا أو تحقق مرة أخرى لاحقًا",
+    "store-name": "اسم المتجر",
+    "store-owner": "مالك المتجر",
+    "store-email": "البريد الإلكتروني",
+    "store-phone": "الهاتف",
+    "store-address": "العنوان",
+    "store-country": "الدولة",
+    "store-description": "الوصف",
+    "store-image": "صورة المتجر",
+    "store-banner": "بانر المتجر",
+    "enter-store-name": "أدخل اسم المتجر",
+    "enter-store-email": "أدخل البريد الإلكتروني للمتجر",
+    "enter-store-phone": "أدخل هاتف المتجر",
+    "enter-store-address": "أدخل عنوان المتجر",
+    "enter-store-description": "أدخل وصف المتجر",
+    "select-owner": "اختر المالك",
+    "select-country": "اختر الدولة",
+    "confirm-delete-store": "هل أنت متأكد من حذف هذا المتجر؟ لا يمكن التراجع عن هذا الإجراء.",
+    "update-store": "تحديث المتجر",
+    "create-store": "إنشاء متجر",
+    "edit-store-details": "تعديل معلومات المتجر",
+    "fill-store-details": "يرجى ملء تفاصيل المتجر",
+    "owner": "المالك",
+    "created-at": "تاريخ الإنشاء",
+    "manage-stores-desc": "عرض وإضافة وتحرير أو إزالة المتاجر بسهولة للحفاظ على منصتك منظمة ومحدثة."
   },
   "errors": {
     "404": {

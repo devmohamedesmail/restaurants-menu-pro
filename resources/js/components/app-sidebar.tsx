@@ -1,5 +1,5 @@
 import { Link } from '@inertiajs/react';
-import { BookOpen, Flag, Folder, LayoutGrid, MapPinHouse, Settings, Users } from 'lucide-react';
+import { BookOpen, Flag, Folder, LayoutGrid, MapPinHouse, Settings, Store, Users } from 'lucide-react';
 import { NavFooter } from '@/components/nav-footer';
 import { NavMain } from '@/components/nav-main';
 import { NavUser } from '@/components/nav-user';
@@ -59,6 +59,11 @@ export function AppSidebar() {
             title: t('dashboard.banners'),
             href: '/admin/banners',
             icon: Flag,
+        },
+        {
+            title: t('dashboard.stores'),
+            href: '/admin/stores',
+            icon: Store,
         },
     ];
     return (

@@ -8,7 +8,7 @@ use Cloudinary\Cloudinary;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class setting_controller extends Controller
+class SettingController extends Controller
 {
        private function uploadToCloudinary($file, $folder)
     {

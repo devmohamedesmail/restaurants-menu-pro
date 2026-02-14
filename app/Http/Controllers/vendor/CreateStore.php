@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Inertia\Inertia;
 
-class create_store extends Controller
+class CreateStore extends Controller
 {
      public function index(){
        try {
@@ -45,20 +45,23 @@ class create_store extends Controller
                 'image' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
                 'banner' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
             ]);
-
-            // Create the user
+// dd($validated);
+            //Create the user
             $user = User::create([
                 'name' => $validated['name'],
                 'email' => $validated['email'],
                 'password' => Hash::make($validated['password']),
-                 "role" => "store_owner",
+                "role" => "store_owner",
             ]);
 
-            event(new Registered($user));
+
+            dd($user);
+
+            // event(new Registered($user));
 
             // Upload images to Cloudinary
             $imagePath = $this->uploadToCloudinary($request->file('image'), 'stores/logos');
-            
+        
             $bannerPath = null;
             if ($request->hasFile('banner')) {
                 $bannerPath = $this->uploadToCloudinary($request->file('banner'), 'stores/banners');
@@ -88,8 +91,6 @@ class create_store extends Controller
                 "error" => $th->getMessage(),
             ]);
         } catch (\Throwable $th) {
-            // \Log::error('Store registration error: ' . $th->getMessage());
-            // return back()->withErrors(['error' => $th->getMessage()])->withInput();
             return Inertia::render("404/index" , [
                 "error" => $th->getMessage(),
             ]);
@@ -129,4 +130,13 @@ class create_store extends Controller
             return Inertia::render("store/register-store/index");
         }
     }
+
+
+    public function redirect_to_dashboard(){
+        $user = Auth::user();
+        dd($user);
+    }
+
+
+    
 }

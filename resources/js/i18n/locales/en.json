@@ -243,7 +243,8 @@
     "users": "Users",
     "countries": "Countries",
     "banners": "Banners",
-    "plans": "Plans"
+    "plans": "Plans",
+    "stores": "Stores"
   },
   "setting": {
     "page-title": "Settings",
@@ -320,7 +321,18 @@
     "store-name-required": "Store name is required",
     "country-required": "Country is required",
     "store-logo-required": "Store logo is required",
-    "choose-country": "Choose Country"
+    "choose-country": "Choose Country",
+    "status": "Status",
+    "active": "Active",
+    "inactive": "Inactive",
+    "featured": "Featured",
+    "verified": "Verified",
+    "activate": "Activate",
+    "deactivate": "Deactivate",
+    "feature": "Mark as Featured",
+    "unfeature": "Remove Featured",
+    "verify": "Verify",
+    "unverify": "Unverify"
   },
   "countries": {
     "title": "Countries Management",
@@ -409,6 +421,40 @@
     "update": "Update Banner",
     "updating": "Updating...",
     "cancel": "Cancel"
+  },
+  "stores": {
+    "title": "Stores Management",
+    "description": "View and manage all stores",
+    "add-store": "Add New Store",
+    "edit-store": "Edit Store",
+    "delete-store": "Delete Store",
+    "search-stores": "Search stores...",
+    "no-stores-found": "No stores found",
+    "try-different-search": "Try a different search or check back later.",
+    "store-name": "Store Name",
+    "store-owner": "Store Owner",
+    "store-email": "Email",
+    "store-phone": "Phone",
+    "store-address": "Address",
+    "store-country": "Country",
+    "store-description": "Description",
+    "store-image": "Store Image",
+    "store-banner": "Store Banner",
+    "enter-store-name": "Enter store name",
+    "enter-store-email": "Enter store email",
+    "enter-store-phone": "Enter store phone",
+    "enter-store-address": "Enter store address",
+    "enter-store-description": "Enter store description",
+    "select-owner": "Select Owner",
+    "select-country": "Select Country",
+    "confirm-delete-store": "Are you sure you want to delete this store? This action cannot be undone.",
+    "update-store": "Update Store",
+    "create-store": "Create Store",
+    "edit-store-details": "Edit store information",
+    "fill-store-details": "Please fill in the store details",
+    "owner": "Owner",
+    "created-at": "Created At",
+    "manage-stores-desc": "Easily view, add, edit, or remove stores to keep your platform organized and up-to-date."
   },
   "errors": {
     "404": {
