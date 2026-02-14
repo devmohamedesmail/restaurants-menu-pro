@@ -92,6 +92,11 @@
       "no_credit_card": "No credit card required"
     }
   },
+  "header": {
+    "dashboard": "Dashboard",
+    "profile": "Profile",
+    "my-account": "My Account"
+  },
   "auth": {
     "register-store": "Register Your Restaurant",
     "store-registration": "Easily register your restaurant and start using our digital menu platform today.",

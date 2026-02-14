@@ -29,7 +29,7 @@ export default function Hero() {
                     </p>
 
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 animate-fade-in-up delay-300 px-4">
-                        <Link href={'/login'} className="w-full sm:w-auto group relative px-6 sm:px-8 py-3 sm:py-4 bg-primary text-white rounded-xl font-semibold text-sm sm:text-base overflow-hidden transition-all hover:shadow-lg hover:shadow-primary/25 hover:scale-105">
+                        <Link href='/register/store' className="w-full sm:w-auto group relative px-6 sm:px-8 py-3 sm:py-4 bg-primary text-white rounded-xl font-semibold text-sm sm:text-base overflow-hidden transition-all hover:shadow-lg hover:shadow-primary/25 hover:scale-105">
                             <span className="relative z-10 flex items-center justify-center gap-2">
                                 {t('landing.hero.cta')}
                                 <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
@@ -43,10 +43,6 @@ export default function Hero() {
                     </div>
                 </div>
             </div>
-
-            {/* <div className='flex justify-end items-center p-4 bg-red-500 w-full'>
-                <Link href='/register/store' className='bg-primary text-white px-4 py-2 rounded-md'>Register Store</Link>
-            </div> */}
         </section>
     )
 }
