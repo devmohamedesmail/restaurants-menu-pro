@@ -23,24 +23,36 @@ import {
     SelectValue,
 } from '@/components/ui/select'
 import { Search, Pencil, Trash2 } from 'lucide-react'
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+
 
 // Declare global route function from Laravel
-declare function route(name: string, params?: any): string
+// @ts-ignore
+declare var route: any;
 
+
+interface Role {
+    id: number
+    name: string
+    slug: string
+}
 
 interface User {
     id: number
     name: string
     email: string
-    role: string
+    role: Role
+    role_id: number
+    avatar?: string
     created_at?: string
 }
 
 interface Props {
     users: User[]
+    roles: Role[]
 }
 
-export default function UsersPage({ users }: Props) {
+export default function UsersPage({ users, roles }: Props) {
     const { t } = useTranslation()
     const [searchTerm, setSearchTerm] = useState('')
     const [editDialogOpen, setEditDialogOpen] = useState(false)
@@ -49,13 +61,13 @@ export default function UsersPage({ users }: Props) {
     const [formData, setFormData] = useState({
         name: '',
         email: '',
-        role: '',
+        role_id: '',
     })
 
     const filteredUsers = users.filter((user) =>
         user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
         user.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        user.role.toLowerCase().includes(searchTerm.toLowerCase())
+        user.role?.name.toLowerCase().includes(searchTerm.toLowerCase())
     )
 
     const handleEditClick = (user: User) => {
@@ -63,7 +75,7 @@ export default function UsersPage({ users }: Props) {
         setFormData({
             name: user.name,
             email: user.email,
-            role: user.role,
+            role_id: user.role_id.toString(),
         })
         setEditDialogOpen(true)
     }
@@ -95,8 +107,8 @@ export default function UsersPage({ users }: Props) {
         }
     }
 
-    const getRoleBadgeVariant = (role: string) => {
-        switch (role) {
+    const getRoleBadgeVariant = (roleSlug: string) => {
+        switch (roleSlug) {
             case 'admin':
                 return 'default'
             case 'manager':
@@ -108,8 +120,8 @@ export default function UsersPage({ users }: Props) {
         }
     }
 
-    const getRoleLabel = (role: string) => {
-        switch (role) {
+    const getRoleLabel = (roleSlug: string) => {
+        switch (roleSlug) {
             case 'user':
                 return t('users.user-role')
             case 'admin':
@@ -119,7 +131,7 @@ export default function UsersPage({ users }: Props) {
             case 'store_owner':
                 return t('users.store-owner-role')
             default:
-                return role
+                return roleSlug
         }
     }
 
@@ -199,13 +211,12 @@ export default function UsersPage({ users }: Props) {
                                         filteredUsers.map((user) => (
                                             <tr key={user.id} className="hover:bg-gray-50 dark:hover:bg-gray-800">
                                                 <td className="px-6 py-4 whitespace-nowrap">
-                                                    <div className="flex items-center">
-                                                        <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
-                                                            <span className="text-primary font-semibold text-sm">
-                                                                {user.name.charAt(0).toUpperCase()}
-                                                            </span>
-                                                        </div>
-                                                        <div className="ml-4">
+                                                    <div className="flex items-center gap-3">
+                                                        <Avatar>
+                                                            <AvatarImage src={user.avatar} alt={user.name} />
+                                                            <AvatarFallback>{user.name.charAt(0).toUpperCase()}</AvatarFallback>
+                                                        </Avatar>
+                                                        <div>
                                                             <div className="text-sm font-medium text-gray-900 dark:text-white">
                                                                 {user.name}
                                                             </div>
@@ -216,8 +227,8 @@ export default function UsersPage({ users }: Props) {
                                                     {user.email}
                                                 </td>
                                                 <td className="px-6 py-4 whitespace-nowrap">
-                                                    <Badge variant={getRoleBadgeVariant(user.role)}>
-                                                        {getRoleLabel(user.role)}
+                                                    <Badge variant={getRoleBadgeVariant(user.role?.slug)}>
+                                                        {getRoleLabel(user.role?.slug)}
                                                     </Badge>
                                                 </td>
                                                 <td className="px-6 py-4 whitespace-nowrap text-sm">
@@ -285,27 +296,20 @@ export default function UsersPage({ users }: Props) {
                         <div className="space-y-2">
                             <Label htmlFor="role">{t('users.role')}</Label>
                             <Select
-                                value={formData.role}
+                                value={formData.role_id}
                                 onValueChange={(value) =>
-                                    setFormData({ ...formData, role: value })
+                                    setFormData({ ...formData, role_id: value })
                                 }
                             >
                                 <SelectTrigger>
                                     <SelectValue placeholder={t('users.select-role')} />
                                 </SelectTrigger>
                                 <SelectContent>
-                                    <SelectItem value="user">
-                                        {t('users.user-role')}
-                                    </SelectItem>
-                                    <SelectItem value="admin">
-                                        {t('users.admin-role')}
-                                    </SelectItem>
-                                    <SelectItem value="manager">
-                                        {t('users.manager-role')}
-                                    </SelectItem>
-                                    <SelectItem value="store_owner">
-                                        {t('users.store-owner-role')}
-                                    </SelectItem>
+                                    {roles.map((role) => (
+                                        <SelectItem key={role.id} value={role.id.toString()}>
+                                            {role.name}
+                                        </SelectItem>
+                                    ))}
                                 </SelectContent>
                             </Select>
                         </div>

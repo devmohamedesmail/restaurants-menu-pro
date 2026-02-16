@@ -126,9 +126,10 @@ class CreateStore extends Controller
     public function redirect_to_dashboard()
     {
         $user  = Auth::user();
-        $store = $user->stores()->first();
+       
 
         if ($user->role_id == 4) {
+            $store = $user->stores()->first();
             if ($store) {
                 return Inertia::render('vendor/dashboard/index', [
                     'store'      => $store,
@@ -142,7 +143,8 @@ class CreateStore extends Controller
                 return redirect()->route('register.store.page');
             }
         } else {
-            return redirect()->route('dashboard');
+            // dd("fdsfasdf");
+            return Inertia::render('dashboard');
         }
     }
 
