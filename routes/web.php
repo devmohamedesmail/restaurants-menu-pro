@@ -2,11 +2,15 @@
 
 use App\Http\Controllers\admin\BannersController;
 use App\Http\Controllers\admin\CountryController;
+use App\Http\Controllers\admin\RoleController;
 use App\Http\Controllers\admin\SettingController;
 use App\Http\Controllers\admin\StoresController;
 use App\Http\Controllers\admin\UsersController;
-use App\Http\Controllers\admin\RoleController;
+use App\Http\Controllers\vendor\CategoryController;
 use App\Http\Controllers\vendor\CreateStore;
+use App\Http\Controllers\vendor\MealController;
+use App\Http\Controllers\vendor\OrderController;
+use App\Http\Controllers\vendor\TableController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use Laravel\Fortify\Features;
@@ -93,6 +97,35 @@ Route::controller(CreateStore::class)->group(function () {
     // Get dashboard data (categories, meals, stats)
     Route::get('/store/dashboard/data', 'getDashboardData')->name('store.dashboard.data');
 
+});
+
+
+
+Route::controller(CategoryController::class)->group(function () {
+    Route::post('/store/categories', 'storeCategory')->name('store.category.store')->middleware('auth');
+    Route::put('/store/categories/{id}', 'updateCategory')->name('store.category.update')->middleware('auth');
+    Route::delete('/store/categories/{id}', 'deleteCategory')->name('store.category.delete')->middleware('auth');
+});
+
+
+
+Route::controller(MealController::class)->group(function () {
+    Route::post('/store/meals', 'storeMeal')->name('store.meal.store')->middleware('auth');
+    Route::put('/store/meals/{id}', 'updateMeal')->name('store.meal.update')->middleware('auth');
+    Route::delete('/store/meals/{id}', 'deleteMeal')->name('store.meal.delete')->middleware('auth');
+});
+
+
+Route::controller(OrderController::class)->group(function () {
+    Route::post('/store/create/order', 'createOrder')->name('store.create.order')->middleware('auth');
+    Route::post('/store/order/{id}/status', 'updateOrderStatus')->name('store.order.update.status')->middleware('auth');
+});
+
+
+Route::controller(TableController::class)->group(function () {
+    Route::post('/store/tables', 'storeTable')->name('store.table.store');
+    Route::put('/store/tables/{id}', 'updateTable')->name('store.table.update');
+    Route::delete('/store/tables/{id}', 'deleteTable')->name('store.table.delete');
 });
 
 
