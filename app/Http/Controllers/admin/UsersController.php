@@ -12,7 +12,7 @@ class UsersController extends Controller
        // show_users
     public function show_users(){
      try {
-          $users = User::all();
+        $users = User::with('role')->get();
         return Inertia::render("admin/users/index",["users"=>$users]);
      } catch (\Throwable $th) {
        return Inertia::render("admin/404/index",["error"=>$th]);

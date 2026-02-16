@@ -29,7 +29,7 @@ class CreateStore extends Controller
       public function register_store(Request $request)
     {
         try {
-          
+          dd($request->all());
             // Validate the request
             $validated = $request->validate([
                 'name' => 'required|string|max:255',
@@ -45,17 +45,17 @@ class CreateStore extends Controller
                 'image' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
                 'banner' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
             ]);
-// dd($validated);
+
             //Create the user
             $user = User::create([
                 'name' => $validated['name'],
                 'email' => $validated['email'],
                 'password' => Hash::make($validated['password']),
-                "role" => "store_owner",
+                "role_id" => 4,
             ]);
 
 
-            dd($user);
+      
 
             // event(new Registered($user));
 
@@ -98,8 +98,8 @@ class CreateStore extends Controller
     }
 
 
-     public function dashboard(){
-
+     public function store_dashboard(){
+       
         $user = Auth::user();
         $store = Store::where('user_id', $user->id)->first(); 
         if($store){
@@ -134,7 +134,11 @@ class CreateStore extends Controller
 
     public function redirect_to_dashboard(){
         $user = Auth::user();
-        dd($user);
+        if($user->role_id == 4){
+             return Inertia::render("vendor/dashboard/index");
+        }else{
+            return redirect()->route('dashboard');
+        }
     }
 
 

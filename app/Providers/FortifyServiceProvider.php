@@ -4,8 +4,11 @@ namespace App\Providers;
 
 use App\Actions\Fortify\CreateNewUser;
 use App\Actions\Fortify\ResetUserPassword;
+use App\Models\User;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
@@ -31,6 +34,30 @@ class FortifyServiceProvider extends ServiceProvider
         $this->configureActions();
         $this->configureViews();
         $this->configureRateLimiting();
+
+
+         // Custom login logic
+    Fortify::authenticateUsing(function (Request $request) {
+        $user = User::where('email', $request->email)->first();
+
+        if ($user && Hash::check($request->password, $user->password)) {
+            Auth::login($user);
+
+            // Role-based redirect after login
+            if ($user->role_id === 4) {
+                // Vendors → store dashboard
+                Inertia::location(route('store.dashboard'));
+
+            } else {
+                // Normal users → dashboard
+                Inertia::location(route('dashboard'));
+            }
+
+            return $user;
+        }
+
+        return null;
+    });
     }
 
     /**

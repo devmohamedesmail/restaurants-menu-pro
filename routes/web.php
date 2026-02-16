@@ -17,10 +17,10 @@ Route::get('/', function () {
     ]);
 })->name('home');
 
-// Route::get('dashboard', [CreateStore::class, 'redirect_to_dashboard'])->middleware(['auth', 'verified'])->name('dashboard');
-Route::get('dashboard', function () {
-    return Inertia::render('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+ Route::get('dashboard', [CreateStore::class, 'redirect_to_dashboard'])->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('dashboard', function () {
+//     return Inertia::render('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
 require __DIR__.'/settings.php';
 
@@ -87,8 +87,8 @@ Route::controller(StoresController::class)->group(function () {
 Route::controller(CreateStore::class)->group(function () {
     // Route::get('/store/home/{store_name?}/{store_id?}/{table?}', 'store_home')->name('store.home');
     Route::get('/register/store', 'index')->name('register.store.page');
-    Route::post('/register/store', 'register_store')->name('register.store');
-    Route::get('/store/dashboard', 'dashboard')->name('store.dashboard');
+    Route::post('/register/store', 'register_store')->name('create.store');
+    Route::get('/store/dashboard', 'store_dashboard')->name('store.dashboard');
 
     // Get dashboard data (categories, meals, stats)
     Route::get('/store/dashboard/data', 'getDashboardData')->name('store.dashboard.data');

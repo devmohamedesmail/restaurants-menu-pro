@@ -88,7 +88,8 @@ export default function RegisterStore({ countries }: any) {
             if (values.banner) formData.append('banner', values.banner)
 
             try {
-                await router.post(route('register.store'), formData, {
+           
+                await router.post(route('create.store'), formData, {
                     onSuccess: () => {
                         router.visit('/store/dashboard')
                     },
