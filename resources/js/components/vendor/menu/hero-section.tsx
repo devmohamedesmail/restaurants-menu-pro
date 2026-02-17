@@ -66,11 +66,11 @@ export default function HeroSection({ store }: { store: any }) {
                     <div className="flex gap-2 mb-2 w-full sm:w-auto">
                         <button className="flex-1 sm:flex-none btn bg-background/80 backdrop-blur text-foreground border border-border hover:bg-background transition-colors p-3 rounded-xl flex items-center justify-center gap-2">
                             <Share2 className="w-5 h-5" />
-                            <span className="sm:hidden">{t('Share')}</span>
+                            <span className="sm:hidden">{t('menu.share')}</span>
                         </button>
                         <button className="flex-1 sm:flex-none btn bg-primary text-primary-foreground hover:bg-primary/90 transition-colors p-3 rounded-xl flex items-center justify-center gap-2 shadow-lg shadow-primary/20">
                             <Info className="w-5 h-5" />
-                            <span className="sm:hidden">{t('Info')}</span>
+                            <span className="sm:hidden">{t('menu.info')}</span>
                         </button>
                     </div>
                 </div>

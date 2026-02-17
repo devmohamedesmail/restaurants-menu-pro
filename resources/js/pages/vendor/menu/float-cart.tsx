@@ -15,7 +15,7 @@ import {
 import { increase_quantity, decrease_quantity, remove_from_cart } from '@/redux/reducers/cart-slice';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
-import { ScrollArea } from '@/components/ui/scroll-area';
+
 
 export default function FloatCart() {
     const { t, i18n } = useTranslation();
@@ -52,7 +52,7 @@ export default function FloatCart() {
                             </div>
                             <div className="flex flex-col">
                                 <span className="font-bold text-lg leading-tight">
-                                    {totalItems} {t('Items')}
+                                    {totalItems} {t('menu.items')}
                                 </span>
                                 <span className="text-primary-foreground/80 text-sm font-medium">
                                     {totalPrice.toFixed(2)}
@@ -61,18 +61,18 @@ export default function FloatCart() {
                         </div>
 
                         <div className="flex items-center gap-1 font-bold bg-white/20 px-4 py-2 rounded-xl text-sm">
-                            {t('View Order')}
+                            {t('menu.view_order')}
                             <ChevronRight className={`w-4 h-4 ml-1 ${isRTL ? 'rotate-180' : ''}`} />
                         </div>
                     </div>
                 </div>
             </SheetTrigger>
-            <SheetContent side="bottom" className="h-[85vh] rounded-t-[2rem] p-0 flex flex-col bg-background/95 backdrop-blur-xl border-t border-border/50">
+            <SheetContent side="bottom" className="h-[85vh] rounded-t-4xl p-0 flex flex-col bg-background/95 backdrop-blur-xl border-t border-border/50">
                 <SheetHeader className="p-6 border-b border-border/50">
                     <div className="flex items-center justify-between">
                         <SheetTitle className="text-2xl font-bold flex items-center gap-2">
                             <ShoppingBag className="w-6 h-6 text-primary" />
-                            {t('Your Order')}
+                            {t('menu.your_order')}
                         </SheetTitle>
                         <SheetClose asChild>
                             <Button variant="ghost" size="icon" className="rounded-full hover:bg-secondary">
@@ -141,18 +141,18 @@ export default function FloatCart() {
                 <div className="p-6 bg-background border-t border-border/50 space-y-4">
                     <div className="space-y-2">
                         <div className="flex justify-between text-muted-foreground">
-                            <span>{t('Subtotal')}</span>
+                            <span>{t('menu.subtotal')}</span>
                             <span>{totalPrice.toFixed(2)}</span>
                         </div>
                         <Separator />
                         <div className="flex justify-between text-xl font-bold">
-                            <span>{t('Total')}</span>
+                            <span>{t('menu.total')}</span>
                             <span className="text-primary">{totalPrice.toFixed(2)}</span>
                         </div>
                     </div>
 
                     <Button className="w-full py-6 text-lg rounded-xl shadow-lg shadow-primary/20 hover:scale-[1.02] active:scale-[0.98] transition-all">
-                        {t('Checkout')}
+                        {t('menu.checkout')}
                     </Button>
                 </div>
             </SheetContent>

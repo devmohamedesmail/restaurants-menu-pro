@@ -37,7 +37,7 @@ export default function MealCard({ meal, country }: any) {
 
     const addToCart = (meal: any) => {
         dispatch(add_to_cart({ ...meal, quantity: 1 }));
-        toast.success(t('Meal added to cart'), {
+        toast.success(t('menu.added_to_cart'), {
             position: "top-center",
             duration: 2000,
         });
@@ -120,7 +120,7 @@ export default function MealCard({ meal, country }: any) {
                         className="w-full bg-secondary hover:bg-primary hover:text-primary-foreground text-secondary-foreground font-medium py-2.5 rounded-xl transition-all duration-300 flex items-center justify-center gap-2"
                     >
                         <ShoppingBag className="w-5 h-5" />
-                        {t('common.add_to_order')}
+                        {t('menu.add_to_order')}
                     </button>
                 )}
             </div>

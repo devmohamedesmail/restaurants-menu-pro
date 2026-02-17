@@ -533,5 +533,21 @@
       "go-home": "العودة للصفحة الرئيسية",
       "check-status": "التحقق من الحالة"
     }
+  },
+  "menu": {
+    "items": "عناصر",
+    "view_order": "عرض الطلب",
+    "your_order": "طلبك",
+    "subtotal": "المجموع الفرعي",
+    "total": "المجمـوع",
+    "checkout": "الدفع",
+    "added_to_cart": "تمت إضافة الوجبة إلى السلة",
+    "popular_choices": "خيارات شائعة",
+    "search_placeholder": "ابحث عن وجبات...",
+    "share": "مشاركة",
+    "info": "معلومات",
+    "no_items_found": "لم يتم العثور على عناصر",
+    "adjust_filters": "حاول تعديل البحث أو فلتر التصنيف",
+    "clear_filters": "مسح جميع الفلاتر"
   }
 }

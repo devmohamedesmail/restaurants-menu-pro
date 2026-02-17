@@ -533,5 +533,21 @@
       "go-home": "Go to Homepage",
       "check-status": "Check Status"
     }
+  },
+  "menu": {
+    "items": "Items",
+    "view_order": "View Order",
+    "your_order": "Your Order",
+    "subtotal": "Subtotal",
+    "total": "Total",
+    "checkout": "Checkout",
+    "added_to_cart": "Meal added to cart",
+    "popular_choices": "Popular Choices",
+    "search_placeholder": "Search meals...",
+    "share": "Share",
+    "info": "Info",
+    "no_items_found": "No items found",
+    "adjust_filters": "Try adjusting your search or category filter",
+    "clear_filters": "Clear all filters"
   }
 }
