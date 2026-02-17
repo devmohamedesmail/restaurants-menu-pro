@@ -357,7 +357,8 @@
     "feature": "وضع علامة مميز",
     "unfeature": "إزالة علامة مميز",
     "verify": "توثيق",
-    "unverify": "إلغاء التوثيق"
+    "unverify": "إلغاء التوثيق",
+    "add_to_order": "أضف إلى الطلب"
   },
   "countries": {
     "title": " إدارة الدول ",

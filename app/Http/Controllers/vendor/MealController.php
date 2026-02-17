@@ -101,19 +101,6 @@ class MealController extends Controller
         }
 
         $meal->update($data);
-
-        // Handle attributes
-        // if ($request->has('attributes')) {
-        //     $attributes = json_decode($request->input('attributes'), true);
-        //     if (is_array($attributes)) {
-        //         $syncData = [];
-        //         foreach ($attributes as $attributeId => $valueId) {
-        //             $syncData[$attributeId] = ['attribute_value_id' => $valueId];
-        //         }
-        //         $meal->attributes()->sync($syncData);
-        //     }
-        // }
-
         return redirect()->back();
     }
 

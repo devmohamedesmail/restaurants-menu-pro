@@ -357,7 +357,8 @@
     "feature": "Mark as Featured",
     "unfeature": "Remove Featured",
     "verify": "Verify",
-    "unverify": "Unverify"
+    "unverify": "Unverify",
+    "add_to_order": "Add to Order"
   },
   "countries": {
     "title": "Countries Management",

@@ -148,4 +148,41 @@ class CreateStore extends Controller
         }
     }
 
+
+
+
+    /**
+     * Show store menu
+     * 
+     */
+    public function store_menu($slug, $store_id)
+    {
+        try {
+            $store = Store::where('id', $store_id)->first();
+            if ($store) {
+                $categories = $store->categories()->withCount('meals')->get();
+                $meals      = $store->meals()->with('category')->get();
+                $country    = $store->country()->first();
+            
+
+               
+
+                return Inertia::render("vendor/menu/index", [
+                    'store'      => $store,
+                    'categories' => $categories,
+                    'country'    => $country,
+                    'meals'      => $meals,  
+                ]);
+            } else {
+                return Inertia::render("404/index", [
+                    "error" => "Store not found",
+                ]);
+            }
+        } catch (\Throwable $th) {
+            return Inertia::render("404/index", [
+                "error" => $th->getMessage(),
+            ]);
+        }
+    }
+
 }

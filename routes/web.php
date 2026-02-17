@@ -11,13 +11,18 @@ use App\Http\Controllers\vendor\CreateStore;
 use App\Http\Controllers\vendor\MealController;
 use App\Http\Controllers\vendor\OrderController;
 use App\Http\Controllers\vendor\TableController;
+use App\Models\Store;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use Laravel\Fortify\Features;
 
 Route::get('/', function () {
+    // return Inertia::render('index', [
+    //     'canRegister' => Features::enabled(Features::registration()),
+    // ]);
+    $stores = Store::where('is_active', true)->limit(10)->get();
     return Inertia::render('index', [
-        'canRegister' => Features::enabled(Features::registration()),
+        'stores' => $stores,
     ]);
 })->name('home');
 
@@ -96,6 +101,10 @@ Route::controller(CreateStore::class)->group(function () {
 
     // Get dashboard data (categories, meals, stats)
     Route::get('/store/dashboard/data', 'getDashboardData')->name('store.dashboard.data');
+
+
+    // show store menu
+    Route::get('/store/menu/{slug}/{store_id}', 'store_menu')->name('store.menu');
 
 });
 
