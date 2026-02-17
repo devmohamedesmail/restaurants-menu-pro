@@ -1,20 +1,11 @@
 import React from 'react';
 // @ts-ignore
 declare var route: any;
-import { Head, Link, usePage } from '@inertiajs/react';
+import { Head, Link } from '@inertiajs/react';
 import { useTranslation } from 'react-i18next';
-import {
-  UtensilsCrossed,
-  ListFilter,
-  ShoppingBag,
-  LayoutGrid,
-  Edit,
-  QrCode,
-} from 'lucide-react';
-
+import { Edit } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { Tabs, TabsContent } from '@/components/ui/tabs'; 
+import { Tabs } from '@/components/ui/tabs';
 import Header from '@/components/vendor/header';
 import TabsSection from '@/components/vendor/tabs-section';
 import OverviewTab from '@/components/vendor/overview-tab';
@@ -22,6 +13,7 @@ import TableTab from '@/components/vendor/table-tab';
 import OrdersTab from '@/components/vendor/orders-tab';
 import MealsTab from '@/components/vendor/meals-tab';
 import CategoriesTab from '@/components/vendor/categories-tab';
+import EditButton from '@/components/vendor/edit-button';
 
 export default function Dashboard({ store, categories, meals, orders, tables, country, stats }: any) {
   const { t } = useTranslation();
@@ -40,31 +32,21 @@ export default function Dashboard({ store, categories, meals, orders, tables, co
       <div className="container mx-auto px-4 py-8">
         <Tabs defaultValue="overview" className="w-full space-y-6">
           <div className="flex items-center justify-between pb-4 overflow-x-auto">
-    
             <TabsSection />
-
             {/* Mobile Edit Button (visible only on small screens) */}
-            <Button variant="outline" size="sm" asChild className="md:hidden ml-2">
-              <Link href={route('register.store.page')}>
-                <Edit className="w-4 h-4" />
-              </Link>
-            </Button>
+            <EditButton />
           </div>
 
           {/* Overview Tab */}
-        <OverviewTab stats={stats} country={country} orders={orders} />
-
+          <OverviewTab stats={stats} country={country} orders={orders} />
           {/* Categories Tab */}
-         <CategoriesTab categories={categories} country={country} />
-
+          <CategoriesTab categories={categories} country={country} />
           {/* Meals Tab */}
-          <MealsTab meals={meals} country={country} />
-
+          <MealsTab meals={meals} categories={categories} country={country} />
           {/* Orders Tab */}
           <OrdersTab orders={orders} />
-
           {/* Tables Tab */}
-         <TableTab tables={tables} country={country} />
+          <TableTab tables={tables} country={country} />
         </Tabs>
       </div>
     </div>

@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers\vendor;
 
 use App\Http\Controllers\Controller;
@@ -12,9 +11,8 @@ class MealController extends Controller
 {
     use UploadsToCloudinary;
 
-
     /**
-     * 
+     *
      * Sore New Meal
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse
@@ -22,31 +20,31 @@ class MealController extends Controller
     public function storeMeal(Request $request)
     {
 
-        $user = Auth::user();
+        $user  = Auth::user();
         $store = Store::where('user_id', $user->id)->first();
 
         $validated = $request->validate([
-            'category_id' => 'required|exists:categories,id',
-            'name_en' => 'required|string|max:255',
-            'name_ar' => 'required|string|max:255',
+            'category_id'    => 'required|exists:categories,id',
+            'name_en'        => 'required|string|max:255',
+            'name_ar'        => 'required|string|max:255',
             'description_en' => 'nullable|string',
             'description_ar' => 'nullable|string',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
-            'price' => 'required|numeric|min:0',
-            'sale_price' => 'nullable|numeric|min:0',
+            'image'          => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
+            'price'          => 'required|numeric|min:0',
+            'sale_price'     => 'nullable|numeric|min:0',
         ]);
 
         $imagePath = $this->uploadToCloudinary($request->file('image'), 'meals');
 
         $meal = $store->meals()->create([
-            'category_id' => $validated['category_id'],
-            'name_en' => $validated['name_en'],
-            'name_ar' => $validated['name_ar'],
+            'category_id'    => $validated['category_id'],
+            'name_en'        => $validated['name_en'],
+            'name_ar'        => $validated['name_ar'],
             'description_en' => $validated['description_en'] ?? null,
             'description_ar' => $validated['description_ar'] ?? null,
-            'image' => $imagePath,
-            'price' => $validated['price'],
-            'sale_price' => $validated['sale_price'] ?? null,
+            'image'          => $imagePath,
+            'price'          => $validated['price'],
+            'sale_price'     => $validated['sale_price'] ?? null,
         ]);
 
         // Handle attributes
@@ -55,7 +53,7 @@ class MealController extends Controller
             if (is_array($attributes)) {
                 foreach ($attributes as $attributeId => $valueId) {
                     $meal->attributes()->attach($attributeId, [
-                        'attribute_value_id' => $valueId
+                        'attribute_value_id' => $valueId,
                     ]);
                 }
             }
@@ -64,9 +62,8 @@ class MealController extends Controller
         return redirect()->back();
     }
 
-
     /**
-     * 
+     *
      * Update the meal
      * @param Request $request
      * @param mixed $id
@@ -74,29 +71,29 @@ class MealController extends Controller
      */
     public function updateMeal(Request $request, $id)
     {
-        $user = Auth::user();
+        $user  = Auth::user();
         $store = Store::where('user_id', $user->id)->first();
-        $meal = $store->meals()->findOrFail($id);
+        $meal  = $store->meals()->findOrFail($id);
 
         $validated = $request->validate([
-            'category_id' => 'required|exists:categories,id',
-            'name_en' => 'required|string|max:255',
-            'name_ar' => 'required|string|max:255',
+            'category_id'    => 'required|exists:categories,id',
+            'name_en'        => 'required|string|max:255',
+            'name_ar'        => 'required|string|max:255',
             'description_en' => 'nullable|string',
             'description_ar' => 'nullable|string',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
-            'price' => 'required|numeric|min:0',
-            'sale_price' => 'nullable|numeric|min:0',
+            'image'          => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
+            'price'          => 'required|numeric|min:0',
+            'sale_price'     => 'nullable|numeric|min:0',
         ]);
 
         $data = [
-            'category_id' => $validated['category_id'],
-            'name_en' => $validated['name_en'],
-            'name_ar' => $validated['name_ar'],
+            'category_id'    => $validated['category_id'],
+            'name_en'        => $validated['name_en'],
+            'name_ar'        => $validated['name_ar'],
             'description_en' => $validated['description_en'] ?? null,
             'description_ar' => $validated['description_ar'] ?? null,
-            'price' => $validated['price'],
-            'sale_price' => $validated['sale_price'] ?? null,
+            'price'          => $validated['price'],
+            'sale_price'     => $validated['sale_price'] ?? null,
         ];
 
         if ($request->hasFile('image')) {
@@ -106,21 +103,19 @@ class MealController extends Controller
         $meal->update($data);
 
         // Handle attributes
-        if ($request->has('attributes')) {
-            $attributes = json_decode($request->input('attributes'), true);
-            if (is_array($attributes)) {
-                $syncData = [];
-                foreach ($attributes as $attributeId => $valueId) {
-                    $syncData[$attributeId] = ['attribute_value_id' => $valueId];
-                }
-                $meal->attributes()->sync($syncData);
-            }
-        }
+        // if ($request->has('attributes')) {
+        //     $attributes = json_decode($request->input('attributes'), true);
+        //     if (is_array($attributes)) {
+        //         $syncData = [];
+        //         foreach ($attributes as $attributeId => $valueId) {
+        //             $syncData[$attributeId] = ['attribute_value_id' => $valueId];
+        //         }
+        //         $meal->attributes()->sync($syncData);
+        //     }
+        // }
 
         return redirect()->back();
     }
-
-
 
     /**
      * Summary of deleteMeal
@@ -129,9 +124,9 @@ class MealController extends Controller
      */
     public function deleteMeal($id)
     {
-        $user = Auth::user();
+        $user  = Auth::user();
         $store = Store::where('user_id', $user->id)->first();
-        $meal = $store->meals()->findOrFail($id);
+        $meal  = $store->meals()->findOrFail($id);
 
         $meal->delete();
 
