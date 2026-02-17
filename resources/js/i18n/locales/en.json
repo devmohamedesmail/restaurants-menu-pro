@@ -479,7 +479,8 @@
     "fill-store-details": "Please fill in the store details",
     "owner": "Owner",
     "created-at": "Created At",
-    "manage-stores-desc": "Easily view, add, edit, or remove stores to keep your platform organized and up-to-date."
+    "manage-stores-desc": "Easily view, add, edit, or remove stores to keep your platform organized and up-to-date.",
+    "confirm-delete-category": "Are you sure you want to delete this category? This action cannot be undone."
   },
   "roles": {
     "title": "Roles Management",
