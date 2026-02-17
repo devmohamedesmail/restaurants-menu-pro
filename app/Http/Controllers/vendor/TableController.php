@@ -1,32 +1,35 @@
 <?php
-
 namespace App\Http\Controllers\vendor;
 
 use App\Http\Controllers\Controller;
 use App\Models\Store;
+use App\Traits\UploadsToCloudinary;
 use Cloudinary\Cloudinary;
+use Endroid\QrCode\Encoding\Encoding;
+use Endroid\QrCode\ErrorCorrectionLevel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class TableController extends Controller
 {
-      public function storeTable(Request $request)
+    use UploadsToCloudinary;
+    public function storeTable(Request $request)
     {
         try {
-            $user = Auth::user();
+            $user  = Auth::user();
             $store = Store::where('user_id', $user->id)->first();
 
-            if (!$store) {
+            if (! $store) {
                 return back()->withErrors(['error' => 'Store not found']);
             }
 
             $validated = $request->validate([
-                'name' => 'required|string|max:255',
+                'name'     => 'required|string|max:255',
                 'capacity' => 'required|integer|min:1',
             ]);
 
             $table = $store->tables()->create([
-                'name' => $validated['name'],
+                'name'     => $validated['name'],
                 'capacity' => $validated['capacity'],
             ]);
 
@@ -47,24 +50,24 @@ class TableController extends Controller
      */
     public function updateTable(Request $request, $id)
     {
-    
+
         try {
-            $user = Auth::user();
+            $user  = Auth::user();
             $store = Store::where('user_id', $user->id)->first();
-            
-            if (!$store) {
+
+            if (! $store) {
                 return back()->withErrors(['error' => 'Store not found']);
             }
 
             $table = $store->tables()->findOrFail($id);
 
             $validated = $request->validate([
-                'name' => 'required|string|max:255',
+                'name'     => 'required|string|max:255',
                 'capacity' => 'required|integer|min:1',
             ]);
 
             $table->update([
-                'name' => $validated['name'],
+                'name'     => $validated['name'],
                 'capacity' => $validated['capacity'],
             ]);
 
@@ -88,10 +91,10 @@ class TableController extends Controller
     public function deleteTable($id)
     {
         try {
-            $user = Auth::user();
+            $user  = Auth::user();
             $store = Store::where('user_id', $user->id)->first();
-            
-            if (!$store) {
+
+            if (! $store) {
                 return back()->withErrors(['error' => 'Store not found']);
             }
 
@@ -112,41 +115,50 @@ class TableController extends Controller
     private function generateAndUploadQRCode($table, $store)
     {
         try {
-            // Generate QR code URL (link to store with table number)
-            $url = route('store.home', [
-                'store_name' => $store->name,
+
+            $slug = $store->slug ?? \Illuminate\Support\Str::slug($store->name);
+
+            $url = route('store.menu', [
+                'slug'     => $slug,
                 'store_id' => $store->id,
-                'table' => $table->id
+                'table'    => $table->id,
             ]);
 
-            // Generate QR code as PNG
-            $qrCode = \SimpleSoftwareIO\QrCode\Facades\QrCode::format('png')
-                ->size(500)
-                ->margin(2)
-                ->generate($url);
+            \Log::info('Generating QR for table: ' . $table->id);
+            $result = (new \Endroid\QrCode\Builder\Builder(
+                writer: new \Endroid\QrCode\Writer\PngWriter(),
+                writerOptions: [],
+                validateResult: false,
+                data: $url,
+                encoding: new \Endroid\QrCode\Encoding\Encoding('UTF-8'),
+                errorCorrectionLevel: \Endroid\QrCode\ErrorCorrectionLevel::High,
+                size: 500,
+                margin: 10,
+                roundBlockSizeMode: \Endroid\QrCode\RoundBlockSizeMode::Margin
+            ))->build();
+            \Log::info('QR Generated successfully');
 
-            // Upload to Cloudinary
-            $cloudinary = new Cloudinary([
-                'cloud' => [
-                    'cloud_name' => config('services.cloudinary.cloud_name'),
-                    'api_key' => config('services.cloudinary.api_key'),
-                    'api_secret' => config('services.cloudinary.api_secret'),
-                ],
-            ]);
+            // حفظ مؤقت في storage
+            $fileName = 'qr_' . $table->id . '_' . time() . '.png';
+            $tempPath = storage_path('app/public/' . $fileName);
 
-            $uploadResult = $cloudinary->uploadApi()->upload(
-                'data:image/png;base64,' . base64_encode($qrCode),
-                [
-                    'folder' => 'qr_codes',
-                    'public_id' => 'table_' . $table->id . '_' . time(),
-                ]
+            file_put_contents($tempPath, $result->getString());
+
+            // رفع إلى Cloudinary باستخدام الـ Trait
+            $uploadedUrl = $this->uploadToCloudinary(
+                new \Illuminate\Http\File($tempPath),
+                'qr_codes'
             );
 
-            return $uploadResult['secure_url'];
+            // حذف الملف المؤقت
+            unlink($tempPath);
+
+            return $uploadedUrl;
 
         } catch (\Throwable $th) {
             \Log::error('QR Code generation error: ' . $th->getMessage());
             return null;
         }
     }
+
 }

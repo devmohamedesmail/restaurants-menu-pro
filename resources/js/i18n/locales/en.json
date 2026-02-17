@@ -549,5 +549,27 @@
     "no_items_found": "No items found",
     "adjust_filters": "Try adjusting your search or category filter",
     "clear_filters": "Clear all filters"
+  },
+  "tables":{
+    "add-table":"Add Table",
+    "edit-table":"Edit Table",
+    "table-name":"Table Name",
+    "capacity":"Capacity",
+    "enter-table-name":"Enter table name",
+    "enter-capacity":"Enter capacity",
+    "enter-table-name-placeholder":"Enter table name",
+    "enter-capacity-placeholder":"Enter capacity",
+    "table-name-required":"Table name is required",
+    "capacity-required":"Capacity is required",
+    "capacity-min":"Capacity must be at least 1",
+    "capacity-integer":"Capacity must be an integer",
+    "view-qr":"View QR",
+    "print-qr":"Print QR",
+    "table-deleted-successfully":"Table deleted successfully",
+    "table-deleted-failed":"Failed to delete table",
+    "confirm-delete-table":"Are you sure you want to delete this table?",
+    "scan-to-order":"Scan to Order",
+    "download":"Download",
+    "print":"Print"
   }
 }

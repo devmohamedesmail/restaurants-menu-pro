@@ -549,5 +549,27 @@
     "no_items_found": "لم يتم العثور على عناصر",
     "adjust_filters": "حاول تعديل البحث أو فلتر التصنيف",
     "clear_filters": "مسح جميع الفلاتر"
+  },
+  "tables":{
+    "add-table":"أضافة طاولة",
+    "edit-table":"تعديل طاولة",
+    "table-name":"اسم الطاولة",
+    "capacity":"السعة",
+    "enter-table-name":"أدخل اسم الطاولة",
+    "enter-capacity":"أدخل السعة",
+    "enter-table-name-placeholder":"أدخل اسم الطاولة",
+    "enter-capacity-placeholder":"أدخل السعة",
+    "table-name-required":"اسم الطاولة مطلوب",
+    "capacity-required":"السعة مطلوبة",
+    "capacity-min":"السعة يجب أن تكون 1 على الأقل",
+    "capacity-integer":"السعة يجب أن تكون عدد صحيح",
+    "view-qr":"عرض QR",
+    "print-qr":"طباعة QR",
+    "table-deleted-successfully":"تم حذف الطاولة بنجاح",
+    "table-deleted-failed":"فشل حذف الطاولة",
+    "confirm-delete-table":"هل أنت متأكد من حذف هذه الطاولة؟",
+    "scan-to-order":"قم بمسح الباركود",
+    "download":"تحميل",
+    "print":"طباعة"
   }
 }
