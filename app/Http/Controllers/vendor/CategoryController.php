@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers\vendor;
 
 use App\Http\Controllers\Controller;
@@ -13,7 +12,7 @@ class CategoryController extends Controller
     use UploadsToCloudinary;
 
     /**
-     * 
+     *
      * Create New Category
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse
@@ -21,29 +20,33 @@ class CategoryController extends Controller
     public function storeCategory(Request $request)
     {
 
-        $user = Auth::user();
-        $store = Store::where('user_id', $user->id)->first();
+        try {
+            $user  = Auth::user();
+            $store = Store::where('user_id', $user->id)->first();
 
-        $validated = $request->validate([
-            'name_en' => 'required|string|max:255',
-            'name_ar' => 'required|string|max:255',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
-            'position' => 'nullable|integer',
-        ]);
+            $validated = $request->validate([
+                'name_en'  => 'required|string|max:255',
+                'name_ar'  => 'required|string|max:255',
+                'image'    => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
+                'position' => 'nullable|integer',
+            ]);
 
-        $imagePath = $this->uploadToCloudinary($request->file('image'), 'categories');
+            $imagePath = $this->uploadToCloudinary($request->file('image'), 'categories');
 
+            $store->categories()->create([
+                'name_en'  => $validated['name_en'],
+                'name_ar'  => $validated['name_ar'],
+                'image'    => $imagePath,
+                'position' => $validated['position'] ?? 0,
+            ]);
 
-        $store->categories()->create([
-            'name_en' => $validated['name_en'],
-            'name_ar' => $validated['name_ar'],
-            'image' => $imagePath,
-            'position' => $validated['position'] ?? 0,
-        ]);
-
-        return redirect()->back();
+            return redirect()->back();
+        } catch (\Throwable $th) {
+            return Interia::render('500/index', [
+                'error' => $th->getMessage(),
+            ]);
+        }
     }
-
 
     /**
      * Summary of updateCategory
@@ -53,43 +56,55 @@ class CategoryController extends Controller
      */
     public function updateCategory(Request $request, $id)
     {
-        $user = Auth::user();
-        $store = Store::where('user_id', $user->id)->first();
-        $category = $store->categories()->findOrFail($id);
+        try {
+            $user     = Auth::user();
+            $store    = Store::where('user_id', $user->id)->first();
+            $category = $store->categories()->findOrFail($id);
 
-        $validated = $request->validate([
-            'name_en' => 'required|string|max:255',
-            'name_ar' => 'required|string|max:255',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
-            'position' => 'nullable|integer',
-        ]);
+            $validated = $request->validate([
+                'name_en'  => 'required|string|max:255',
+                'name_ar'  => 'required|string|max:255',
+                'image'    => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
+                'position' => 'nullable|integer',
+            ]);
 
-        $data = [
-            'name_en' => $validated['name_en'],
-            'name_ar' => $validated['name_ar'],
-            'position' => $validated['position'] ?? $category->position,
-        ];
+            $data = [
+                'name_en'  => $validated['name_en'],
+                'name_ar'  => $validated['name_ar'],
+                'position' => $validated['position'] ?? $category->position,
+            ];
 
-        if ($request->hasFile('image')) {
-            $data['image'] = $this->uploadToCloudinary($request->file('image'), 'categories');
+            if ($request->hasFile('image')) {
+                $data['image'] = $this->uploadToCloudinary($request->file('image'), 'categories');
+            }
+
+            $category->update($data);
+            return redirect()->back();
+        } catch (\Throwable $th) {
+            return Interia::render('500/index', [
+                'error' => $th->getMessage(),
+            ]);
         }
-
-        $category->update($data);
-        return redirect()->back();
     }
 
     /**
-     * 
+     *
      * Delete Category
      * @param mixed $id
      * @return \Illuminate\Http\RedirectResponse
      */
     public function deleteCategory($id)
     {
-        $user = Auth::user();
-        $store = Store::where('user_id', $user->id)->first();
-        $category = $store->categories()->findOrFail($id);
-        $category->delete();
-        return redirect()->back();
+        try {
+            $user     = Auth::user();
+            $store    = Store::where('user_id', $user->id)->first();
+            $category = $store->categories()->findOrFail($id);
+            $category->delete();
+            return redirect()->back();
+        } catch (\Throwable $th) {
+            return Interia::render('500/index', [
+                'error' => $th->getMessage(),
+            ]);
+        }
     }
 }

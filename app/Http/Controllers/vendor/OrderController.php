@@ -6,6 +6,8 @@ use App\Models\Order;
 use App\Models\Store;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\ValidationException;
+use Inertia\Inertia;
 
 class OrderController extends Controller
 {
@@ -72,14 +74,15 @@ class OrderController extends Controller
 
             // Create the order in database
             $order = Order::create($orderData);
-
-            return back()->with('success', 'Order created successfully! Order ID: ' . $order->id);
-
-        } catch (\Illuminate\Validation\ValidationException $e) {
-            return back()->withErrors($e->errors())->withInput();
+            return redirect()->back();
+        } catch (ValidationException $e) {
+            return Inertia::render("400/index", [
+                "error" => $e->getMessage(),
+            ]);
         } catch (\Throwable $th) {
-            \Log::error('Order creation error: ' . $th->getMessage());
-            return back()->withErrors(['error' => 'Failed to create order: ' . $th->getMessage()])->withInput();
+            return Inertia::render("500/index", [
+                "error" => $th->getMessage(),
+            ]);
         }
     }
 
@@ -96,26 +99,22 @@ class OrderController extends Controller
         try {
             $user  = Auth::user();
             $store = Store::where('user_id', $user->id)->first();
-
             if (! $store) {
                 return back()->withErrors(['error' => 'Store not found']);
             }
-
             $order = $store->orders()->findOrFail($id);
-
             $validated = $request->validate([
                 'status' => 'required|in:pending,completed,cancelled',
             ]);
-
             $order->update([
                 'status' => $validated['status'],
             ]);
-
-            return back()->with('success', 'Order status updated successfully');
+            return redirect()->back();
 
         } catch (\Throwable $th) {
-            \Log::error('Order status update error: ' . $th->getMessage());
-            return back()->withErrors(['error' => 'Failed to update order status: ' . $th->getMessage()]);
+            return Inertia::render("500/index", [
+                "error" => $th->getMessage(),
+            ]);
         }
     }
 }

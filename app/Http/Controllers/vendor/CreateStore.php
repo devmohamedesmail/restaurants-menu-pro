@@ -27,13 +27,9 @@ class CreateStore extends Controller
         }
     }
 
-
-
-
-
     /**
      * Register a new store
-     * 
+     *
      */
     public function register_store(Request $request)
     {
@@ -77,12 +73,10 @@ class CreateStore extends Controller
             return redirect()->route('store.dashboard');
 
         } catch (\Illuminate\Validation\ValidationException $e) {
-            return $e->getMessage();
             return Inertia::render("404/index", [
                 "error" => $e->getMessage(),
             ]);
         } catch (\Throwable $th) {
-            return $th->getMessage();
             return Inertia::render("404/index", [
                 "error" => $th->getMessage(),
             ]);
@@ -92,68 +86,75 @@ class CreateStore extends Controller
     public function store_dashboard()
     {
 
-        $user  = Auth::user();
-        $store = Store::where('user_id', $user->id)->first();
-        if ($store) {
-            $categories = $store->categories()->withCount('meals')->get();
-            $meals      = $store->meals()->with('category')->get();
-            $country    = $store->country()->first();
-            $orders     = $store->orders()->get();
-            $tables     = $store->tables()->get();
+        try {
+            $user  = Auth::user();
+            $store = Store::where('user_id', $user->id)->first();
+            if ($store) {
+                $categories = $store->categories()->withCount('meals')->get();
+                $meals      = $store->meals()->with('category')->get();
+                $country    = $store->country()->first();
+                $orders     = $store->orders()->get();
+                $tables     = $store->tables()->get();
 
-            $stats = [
-                'totalCategories' => $categories->count(),
-                'totalMeals'      => $meals->count(),
-                'totalOrders'     => $orders->count(),
-                'totalRevenue'    => 0,
-            ];
+                $stats = [
+                    'totalCategories' => $categories->count(),
+                    'totalMeals'      => $meals->count(),
+                    'totalOrders'     => $orders->count(),
+                    'totalRevenue'    => 0,
+                ];
 
-            return Inertia::render("store/index", [
-                'store'      => $store,
-                'categories' => $categories,
-                'country'    => $country,
-                'meals'      => $meals,
-                'stats'      => $stats,
-                'attributes' => $attributes,
-                'orders'     => $orders,
-                'tables'     => $tables,
+                return Inertia::render("store/index", [
+                    'store'      => $store,
+                    'categories' => $categories,
+                    'country'    => $country,
+                    'meals'      => $meals,
+                    'stats'      => $stats,
+                    'attributes' => $attributes,
+                    'orders'     => $orders,
+                    'tables'     => $tables,
+                ]);
+            } else {
+                return Inertia::render("store/register-store/index");
+            }
+        } catch (\Throwable $th) {
+            return Inertia::render("404/index", [
+                "error" => $th->getMessage(),
             ]);
-        } else {
-            return Inertia::render("store/register-store/index");
         }
     }
 
     public function redirect_to_dashboard()
     {
-        $user  = Auth::user();
-       
-
-        if ($user->role_id == 4) {
-            $store = $user->stores()->first();
-            if ($store) {
-                return Inertia::render('vendor/dashboard/index', [
-                    'store'      => $store,
-                    'categories' => $store->categories()->withCount('meals')->get(),
-                    'meals'      => $store->meals()->with('category')->get(),
-                    'country'    => $store->country()->first(),
-                    'orders'     => $store->orders()->get(),
-                    'tables'     => $store->tables()->get(),
-                ]);
+        try {
+            $user = Auth::user();
+            if ($user->role_id == 4) {
+                $store = $user->stores()->first();
+                if ($store) {
+                    return Inertia::render('vendor/dashboard/index', [
+                        'store'      => $store,
+                        'categories' => $store->categories()->withCount('meals')->get(),
+                        'meals'      => $store->meals()->with('category')->get(),
+                        'country'    => $store->country()->first(),
+                        'orders'     => $store->orders()->get(),
+                        'tables'     => $store->tables()->get(),
+                    ]);
+                } else {
+                    return redirect()->route('register.store.page');
+                }
             } else {
-                return redirect()->route('register.store.page');
+                // dd("fdsfasdf");
+                return Inertia::render('dashboard');
             }
-        } else {
-            // dd("fdsfasdf");
-            return Inertia::render('dashboard');
+        } catch (\Throwable $th) {
+            return Inertia::render("404/index", [
+                "error" => $th->getMessage(),
+            ]);
         }
     }
 
-
-
-
     /**
      * Show store menu
-     * 
+     *
      */
     public function store_menu($slug, $store_id)
     {
@@ -163,15 +164,12 @@ class CreateStore extends Controller
                 $categories = $store->categories()->withCount('meals')->get();
                 $meals      = $store->meals()->with('category')->get();
                 $country    = $store->country()->first();
-            
-
-               
 
                 return Inertia::render("vendor/menu/index", [
                     'store'      => $store,
                     'categories' => $categories,
                     'country'    => $country,
-                    'meals'      => $meals,  
+                    'meals'      => $meals,
                 ]);
             } else {
                 return Inertia::render("404/index", [

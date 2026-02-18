@@ -9,6 +9,7 @@ use Endroid\QrCode\Encoding\Encoding;
 use Endroid\QrCode\ErrorCorrectionLevel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Inertia\Inertia;
 
 class TableController extends Controller
 {
@@ -18,11 +19,9 @@ class TableController extends Controller
         try {
             $user  = Auth::user();
             $store = Store::where('user_id', $user->id)->first();
-
             if (! $store) {
                 return back()->withErrors(['error' => 'Store not found']);
             }
-
             $validated = $request->validate([
                 'name'     => 'required|string|max:255',
                 'capacity' => 'required|integer|min:1',
@@ -40,8 +39,9 @@ class TableController extends Controller
             return redirect()->back();
 
         } catch (\Throwable $th) {
-            \Log::error('Table creation error: ' . $th->getMessage());
-            return back()->withErrors(['error' => 'Failed to create table: ' . $th->getMessage()]);
+            return Inertia::render("500/index", [
+                "error" => $th->getMessage(),
+            ]);
         }
     }
 
@@ -80,8 +80,9 @@ class TableController extends Controller
             return redirect()->back();
 
         } catch (\Throwable $th) {
-            \Log::error('Table update error: ' . $th->getMessage());
-            return back()->withErrors(['error' => 'Failed to update table: ' . $th->getMessage()]);
+            return Inertia::render("500/index", [
+                "error" => $th->getMessage(),
+            ]);
         }
     }
 
@@ -104,8 +105,9 @@ class TableController extends Controller
             return redirect()->back();
 
         } catch (\Throwable $th) {
-            \Log::error('Table deletion error: ' . $th->getMessage());
-            return back()->withErrors(['error' => 'Failed to delete table: ' . $th->getMessage()]);
+            return Inertia::render("500/index", [
+                "error" => $th->getMessage(),
+            ]);
         }
     }
 
@@ -156,8 +158,9 @@ class TableController extends Controller
             return $uploadedUrl;
 
         } catch (\Throwable $th) {
-            \Log::error('QR Code generation error: ' . $th->getMessage());
-            return null;
+            return Inertia::render("500/index", [
+                "error" => $th->getMessage(),
+            ]);
         }
     }
 
