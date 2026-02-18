@@ -14,7 +14,6 @@ use App\Http\Controllers\vendor\TableController;
 use App\Models\Store;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
-use Laravel\Fortify\Features;
 
 Route::get('/', function () {
     // return Inertia::render('index', [
@@ -26,24 +25,17 @@ Route::get('/', function () {
     ]);
 })->name('home');
 
- Route::get('dashboard', [CreateStore::class, 'redirect_to_dashboard'])->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('dashboard', [CreateStore::class, 'redirect_to_dashboard'])->middleware(['auth', 'verified'])->name('dashboard');
 // Route::get('dashboard', function () {
 //     return Inertia::render('dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');
 
-require __DIR__.'/settings.php';
-
-
-
-
-
+require __DIR__ . '/settings.php';
 
 Route::controller(SettingController::class)->group(function () {
     Route::get('/admin/settings', 'settings')->name('settings');
     Route::post('/admin/settings/update', 'update_settings')->name('update.settings');
 });
-
-
 
 Route::controller(CountryController::class)->group(function () {
     Route::get('/admin/countries', 'index')->name('countries.page');
@@ -53,13 +45,11 @@ Route::controller(CountryController::class)->group(function () {
     Route::get('/admin/delete/country/{id}', 'delete')->name('country.delete');
 });
 
-
 Route::controller(UsersController::class)->group(function () {
     Route::get('/admin/users', 'show_users')->name('users.page');
     Route::post('/admin/users/update/{id}', 'update')->name('admin.users.update');
     Route::get('/admin/users/delete/{id}', 'delete')->name('admin.users.delete');
 });
-
 
 Route::controller(RoleController::class)->group(function () {
     Route::get('/admin/roles', 'index')->name('roles.page');
@@ -67,8 +57,6 @@ Route::controller(RoleController::class)->group(function () {
     Route::post('/admin/roles/{id}', 'update')->name('roles.update');
     Route::get('/admin/roles/{id}/delete', 'destroy')->name('roles.delete');
 });
-
-
 
 Route::controller(BannersController::class)->group(function () {
     Route::get('/admin/banners', 'index')->name('banners.page');
@@ -78,8 +66,6 @@ Route::controller(BannersController::class)->group(function () {
     Route::get('/admin/delete/banner/{id}', 'delete')->name('banner.delete');
 });
 
-
-
 Route::controller(StoresController::class)->group(function () {
     Route::get('/admin/stores', 'index')->name('stores.page');
     Route::post('/admin/store/store', 'store')->name('store.store');
@@ -88,27 +74,24 @@ Route::controller(StoresController::class)->group(function () {
     Route::get('/admin/delete/store/{id}', 'delete')->name('store.delete');
 });
 
-
-
 // ====================================================================================
-
 
 Route::controller(CreateStore::class)->group(function () {
     // Route::get('/store/home/{store_name?}/{store_id?}/{table?}', 'store_home')->name('store.home');
-    Route::get('/register/store', 'index')->name('register.store.page');
+
     Route::post('/register/store', 'register_store')->name('create.store');
     Route::get('/store/dashboard', 'store_dashboard')->name('store.dashboard');
 
     // Get dashboard data (categories, meals, stats)
     Route::get('/store/dashboard/data', 'getDashboardData')->name('store.dashboard.data');
 
-
     // show store menu
     Route::get('/store/menu/{slug}/{store_id}', 'store_menu')->name('store.menu');
+    Route::get('/register/store', 'index')->name('register.store.page');
+    Route::get('/register/update/{id}', 'update_store')->name('register.store.update');
+    Route::post('/register/update/{id}', 'update')->name('register.store.save');
 
 });
-
-
 
 Route::controller(CategoryController::class)->group(function () {
     Route::post('/store/categories', 'storeCategory')->name('store.category.store')->middleware('auth');
@@ -116,34 +99,19 @@ Route::controller(CategoryController::class)->group(function () {
     Route::delete('/store/categories/{id}', 'deleteCategory')->name('store.category.delete')->middleware('auth');
 });
 
-
-
 Route::controller(MealController::class)->group(function () {
     Route::post('/store/meals', 'storeMeal')->name('store.meal.store')->middleware('auth');
     Route::put('/store/meals/{id}', 'updateMeal')->name('store.meal.update')->middleware('auth');
     Route::delete('/store/meals/{id}', 'deleteMeal')->name('store.meal.delete')->middleware('auth');
 });
 
-
 Route::controller(OrderController::class)->group(function () {
     Route::post('/store/create/order', 'createOrder')->name('store.create.order')->middleware('auth');
     Route::post('/store/order/{id}/status', 'updateOrderStatus')->name('store.order.update.status')->middleware('auth');
 });
-
 
 Route::controller(TableController::class)->group(function () {
     Route::post('/store/tables', 'storeTable')->name('store.table.store');
     Route::put('/store/tables/{id}', 'updateTable')->name('store.table.update');
     Route::delete('/store/tables/{id}', 'deleteTable')->name('store.table.delete');
 });
-
-
-
-
-
-
-
-
-
-
-

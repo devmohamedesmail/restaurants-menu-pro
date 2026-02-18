@@ -28,25 +28,34 @@ export default function Dashboard({ store, categories, meals, orders, tables, co
 
       <Header store={store} />
 
-      {/* Main Content Tabs */}
       <div className="container mx-auto px-4 py-8">
         <Tabs defaultValue="overview" className="w-full space-y-6">
           <div className="flex items-center justify-between pb-4 overflow-x-auto">
             <TabsSection />
-            {/* Mobile Edit Button (visible only on small screens) */}
             <EditButton />
           </div>
 
-          {/* Overview Tab */}
-          <OverviewTab stats={stats} country={country} orders={orders} />
-          {/* Categories Tab */}
-          <CategoriesTab categories={categories} country={country} />
-          {/* Meals Tab */}
-          <MealsTab meals={meals} categories={categories} country={country} />
-          {/* Orders Tab */}
-          <OrdersTab orders={orders} />
-          {/* Tables Tab */}
-          <TableTab tables={tables} country={country} />
+          <OverviewTab
+            stats={stats}
+            country={country}
+            orders={orders}
+          />
+          <CategoriesTab
+            categories={categories}
+            country={country}
+          />
+          <MealsTab
+            meals={meals}
+            categories={categories}
+            country={country}
+          />
+          <OrdersTab
+            orders={orders}
+          />
+          <TableTab
+            tables={tables}
+            country={country}
+          />
         </Tabs>
       </div>
     </div>
@@ -55,21 +64,6 @@ export default function Dashboard({ store, categories, meals, orders, tables, co
 
 
 
-function EmptyState({ icon, title, description, actionText, onAction }: any) {
-  return (
-    <div className="flex flex-col items-center justify-center py-12 text-center">
-      <div className="bg-muted/50 p-4 rounded-full mb-4 text-muted-foreground">
-        {icon}
-      </div>
-      <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">{title}</h3>
-      <p className="text-sm text-gray-500 dark:text-gray-400 mt-1 max-w-sm mb-6">{description}</p>
-      {actionText && (
-        <Button onClick={onAction} variant="outline">
-          {actionText}
-        </Button>
-      )}
-    </div>
-  );
-}
+
 
 

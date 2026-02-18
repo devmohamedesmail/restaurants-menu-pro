@@ -15,6 +15,7 @@ interface ImageUploadProps {
     className?: string
     previewClassName?: string
     error?: string
+    initialPreview?: string | null
 }
 
 export default function ImagePicker({
@@ -27,8 +28,9 @@ export default function ImagePicker({
     className,
     previewClassName,
     error,
+    initialPreview = null,
 }: ImageUploadProps) {
-    const [preview, setPreview] = useState<string | null>(null)
+    const [preview, setPreview] = useState<string | null>(initialPreview)
     const [isDragging, setIsDragging] = useState(false)
     const fileInputRef = useRef<HTMLInputElement>(null)
     const { t } = useTranslation()
@@ -168,7 +170,7 @@ export default function ImagePicker({
                         </div>
                         <div className="mb-2">
                             <span className="text-sm font-medium text-gray-900 dark:text-white">
-                                
+
                                 {t('common.upload-image')}
                             </span>
                         </div>

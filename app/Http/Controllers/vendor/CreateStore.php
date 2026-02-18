@@ -83,6 +83,71 @@ class CreateStore extends Controller
         }
     }
 
+    public function update_store($id)
+    {
+        try {
+            $countries = Country::all();
+            return Inertia::render("vendor/update-store/index", [
+                "store"     => Store::where('id', $id)->first(),
+                "countries" => $countries,
+            ]);
+        } catch (\Throwable $th) {
+            return Inertia::render("404/index", [
+                "error" => $th->getMessage(),
+            ]);
+        }
+    }
+
+    public function update(Request $request, $id)
+    {
+       
+        try {
+            $store = Store::findOrFail($id);
+
+            // Validate the request
+            $validated = $request->validate([
+                'store_name'        => 'required|string|max:255|unique:stores,name,' . $id,
+                'slug'              => 'nullable|string|max:255|unique:stores,slug,' . $id,
+                'country_id'        => 'nullable',
+                'store_email'       => 'nullable|email|max:255',
+                'store_phone'       => 'nullable|string|max:50',
+                'store_address'     => 'nullable|string|max:500',
+                'store_description' => 'nullable|string',
+                'image'             => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
+                'banner'            => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
+            ]);
+
+            // Upload images to Cloudinary if verified
+            if ($request->hasFile('image')) {
+                $imagePath    = $this->uploadToCloudinary($request->file('image'), 'stores/logos');
+                $store->image = $imagePath;
+            }
+
+            if ($request->hasFile('banner')) {
+                $bannerPath    = $this->uploadToCloudinary($request->file('banner'), 'stores/banners');
+                $store->banner = $bannerPath;
+            }
+
+            // Update the store
+            $store->update([
+                'country_id'  => $validated['country_id'] ?? $store->country_id,
+                'name'        => $validated['store_name'],
+                'slug'        => $validated['slug'] ?? $store->slug,
+                'email'       => $validated['store_email'] ?? $store->email,
+                'phone'       => $validated['store_phone'] ?? $store->phone,
+                'address'     => $validated['store_address'] ?? $store->address,
+                'description' => $validated['store_description'] ?? $store->description,
+            ]);
+
+            return redirect()->back();
+
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            return $e->errors();
+        } catch (\Throwable $th) {
+            return $th->getMessage();
+        }
+    }
+
     public function store_dashboard()
     {
 
