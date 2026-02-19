@@ -13,8 +13,12 @@ export interface Settings {
   logo?: string;
   favicon?: string;
 
-  currency?: string;
-  language?: 'en' | 'ar';
+  currency_en?: string;
+  currency_ar?: string;
+
+  address?: string;
+  phone?: string;
+  email?: string;
 
   created_at?: string;
   updated_at?: string;

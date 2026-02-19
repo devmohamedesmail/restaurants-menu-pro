@@ -8,7 +8,7 @@ import Partners from '@/components/landing/partners';
 
 
 export default function Home({ stores }: { stores: any[] }) {
-    console.log(stores);
+   
     return (
         <div className="min-h-screen bg-background">
             <Header />

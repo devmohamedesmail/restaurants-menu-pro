@@ -32,13 +32,13 @@ export default function Partners({ stores = [] }: { stores: Store[] }) {
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <div className="text-center mb-16">
                     <span className="inline-block py-1 px-3 rounded-full bg-primary/10 text-primary text-sm font-semibold mb-4">
-                        {t('Our Partners', 'Our Partners')}
+                        {t('partners.title')}
                     </span>
-                    <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/80">
-                        {t('Trusted by Top Restaurants', 'Trusted by Top Restaurants')}
+                    <h2 className="text-3xl sm:text-4xl md:text-3xl h-12 font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/80">
+                        {t('partners.subtitle')}
                     </h2>
                     <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                        {t('Discover some of the amazing restaurants using our platform to power their digital presence.', 'Discover some of the amazing restaurants using our platform to power their digital presence.')}
+                        {t('partners.description')}
                     </p>
                 </div>
 
@@ -46,22 +46,22 @@ export default function Partners({ stores = [] }: { stores: Store[] }) {
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                         {displayStores.map((store, index) => (
                             <Link
-                                key={store.id}
-                                href={`/store/${store.slug}`}
+                                key={store?.id}
+                                href={`/store/${store?.slug}`}
                                 className="group relative bg-card rounded-2xl overflow-hidden border border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-2xl hover:shadow-primary/5 hover:-translate-y-1 h-full flex flex-col"
                             >
                                 {/* Banner Image */}
                                 <div className="relative h-48 overflow-hidden bg-secondary">
-                                    {store.banner ? (
+                                    {store?.banner ? (
                                         <img
-                                            src={store.banner}
-                                            alt={`${store.name} banner`}
+                                            src={store?.banner}
+                                            alt={`${store?.name} banner`}
                                             className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
                                         />
                                     ) : (
                                         <div className="w-full h-full bg-gradient-to-br from-secondary to-muted flex items-center justify-center">
                                             <span className="text-4xl opacity-20 font-bold tracking-widest text-muted-foreground uppercase">
-                                                {store.name.substring(0, 2)}
+                                                {store?.name?.substring(0, 2)}
                                             </span>
                                         </div>
                                     )}
@@ -72,15 +72,15 @@ export default function Partners({ stores = [] }: { stores: Store[] }) {
                                     {/* Logo */}
                                     <div className="absolute -bottom-10 left-6">
                                         <div className="w-20 h-20 rounded-2xl bg-card p-1 shadow-lg ring-1 ring-border/50">
-                                            {store.image ? (
+                                            {store?.image ? (
                                                 <img
-                                                    src={store.image}
-                                                    alt={store.name}
+                                                    src={store?.image}
+                                                    alt={store?.name}
                                                     className="w-full h-full object-cover rounded-xl bg-background"
                                                 />
                                             ) : (
                                                 <div className="w-full h-full rounded-xl bg-primary/10 flex items-center justify-center text-primary font-bold text-xl">
-                                                    {store.name.charAt(0)}
+                                                    {store?.name?.charAt(0)}
                                                 </div>
                                             )}
                                         </div>
@@ -99,15 +99,15 @@ export default function Partners({ stores = [] }: { stores: Store[] }) {
                                 <div className="p-6 pt-12 grow flex flex-col">
                                     <div className="flex justify-between items-start mb-2">
                                         <h3 className="text-xl font-bold group-hover:text-primary transition-colors line-clamp-1">
-                                            {store.name}
+                                            {store?.name}
                                         </h3>
                                     </div>
 
-                                    <p className="text-muted-foreground text-sm line-clamp-2 mb-4 grow">
+                                    {/* <p className="text-muted-foreground text-sm line-clamp-2 mb-4 grow">
                                         {store.description}
-                                    </p>
+                                    </p> */}
 
-                                    <div className="space-y-2 mb-4">
+                                    {/* <div className="space-y-2 mb-4">
                                         {store.address && (
                                             <div className="flex items-center text-sm text-muted-foreground">
                                                 <MapPin className="w-4 h-4 mr-2 text-primary/70" />
@@ -120,12 +120,12 @@ export default function Partners({ stores = [] }: { stores: Store[] }) {
                                                 <span>{store.phone}</span>
                                             </div>
                                         )}
-                                    </div>
+                                    </div> */}
 
                                     <Link 
                                         href={`/store/menu/${store.slug}/${store.id}`}
                                         className="pt-4 border-t border-border mt-auto flex justify-between items-center text-sm font-medium text-primary">
-                                        <span>{t('View Menu', 'View Menu')}</span>
+                                        <span>{t('partners.viewMenu')}</span>
                                         <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
                                     </Link>
                                 </div>
@@ -134,7 +134,7 @@ export default function Partners({ stores = [] }: { stores: Store[] }) {
                     </div>
                 ) : (
                     <div className="text-center py-12 bg-card/50 rounded-2xl border border-dashed border-border">
-                        <p className="text-muted-foreground">{t('No partners found at the moment.', 'No partners found at the moment.')}</p>
+                        <p className="text-muted-foreground">{t('partners.noPartnersFound')}</p>
                     </div>
                 )}
 
@@ -144,7 +144,7 @@ export default function Partners({ stores = [] }: { stores: Store[] }) {
                             href="/stores"
                             className="inline-flex items-center justify-center px-8 py-3 rounded-full bg-primary text-primary-foreground font-medium hover:bg-primary/90 transition-colors shadow-lg shadow-primary/20 hover:shadow-primary/30"
                         >
-                            {t('Explore All Partners', 'Explore All Partners')}
+                            {t('partners.exploreAllPartners')}
                             <ArrowRight className="w-4 h-4 ml-2" />
                         </Link>
                     </div>

@@ -297,7 +297,7 @@ export default function Setting({ setting }: any) {
                                 <div className="space-y-2">
                                     <Label htmlFor="email" className="flex items-center gap-2">
                                         <Mail className="w-4 h-4" />
-                                        {t('email')}
+                                        {t('common.email')}
                                     </Label>
                                     <Input
                                         id="email"
@@ -314,7 +314,7 @@ export default function Setting({ setting }: any) {
                                 <div className="space-y-2">
                                     <Label htmlFor="phone" className="flex items-center gap-2">
                                         <Phone className="w-4 h-4" />
-                                        {t('phone')}
+                                        {t('common.phone')}
                                     </Label>
                                     <Input
                                         id="phone"
@@ -331,7 +331,7 @@ export default function Setting({ setting }: any) {
                                 <div className="space-y-2 md:col-span-2">
                                     <Label htmlFor="address" className="flex items-center gap-2">
                                         <MapPin className="w-4 h-4" />
-                                        {t('address')}
+                                        {t('common.address')}
                                     </Label>
                                     <Textarea
                                         id="address"

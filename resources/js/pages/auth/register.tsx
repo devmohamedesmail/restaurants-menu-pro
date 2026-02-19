@@ -9,11 +9,15 @@ import AuthLayout from '@/layouts/auth-layout';
 import { login } from '@/routes';
 import { store } from '@/routes/register';
 import { useTranslation } from 'react-i18next';
+import Footer from '@/components/landing/footer';
+import Header from '@/components/landing/header';
 
 export default function Register() {
     const { t } = useTranslation();
     return (
-        <AuthLayout
+       <div>
+        <Header />
+         <AuthLayout
             title={t('auth.create-account')}
             description={t('auth.fill-details')}
         >
@@ -110,5 +114,7 @@ export default function Register() {
                 )}
             </Form>
         </AuthLayout>
+        <Footer />
+       </div>
     );
 }

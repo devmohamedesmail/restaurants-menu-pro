@@ -10,7 +10,9 @@ use App\Http\Controllers\vendor\CategoryController;
 use App\Http\Controllers\vendor\CreateStore;
 use App\Http\Controllers\vendor\MealController;
 use App\Http\Controllers\vendor\OrderController;
+use App\Http\Controllers\vendor\StoreManagementController;
 use App\Http\Controllers\vendor\TableController;
+use App\Http\Controllers\visitors\VisitorsContoller;
 use App\Models\Store;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -79,7 +81,6 @@ Route::controller(StoresController::class)->group(function () {
 Route::controller(CreateStore::class)->group(function () {
     // Route::get('/store/home/{store_name?}/{store_id?}/{table?}', 'store_home')->name('store.home');
 
-    Route::post('/register/store', 'register_store')->name('create.store');
     Route::get('/store/dashboard', 'store_dashboard')->name('store.dashboard');
 
     // Get dashboard data (categories, meals, stats)
@@ -87,11 +88,26 @@ Route::controller(CreateStore::class)->group(function () {
 
     // show store menu
     Route::get('/store/menu/{slug}/{store_id}', 'store_menu')->name('store.menu');
-    Route::get('/register/store', 'index')->name('register.store.page');
-    Route::get('/register/update/{id}', 'update_store')->name('register.store.update');
+   
+  
     Route::post('/register/update/{id}', 'update')->name('register.store.save');
 
 });
+
+
+
+
+Route::controller(StoreManagementController::class)->group(function () {
+    Route::get('/register/store/page', 'register_store_page')->name('register.store.page')->middleware('auth');
+    Route::post('/create/store', 'create_store')->name('create.store')->middleware('auth');
+    Route::get('/store/update/page/{id}', 'update_store_page')->name('store.update.page')->middleware('auth');
+});
+
+
+
+
+
+
 
 Route::controller(CategoryController::class)->group(function () {
     Route::post('/store/categories', 'storeCategory')->name('store.category.store')->middleware('auth');
@@ -114,4 +130,15 @@ Route::controller(TableController::class)->group(function () {
     Route::post('/store/tables', 'storeTable')->name('store.table.store');
     Route::put('/store/tables/{id}', 'updateTable')->name('store.table.update');
     Route::delete('/store/tables/{id}', 'deleteTable')->name('store.table.delete');
+});
+
+
+
+
+// +++++++++++++++++++++++++++ visitors routes +++++++++++++++++++++++++++
+
+Route::controller(VisitorsContoller::class)->group(function () {
+    Route::get('/contact-us', 'contact_us')->name('contact.us');
+    Route::get('/privacy-policy', 'privacy_policy')->name('privacy.policy');
+    Route::get('/terms-of-service', 'terms_of_service')->name('terms.of.service');
 });
