@@ -11,7 +11,7 @@ interface AppPageProps extends PageProps {
 
 export default function Footer() {
     const { settings } = usePage<AppPageProps>().props;
-    const { t } = useTranslation();
+    const { t ,i18n} = useTranslation();
 
     const companyName = settings?.title_en || settings?.title_ar || 'Menu Pro';
     const year = new Date().getFullYear();
@@ -26,7 +26,7 @@ export default function Footer() {
                     <div className="flex flex-col gap-4">
                         <Logo />
                         <p className="text-sm text-muted-foreground leading-relaxed max-w-xs">
-                            {t('footer.tagline')}
+                            {i18n.language === 'ar' ? settings?.description_ar : settings?.description_en}
                         </p>
                     </div>
 

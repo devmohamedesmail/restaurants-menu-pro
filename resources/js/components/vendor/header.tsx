@@ -111,7 +111,7 @@ export default function Header({ store }: any) {
           {/* Actions & User Menu */}
           <div className="flex items-center gap-3 self-center md:self-end mb-2 md:mb-6">
             <Button variant="outline" size="sm" asChild className="hidden md:flex">
-              <Link href={route('register.store.update', store.id)}>
+              <Link href={route('store.update.page', store.id)}>
                 <Edit className="w-4 h-4 mr-2" />
                 {t('dashboard.edit-details')}
               </Link>
