@@ -1,12 +1,11 @@
-import React, { useEffect } from 'react'
-import { Button } from '../ui/button'
-import { Input } from '../ui/input'
-import { X } from 'lucide-react'
+
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
 import { useTranslation } from 'react-i18next'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import { router } from '@inertiajs/react'
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog'
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog'
 interface TableDialogProps {
     table?: any
     onClose: () => void

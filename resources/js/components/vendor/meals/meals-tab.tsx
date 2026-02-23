@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
-import { TabsContent } from '../ui/tabs'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card'
+import { TabsContent } from '@/components/ui/tabs'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Edit, Trash2, UtensilsCrossed } from 'lucide-react'
-import EmptyState from './empty-state'
+import EmptyState from '../empty-state'
 import { useTranslation } from 'react-i18next'
-import { Button } from '../ui/button'
-import MealDialog from './meal-dialog'
+import { Button } from '@/components/ui/button'
+import MealDialog from '@/components/vendor/meals/meal-dialog'
 import { router } from '@inertiajs/react'
 
 interface Meal {

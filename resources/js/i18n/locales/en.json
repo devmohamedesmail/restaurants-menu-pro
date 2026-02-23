@@ -269,7 +269,8 @@
     "create-tables-qr": "Add tables to generate unique QR codes for each.",
     "create-first-meal": "Create your first meal to start selling.",
     "create-first-category": "Create a category to organize your meals.",
-    "roles": "Roles"
+    "roles": "Roles",
+    "order": "Order"
   },
   "setting": {
     "page-title": "Settings",
@@ -549,7 +550,17 @@
     "info": "Info",
     "no_items_found": "No items found",
     "adjust_filters": "Try adjusting your search or category filter",
-    "clear_filters": "Clear all filters"
+    "clear_filters": "Clear all filters",
+    "send_order": "Send Order",
+    "order_sent": "Order sent successfully",
+    "order_sent_failed": "Failed to send order",
+    "delivery_info": "Delivery Information",
+    "delivery_info_desc": "Please fill in your delivery details to complete the order.",
+    "location_link": "Location Link",
+    "note": "Order Note",
+    "note_placeholder": "Any special requests or instructions...",
+    "mark_completed": "Mark as Completed",
+    "mark_cancelled": "Cancel Order"
   },
   "tables": {
     "add-table": "Add Table",

@@ -1,10 +1,36 @@
-import React from 'react'
 import { Sparkles, ArrowRight } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { Link } from '@inertiajs/react';
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
 
 export default function Hero() {
     const { t } = useTranslation();
+    gsap.registerPlugin(useGSAP);
+
+
+
+    useGSAP(() => {
+        gsap.fromTo(
+            ".title",
+            {
+                y: 400,
+                opacity: 0,
+                scale:1,
+                filter: "blur(8px)",
+                duration: 1.4,
+            },
+            {
+                y: 0,
+                opacity: 1,
+                scale:10,
+                filter: "blur(0px)",
+                ease: "expo.out",
+                stagger: 0.2,
+                duration: 1.4,
+            }
+        );
+    });
     return (
         <section className="relative pt-24 sm:pt-32 pb-16 sm:pb-24 overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/10 pointer-events-none" />
@@ -18,8 +44,8 @@ export default function Hero() {
                         <span className="text-xs sm:text-sm font-medium text-primary">{t('landing.hero.subtitle')}</span>
                     </div>
 
-                    <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 sm:mb-6 animate-fade-in-up delay-100">
-                        <span className="bg-gradient-to-r from-foreground via-foreground/90 to-foreground/80 bg-clip-text text-transparent">
+                    <h1 className="text-3xl  sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 sm:mb-6 animate-fade-in-up delay-100">
+                        <span className="bg-gradient-to-r title from-foreground via-foreground/90 to-foreground/80 bg-clip-text text-transparent">
                             {t('landing.hero.title')}
                         </span>
                     </h1>

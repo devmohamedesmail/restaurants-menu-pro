@@ -67,35 +67,18 @@ interface MenuPageProps {
     categories: Category[];
     country: Country;
     meals: Meal[];
+    table: string;
 }
 
-export default function MenuPage({ store, categories, country, meals }: MenuPageProps) {
-    const { t, i18n } = useTranslation();
-    const isRTL = i18n.language === 'ar';
-
- 
-    const [searchQuery, setSearchQuery] = useState('');
- 
-
-    
-
-   
-
-
-
-
-
-
- 
-
+export default function MenuPage({ store, categories, country, meals , table }: MenuPageProps) {
     return (
         <div className="min-h-screen bg-background pb-20">
             <Head title={`${store.name} - Menu`} />
             <HeroSection store={store} />
-            <SearchSection />
+              <SearchSection />
              <CategoriesSection categories={categories}  />
              <MealsSection meals={meals} categories={categories} country={country} />
-             <FloatCart />
+             <FloatCart store={store} table={table} />
         </div>
     );
 }

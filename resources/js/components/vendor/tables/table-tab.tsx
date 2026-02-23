@@ -2,14 +2,12 @@ import React, { useState } from 'react'
 import { TabsContent } from '@/components/ui/tabs'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
-import { Badge, Edit, Eye, LayoutGrid, Printer, QrCode, Trash2 } from 'lucide-react'
+import { LayoutGrid } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
-import EmptyState from './empty-state'
+import EmptyState from '../empty-state'
 import TableDialog from './table-dialog'
-import { router } from '@inertiajs/react'
-import toast from 'react-hot-toast'
 import QrDialog from './qr-dialog'
-import TableCard from './tables/table-card'
+import TableCard from './table-card'
 interface Table {
     id: number
     store_id: number

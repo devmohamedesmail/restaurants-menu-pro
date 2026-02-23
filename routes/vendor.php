@@ -13,7 +13,7 @@ Route::controller(StoreManagementController::class)->group(function () {
     Route::post('/create/store', 'create_store')->name('create.store')->middleware('auth');
     Route::get('/store/update/page/{id}', 'update_store_page')->name('store.update.page')->middleware('auth');
     Route::post('/store/update/{id}', 'update_store')->name('store.update')->middleware('auth');
-    Route::get('/store/menu/{slug}/{store_id}', 'store_menu')->name('store.menu');
+    Route::get('/store/menu/{slug}/{store_id}/table/{table?}', 'store_menu')->name('store.menu');
     Route::get('/store/dashboard', 'store_dashboard')->name('store.dashboard')->middleware('auth');
      // Route::get('/store/home/{store_name?}/{store_id?}/{table?}', 'store_home')->name('store.home');
 });
@@ -32,7 +32,7 @@ Route::controller(MealController::class)->group(function () {
 });
 
 Route::controller(OrderController::class)->group(function () {
-    Route::post('/store/create/order', 'createOrder')->name('store.create.order')->middleware('auth');
+    Route::post('/store/create/order', 'createOrder')->name('store.create.order');
     Route::post('/store/order/{id}/status', 'updateOrderStatus')->name('store.order.update.status')->middleware('auth');
 });
 

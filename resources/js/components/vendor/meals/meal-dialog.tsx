@@ -10,7 +10,7 @@ import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Loader2 } from 'lucide-react'
-import ImagePicker from '../ui/image-picker'
+import ImagePicker from '@/components/ui/image-picker'
 
 interface Category {
     id: number

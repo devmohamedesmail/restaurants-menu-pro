@@ -3,23 +3,18 @@ import React from 'react';
 declare var route: any;
 import { Head, Link } from '@inertiajs/react';
 import { useTranslation } from 'react-i18next';
-import { Edit } from 'lucide-react';
-import { Button } from '@/components/ui/button';
 import { Tabs } from '@/components/ui/tabs';
 import Header from '@/components/vendor/header';
 import TabsSection from '@/components/vendor/tabs-section';
 import OverviewTab from '@/components/vendor/overview-tab';
-import TableTab from '@/components/vendor/table-tab';
-import OrdersTab from '@/components/vendor/orders-tab';
-import MealsTab from '@/components/vendor/meals-tab';
-import CategoriesTab from '@/components/vendor/categories-tab';
+import TableTab from '@/components/vendor/tables/table-tab';
+import OrdersTab from '@/components/vendor/orders/orders-tab';
+import MealsTab from '@/components/vendor/meals/meals-tab';
+import CategoriesTab from '@/components/vendor/categories/categories-tab';
 import EditButton from '@/components/vendor/edit-button';
 
 export default function Dashboard({ store, categories, meals, orders, tables, country, stats }: any) {
   const { t } = useTranslation();
-
-
-
   if (!store) return null;
 
   return (

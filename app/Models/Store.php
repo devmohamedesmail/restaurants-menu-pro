@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Order;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -46,7 +47,7 @@ class Store extends Model
 
     // Define relationship to Order model
     public function orders(){
-        return $this->hasMany(Order::class);
+        return $this->hasMany(Order::class,'store_id');
     }
 
     // Define relationship to Table model

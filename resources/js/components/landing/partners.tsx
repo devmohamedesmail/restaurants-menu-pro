@@ -123,7 +123,7 @@ export default function Partners({ stores = [] }: { stores: Store[] }) {
                                     </div> */}
 
                                     <Link 
-                                        href={`/store/menu/${store.slug}/${store.id}`}
+                                        href={`/store/menu/${store.slug}/${store.id}/table/`}
                                         className="pt-4 border-t border-border mt-auto flex justify-between items-center text-sm font-medium text-primary">
                                         <span>{t('partners.viewMenu')}</span>
                                         <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />

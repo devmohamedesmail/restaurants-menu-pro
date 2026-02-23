@@ -37,19 +37,20 @@ class RedirectController extends Controller
             $user = Auth::user();
             switch ($user->role_id) {
                 case 4: // Vendor
-                    $store = $user->stores()->first();
-                    if ($store) {
-                        return Inertia::render('vendor/dashboard/index', [
-                            'store'      => $store,
-                            'categories' => $store->categories()->withCount('meals')->get(),
-                            'meals'      => $store->meals()->with('category')->get(),
-                            'country'    => $store->country()->first(),
-                            'orders'     => $store->orders()->get(),
-                            'tables'     => $store->tables()->get(),
-                        ]);
-                    } else {
-                        return redirect()->route('register.store.page');
-                    }
+                    return redirect()->route('store.dashboard');
+                    // $store = $user->stores()->first();
+                    // if ($store) {
+                    //     return Inertia::render('vendor/dashboard/index', [
+                    //         'store'      => $store,
+                    //         'categories' => $store->categories()->withCount('meals')->get(),
+                    //         'meals'      => $store->meals()->with('category')->get(),
+                    //         'country'    => $store->country()->first(),
+                    //         'orders'     => $store->orders()->get(),
+                    //         'tables'     => $store->tables()->get(),
+                    //     ]);
+                    // } else {
+                    //     return redirect()->route('register.store.page');
+                    // }
                     break;
 
                 case 1: // user

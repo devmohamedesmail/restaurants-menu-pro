@@ -11,7 +11,7 @@ use Inertia\Inertia;
 
 class StoreManagementController extends Controller
 {
-use UploadsToCloudinary;
+    use UploadsToCloudinary;
     /**
      * Register a new store page
      *
@@ -161,13 +161,12 @@ use UploadsToCloudinary;
         }
     }
 
-
     /**
      * Show store menu
      *
      */
 
-    public function store_menu($slug, $store_id)
+    public function store_menu($slug, $store_id, $table = null)
     {
         try {
             $store = Store::where('id', $store_id)->first();
@@ -181,6 +180,7 @@ use UploadsToCloudinary;
                     'categories' => $categories,
                     'country'    => $country,
                     'meals'      => $meals,
+                    'table'      => $table,
                 ]);
             } else {
                 return Inertia::render("404/index", [
@@ -194,18 +194,22 @@ use UploadsToCloudinary;
         }
     }
 
-
     /**
      * Show store dashboard
-     * 
+     *
      */
 
-     public function store_dashboard()
+    public function store_dashboard()
     {
+
+   
 
         try {
             $user  = Auth::user();
             $store = Store::where('user_id', $user->id)->first();
+
+        //   dd("store id" . $store->id . "user id" . $user->id);
+
             if ($store) {
                 $categories = $store->categories()->withCount('meals')->get();
                 $meals      = $store->meals()->with('category')->get();
@@ -220,13 +224,12 @@ use UploadsToCloudinary;
                     'totalRevenue'    => 0,
                 ];
 
-                return Inertia::render("store/index", [
+                return Inertia::render("vendor/dashboard/index", [
                     'store'      => $store,
                     'categories' => $categories,
                     'country'    => $country,
                     'meals'      => $meals,
                     'stats'      => $stats,
-                    'attributes' => $attributes,
                     'orders'     => $orders,
                     'tables'     => $tables,
                 ]);
@@ -239,7 +242,5 @@ use UploadsToCloudinary;
             ]);
         }
     }
-
-
 
 }
