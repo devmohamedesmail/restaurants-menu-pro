@@ -193,4 +193,53 @@ use UploadsToCloudinary;
             ]);
         }
     }
+
+
+    /**
+     * Show store dashboard
+     * 
+     */
+
+     public function store_dashboard()
+    {
+
+        try {
+            $user  = Auth::user();
+            $store = Store::where('user_id', $user->id)->first();
+            if ($store) {
+                $categories = $store->categories()->withCount('meals')->get();
+                $meals      = $store->meals()->with('category')->get();
+                $country    = $store->country()->first();
+                $orders     = $store->orders()->get();
+                $tables     = $store->tables()->get();
+
+                $stats = [
+                    'totalCategories' => $categories->count(),
+                    'totalMeals'      => $meals->count(),
+                    'totalOrders'     => $orders->count(),
+                    'totalRevenue'    => 0,
+                ];
+
+                return Inertia::render("store/index", [
+                    'store'      => $store,
+                    'categories' => $categories,
+                    'country'    => $country,
+                    'meals'      => $meals,
+                    'stats'      => $stats,
+                    'attributes' => $attributes,
+                    'orders'     => $orders,
+                    'tables'     => $tables,
+                ]);
+            } else {
+                return Inertia::render("store/register-store/index");
+            }
+        } catch (\Throwable $th) {
+            return Inertia::render("404/index", [
+                "error" => $th->getMessage(),
+            ]);
+        }
+    }
+
+
+
 }
