@@ -78,7 +78,7 @@ export default function UpdateStore({ store, countries }: any) {
 
             try {
                 // @ts-ignore
-                await router.post(route('register.store.save', store.id), formData, {
+                await router.post(route('vendor.store.update', store.id), formData, {
                     onSuccess: () => {
                         setIsSubmitting(false)
                     },
@@ -91,6 +91,7 @@ export default function UpdateStore({ store, countries }: any) {
                     },
                 })
             } catch (error) {
+                console.log(error)
                 setIsSubmitting(false)
             }
         },

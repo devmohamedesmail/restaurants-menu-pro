@@ -77,12 +77,10 @@ class StoreManagementController extends Controller
             return redirect()->route('store.dashboard');
 
         } catch (\Illuminate\Validation\ValidationException $e) {
-            return $e->getMessage();
             return Inertia::render("404/index", [
                 "error" => $e->getMessage(),
             ]);
         } catch (\Throwable $th) {
-            return $th->getMessage();
             return Inertia::render("404/index", [
                 "error" => $th->getMessage(),
             ]);
@@ -156,8 +154,10 @@ class StoreManagementController extends Controller
             return redirect()->back();
 
         } catch (\Illuminate\Validation\ValidationException $e) {
-            return $e->errors();
+            dd("fisrt");
+            return $e->getMessage();
         } catch (\Throwable $th) {
+             dd("second");
             return $th->getMessage();
         }
     }
@@ -229,7 +229,9 @@ class StoreManagementController extends Controller
                     'tables'     => $tables,
                 ]);
             } else {
-                return Inertia::render("store/register-store/index");
+                return Inertia::render("vendor/create-store/index",[
+                    'countries'=>Country::all(),
+                ]);
             }
         } catch (\Throwable $th) {
             return Inertia::render("404/index", [

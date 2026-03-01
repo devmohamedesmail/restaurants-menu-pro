@@ -70,7 +70,7 @@ export default function Partners({ stores = [] }: { stores: Store[] }) {
                                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-60" />
 
                                     {/* Logo */}
-                                    <div className="absolute -bottom-10 left-6">
+                                    <div className="absolute bottom-2 left-6">
                                         <div className="w-20 h-20 rounded-2xl bg-card p-1 shadow-lg ring-1 ring-border/50">
                                             {store?.image ? (
                                                 <img

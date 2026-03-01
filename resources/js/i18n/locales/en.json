@@ -561,7 +561,10 @@
     "note_placeholder": "Any special requests or instructions...",
     "mark_completed": "Mark as Completed",
     "mark_cancelled": "Cancel Order",
-    "add_to_order": "Add To Order"
+    "add_to_order": "Add To Order",
+    "welcome_to": "Welcome to",
+    "table": "Table",
+    "order_placed_successfully": "Order placed successfully"
   },
   "tables": {
     "add-table": "Add Table",
@@ -683,5 +686,9 @@
     "address": "Address",
     "phone": "Phone",
     "email": "Email"
+  },
+  "orders":{
+   "delivery": "Delivery",
+   "table":"Table No."
   }
 }

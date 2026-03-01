@@ -25,6 +25,7 @@ export default function RegisterStore({ countries }: any) {
     const [isSubmitting, setIsSubmitting] = useState(false)
 
 
+
     const validationSchema = Yup.object({
         store_name: Yup.string().required(t('common.store-name-required')),
         country_id: Yup.string().required(t('common.country-required')),
@@ -106,7 +107,7 @@ export default function RegisterStore({ countries }: any) {
         <>
             <Head title={t('auth.register-store')} />
             <Header />
-            <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 flex items-center justify-center p-4">
+            <div className="min-h-screen mt-28 bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 flex items-center justify-center p-4">
                 <div className="w-full max-w-2xl">
                     {/* Header */}
                     <div className="text-center mb-8">

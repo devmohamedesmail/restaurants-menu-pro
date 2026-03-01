@@ -561,7 +561,10 @@
     "note_placeholder": "أي طلبات خاصة أو تعليمات...",
     "mark_completed": "تم التسليم",
     "mark_cancelled": "إلغاء الطلب",
-    "add_to_order": "  اضف الي الطلب "
+    "add_to_order": "  اضف الي الطلب ",
+    "welcome_to": "مرحبا بكم في",
+    "table": "طاولة",
+    "order_placed_successfully": " تم ارسال الطلب بنجاح "
   },
   "tables": {
     "add-table": "أضافة طاولة",
@@ -683,5 +686,9 @@
     "address": "العنوان",
     "phone": "الهاتف",
     "email": "البريد الإلكتروني"
+  },
+  "orders": {
+    "delivery": " توصيل بالخارج ",
+    "table": " رقم الطاولة  "
   }
 }

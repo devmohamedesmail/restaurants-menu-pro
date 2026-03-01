@@ -1,0 +1,15 @@
+{/* <div className="grid gap-2">
+                                <Label htmlFor="password_confirmation">{t('auth.confirm-password')}</Label>
+                                <Input
+                                    id="password_confirmation"
+                                    type="password"
+                                    required
+                                    tabIndex={4}
+                                    autoComplete="new-password"
+                                    name="password_confirmation"
+                                    placeholder={t('auth.confirm-password')}
+                                />
+                                <InputError
+                                    message={errors.password_confirmation}
+                                />
+                            </div> */}

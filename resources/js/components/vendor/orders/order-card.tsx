@@ -114,7 +114,7 @@ export default function OrderCard({ order, isAr }: { order: Order; isAr: boolean
                         </div>
                         <div>
                             <p className="font-bold text-sm">
-                                {t('dashboard.order')} #{order.id}
+                                {t('dashboard.order')} #{order.id} - {order.table ? `${t('orders.table')} ${order.table}` : t('orders.delivery')}
                             </p>
                             <p className="text-xs text-muted-foreground flex items-center gap-1">
                                 <Clock className="w-3 h-3" />

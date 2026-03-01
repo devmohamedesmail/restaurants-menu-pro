@@ -74,11 +74,12 @@ export default function MenuPage({ store, categories, country, meals , table }: 
     return (
         <div className="min-h-screen bg-background pb-20">
             <Head title={`${store.name} - Menu`} />
-            <HeroSection store={store} />
-              <SearchSection />
-             <CategoriesSection categories={categories}  />
-             <MealsSection meals={meals} categories={categories} country={country} />
-             <FloatCart store={store} table={table} />
+            
+            <HeroSection store={store} table={table} />
+            <SearchSection />
+            <CategoriesSection categories={categories}  />
+            <MealsSection meals={meals} categories={categories} country={country} />
+            <FloatCart store={store} table={table} />
         </div>
     );
 }

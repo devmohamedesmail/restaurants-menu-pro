@@ -111,9 +111,9 @@ export default function TableCard({ table ,setSelectedTable,setShowDialog,setQrT
         <Card key={table.id} className="overflow-hidden hover:shadow-lg transition-shadow">
             <div className="bg-gradient-to-r from-main to-second p-4 text-white">
                 <div className="flex items-center justify-between">
-                    <h3 className="font-bold text-black text-xl">{table.name}</h3>
-                    <Badge className="text-black">
-                        {table.capacity}        
+                    <h3 className="font-bold text-black dark:text-white text-xl">{table.name}</h3>
+                    <Badge className="text-black dark:text-white">
+                        {table.capacity} {t('tables.capacity')}        
                     </Badge>
 
                 </div>

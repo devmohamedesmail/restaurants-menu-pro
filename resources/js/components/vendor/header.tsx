@@ -29,6 +29,8 @@ import { Link } from '@inertiajs/react';
 import { usePage } from '@inertiajs/react';
 import { useTranslation } from 'react-i18next';
 import { router } from '@inertiajs/react';
+import ThemeToggle from '../ui/theme-toggle';
+import LangToggle from '../ui/lang-toggle';
 
 
 function StoreBannerPlaceholder() {
@@ -50,6 +52,7 @@ export default function Header({ store }: any) {
     <div className="relative bg-white dark:bg-gray-800 border-b border-border shadow-sm">
       {/* Banner Background */}
       <div className="h-48 w-full relative overflow-hidden bg-gray-100 dark:bg-gray-700">
+      
         {store.banner ? (
           <img
             src={store.banner}
@@ -109,7 +112,10 @@ export default function Header({ store }: any) {
           </div>
 
           {/* Actions & User Menu */}
+          
           <div className="flex items-center gap-3 self-center md:self-end mb-2 md:mb-6">
+            <ThemeToggle />
+            <LangToggle />
             <Button variant="outline" size="sm" asChild className="hidden md:flex">
               <Link href={route('store.update.page', store.id)}>
                 <Edit className="w-4 h-4 mr-2" />

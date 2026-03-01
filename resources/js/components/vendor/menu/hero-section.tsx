@@ -1,7 +1,7 @@
 import { MapPin, Phone, Share2, Star, Info } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 
-export default function HeroSection({ store }: { store: any }) {
+export default function HeroSection({ store, table }: { store: any, table: any }) {
     const { t } = useTranslation();
     return (
         <header className="relative h-75 sm:h-100 w-full overflow-hidden">
@@ -62,6 +62,15 @@ export default function HeroSection({ store }: { store: any }) {
                             )}
                         </div>
                     </div>
+
+
+
+
+                    {table && (
+                        <div className="flex gap-2 mb-2 w-full sm:w-auto">
+                            <p className="text-muted-foreground">{t('menu.welcome_to')} {store.name} {t('menu.table')} {table}</p>
+                        </div>
+                    )}
 
                     <div className="flex gap-2 mb-2 w-full sm:w-auto">
                         <button className="flex-1 sm:flex-none btn bg-background/80 backdrop-blur text-foreground border border-border hover:bg-background transition-colors p-3 rounded-xl flex items-center justify-center gap-2">

@@ -44,7 +44,7 @@ class OrderController extends Controller
             // Create the order
             $orderData = [
                 'store_id' => $validated['store_id'],
-                'user_id'  => Auth::check() ? Auth::id() : null,
+                'user_id'  => auth()->check() ? auth()->id() : 8,
                 'order'    => $orderArray,
                 'total'    => $validated['total'],
                 'status'   => 'pending',
@@ -76,10 +76,12 @@ class OrderController extends Controller
             $order = Order::create($orderData);
             return redirect()->back();
         } catch (ValidationException $e) {
+            dd($e->getMessage());
             return Inertia::render("400/index", [
                 "error" => $e->getMessage(),
             ]);
         } catch (\Throwable $th) {
+             dd($th->getMessage());
             return Inertia::render("500/index", [
                 "error" => $th->getMessage(),
             ]);

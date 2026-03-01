@@ -26,6 +26,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { increase_quantity, decrease_quantity, remove_from_cart, reset_cart } from '@/redux/reducers/cart-slice';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
+import toast from 'react-hot-toast';
 
 interface DeliveryInfo {
     name: string;
@@ -111,6 +112,7 @@ export default function FloatCart({ store, table }: any) {
                 setIsOpen(false);
                 setShowDeliveryModal(false);
                 setDeliveryInfo({ name: '', phone: '', address: '', location: '', note: '' });
+                toast.success(t('menu.order_placed_successfully'));
             },
             onError: () => {
                 // errors handled by backend redirect
