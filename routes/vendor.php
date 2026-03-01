@@ -7,7 +7,6 @@ use App\Http\Controllers\vendor\StoreManagementController;
 use App\Http\Controllers\vendor\TableController;
 use Illuminate\Support\Facades\Route;
 
-
 Route::controller(StoreManagementController::class)->group(function () {
     Route::get('/register/store/page', 'register_store_page')->name('register.store.page')->middleware('auth');
     Route::post('/create/store', 'create_store')->name('create.store')->middleware('auth');
@@ -15,9 +14,10 @@ Route::controller(StoreManagementController::class)->group(function () {
     Route::post('/store/update/{id}', 'update_store')->name('store.update')->middleware('auth');
     Route::get('/store/menu/{slug}/{store_id}/table/{table?}', 'store_menu')->name('store.menu');
     Route::get('/store/dashboard', 'store_dashboard')->name('store.dashboard')->middleware('auth');
-     // Route::get('/store/home/{store_name?}/{store_id?}/{table?}', 'store_home')->name('store.home');
+    Route::get('/vendor/porfile', 'vendor_profile')->name('vendor.profile')->middleware('auth');
+    Route::post('/vendor/profile/update', 'update_vendor_profile')->name('vendor.profile.update')->middleware('auth');
+    // Route::get('/store/home/{store_name?}/{store_id?}/{table?}', 'store_home')->name('store.home');
 });
-
 
 Route::controller(CategoryController::class)->group(function () {
     Route::post('/store/categories', 'storeCategory')->name('store.category.store')->middleware('auth');

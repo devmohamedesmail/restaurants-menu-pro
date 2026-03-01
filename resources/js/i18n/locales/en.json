@@ -560,7 +560,8 @@
     "note": "Order Note",
     "note_placeholder": "Any special requests or instructions...",
     "mark_completed": "Mark as Completed",
-    "mark_cancelled": "Cancel Order"
+    "mark_cancelled": "Cancel Order",
+    "add_to_order": "Add To Order"
   },
   "tables": {
     "add-table": "Add Table",
@@ -645,6 +646,30 @@
     "contact_email": "Email",
     "contact_phone": "Phone",
     "contact_address": "Address"
+  },
+  "profile": {
+    "title": "My Profile",
+    "subtitle": "Manage your personal information and account settings",
+    "avatar": "Profile Photo",
+    "update-profile": "Update Profile",
+    "updating-profile": "Updating Profile...",
+    "change-password": "Change Password",
+    "current-password": "Current Password",
+    "new-password": "New Password",
+    "confirm-new-password": "Confirm New Password",
+    "enter-current-password": "Enter your current password",
+    "enter-new-password": "Enter new password (min 8 chars)",
+    "enter-confirm-password": "Confirm your new password",
+    "profile-updated": "Profile updated successfully!",
+    "password-updated": "Password changed successfully!",
+    "current-password-incorrect": "The current password is incorrect.",
+    "personal-info": "Personal Information",
+    "personal-info-desc": "Update your name, email and profile photo",
+    "security": "Security",
+    "security-desc": "Change your account password",
+    "leave-blank": "Leave blank to keep current password",
+    "update-password": "Update Password",
+    "updating-password": "Updating Password..."
   },
   "footer": {
     "tagline": "Empowering restaurants with beautiful digital menus.",

@@ -560,7 +560,8 @@
     "note": "ملاحظة الطلب",
     "note_placeholder": "أي طلبات خاصة أو تعليمات...",
     "mark_completed": "تم التسليم",
-    "mark_cancelled": "إلغاء الطلب"
+    "mark_cancelled": "إلغاء الطلب",
+    "add_to_order": "  اضف الي الطلب "
   },
   "tables": {
     "add-table": "أضافة طاولة",
@@ -645,6 +646,30 @@
     "contact_email": "البريد الإلكتروني",
     "contact_phone": "الهاتف",
     "contact_address": "العنوان"
+  },
+  "profile": {
+    "title": "ملفي الشخصي",
+    "subtitle": "إدارة معلوماتك الشخصية وإعدادات الحساب",
+    "avatar": "صورة الملف الشخصي",
+    "update-profile": "تحديث الملف الشخصي",
+    "updating-profile": "جارٍ التحديث...",
+    "change-password": "تغيير كلمة المرور",
+    "current-password": "كلمة المرور الحالية",
+    "new-password": "كلمة المرور الجديدة",
+    "confirm-new-password": "تأكيد كلمة المرور الجديدة",
+    "enter-current-password": "أدخل كلمة المرورالحالية",
+    "enter-new-password": "أدخل كلمة المرور الجديدة (8 أحرف كحد أدنى)",
+    "enter-confirm-password": "أكد كلمة المرور الجديدة",
+    "profile-updated": "تم تحديث الملف الشخصي بنجاح!",
+    "password-updated": "تم تغيير كلمة المرور بنجاح!",
+    "current-password-incorrect": "كلمة المرور الحالية غير صحيحة.",
+    "personal-info": "المعلومات الشخصية",
+    "personal-info-desc": "تحديث اسمك وبريدك الإلكتروني وصورتك الشخصية",
+    "security": "الأمان",
+    "security-desc": "تغيير كلمة مرور حسابك",
+    "leave-blank": "اتركه فارغاً للاحتفاظ بكلمة المرور الحالية",
+    "update-password": "تحديث كلمة المرور",
+    "updating-password": "جارٍ تحديث كلمة المرور..."
   },
   "footer": {
     "tagline": "نُمكّن المطاعم بقوائم رقمية جميلة.",

@@ -146,7 +146,7 @@ export default function Header({ store }: any) {
                   </Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
-                  <Link href={route('profile.edit')}>
+                  <Link href={route('vendor.profile')}>
                     <User className="mr-2 h-4 w-4" />
                     <span>{t('header.profile')}</span>
                   </Link>
