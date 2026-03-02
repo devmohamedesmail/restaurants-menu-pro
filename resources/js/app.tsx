@@ -11,6 +11,11 @@ import { PersistGate } from 'redux-persist/integration/react';
 import store, { persistor } from './redux/store';
 import { configureEcho } from '@laravel/echo-react';
 
+
+configureEcho({
+    broadcaster: 'reverb',
+});
+
 configureEcho({
     broadcaster: 'reverb',
 });

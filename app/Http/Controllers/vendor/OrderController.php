@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers\vendor;
 
+use App\Events\OrderCreated;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Models\Store;
@@ -74,6 +75,8 @@ class OrderController extends Controller
 
             // Create the order in database
             $order = Order::create($orderData);
+
+            \broadcast(new OrderCreated($order))->toOthers();
             return redirect()->back();
         } catch (ValidationException $e) {
             dd($e->getMessage());
