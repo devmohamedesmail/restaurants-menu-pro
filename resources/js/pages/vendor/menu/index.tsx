@@ -92,7 +92,7 @@ export default function MenuPage({ store, categories, country, meals, table }: M
             <SearchSection />
 
             {/* ── Category Swiper Bar ───────────────────────────────────── */}
-            <div className="sticky top-0 z-20 bg-background/95 backdrop-blur-md border-b border-border shadow-sm px-4 py-3">
+            <div className="sticky top-0 z-20 bg-background/95 backdrop-blur-md border-b border-border shadow-sm px-4 py-3 overflow-clip">
                 <Swiper
                     modules={[FreeMode]}
                     freeMode={{
@@ -106,7 +106,7 @@ export default function MenuPage({ store, categories, country, meals, table }: M
                     grabCursor={true}
                     className="overflow-visible!"
                 >
-                    {/* "All" pill */}
+                  
                     <SwiperSlide style={{ width: 'auto' }}>
                         <button
                             onClick={() => handleCategoryClick(null)}
@@ -122,7 +122,7 @@ export default function MenuPage({ store, categories, country, meals, table }: M
                     </SwiperSlide>
 
                     {categories.map((category) => (
-                        <SwiperSlide key={category.id} style={{ width: 'auto' }}>
+                        <SwiperSlide key={category.id} style={{ width: 'auto'  }}>
                             <button
                                 onClick={() => handleCategoryClick(category.id)}
                                 className={`flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-semibold
