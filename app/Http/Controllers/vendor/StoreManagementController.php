@@ -2,6 +2,7 @@
 namespace App\Http\Controllers\vendor;
 
 use App\Http\Controllers\Controller;
+use App\Models\Attribute;
 use App\Models\Country;
 use App\Models\Store;
 use App\Traits\UploadsToCloudinary;
@@ -154,11 +155,15 @@ class StoreManagementController extends Controller
             return redirect()->back();
 
         } catch (\Illuminate\Validation\ValidationException $e) {
-            dd("fisrt");
-            return $e->getMessage();
+            
+            return Inertia::render("404/index", [
+                "error" => $e->getMessage(),
+            ]);
         } catch (\Throwable $th) {
-             dd("second");
-            return $th->getMessage();
+             
+            return Inertia::render("404/index", [
+                "error" => $th->getMessage(),
+            ]);
         }
     }
 
@@ -211,6 +216,7 @@ class StoreManagementController extends Controller
                 $country    = $store->country()->first();
                 $orders     = $store->orders()->get();
                 $tables     = $store->tables()->get();
+                $attributes = Attribute::all();
 
                 $stats = [
                     'totalCategories' => $categories->count(),
@@ -227,6 +233,7 @@ class StoreManagementController extends Controller
                     'stats'      => $stats,
                     'orders'     => $orders,
                     'tables'     => $tables,
+                    'attributes' => $attributes,
                 ]);
             } else {
                 return Inertia::render("vendor/create-store/index",[

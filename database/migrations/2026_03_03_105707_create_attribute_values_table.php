@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('attributes', function (Blueprint $table) {
+        Schema::create('attribute_values', function (Blueprint $table) {
             $table->id();
-            $table->string('name_ar');
-            $table->string('name_en');
-            $table->string('slug_ar')->nullable();
-            $table->string('slug_en')->nullable();
+            $table->foreignId('attribute_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('meal_id')->constrained()->cascadeOnDelete();
+            $table->string('value');
+            $table->decimal('price',8,2)->default(0);
             $table->timestamps();
         });
     }
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('attributes');
+        Schema::dropIfExists('attribute_values');
     }
 };

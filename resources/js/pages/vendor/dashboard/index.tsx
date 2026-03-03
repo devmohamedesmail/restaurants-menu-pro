@@ -13,7 +13,7 @@ import MealsTab from '@/components/vendor/meals/meals-tab';
 import CategoriesTab from '@/components/vendor/categories/categories-tab';
 import EditButton from '@/components/vendor/edit-button';
 
-export default function Dashboard({ store, categories, meals, orders, tables, country, stats }: any) {
+export default function Dashboard({ store, categories, meals, orders, tables, country, stats,attributes }: any) {
   const { t } = useTranslation();
   if (!store) return null;
 
@@ -43,6 +43,7 @@ export default function Dashboard({ store, categories, meals, orders, tables, co
             meals={meals}
             categories={categories}
             country={country}
+            attributes={attributes}
           />
           <OrdersTab
             orders={orders}

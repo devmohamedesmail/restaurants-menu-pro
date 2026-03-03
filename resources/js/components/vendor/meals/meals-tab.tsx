@@ -7,6 +7,8 @@ import { useTranslation } from 'react-i18next'
 import { Button } from '@/components/ui/button'
 import MealDialog from '@/components/vendor/meals/meal-dialog'
 import { router } from '@inertiajs/react'
+import MealCard from './meal-card'
+
 
 interface Meal {
   id: number
@@ -27,13 +29,13 @@ interface Meal {
 
 
 declare function route(name: string, params?: any): string
-export default function MealsTab({ meals, categories, country }: any) {
+export default function MealsTab({ meals, categories, country,attributes }: any) {
   const { t, i18n } = useTranslation()
   const [mealDialogOpen, setMealDialogOpen] = useState(false)
   const [editingMeal, setEditingMeal] = useState<Meal | undefined>()
   const isArabic = i18n.language === 'ar'
 
-
+console.log("attributes from meals tab",attributes);
    const handleDeleteMeal = (id: number) => {
         if (confirm(t('confirm-delete-meal'))) {
             router.delete(route('store.meal.delete', id))
@@ -59,76 +61,63 @@ export default function MealsTab({ meals, categories, country }: any) {
           {meals?.length > 0 ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
               {meals.map((meal: any) => (
-                // <div key={meal.id} className="flex gap-4 p-4 rounded-lg border hover:bg-accent/50 transition-colors">
-                //   <div className="w-20 h-20 rounded-md bg-muted overflow-hidden shrink-0">
-                //     {meal.image ? (
-                //       <img src={meal.image} alt={meal.name} className="w-full h-full object-cover" />
-                //     ) : (
-                //       <div className="w-full h-full flex items-center justify-center bg-gray-100 dark:bg-gray-800">
-                //         <UtensilsCrossed className="w-8 h-8 opacity-20" />
+                
+
+                // <Card key={meal.id}>
+                //   <CardContent className="p-4">
+                //     <img
+                //       src={meal.image}
+                //       alt={isArabic ? meal.name_ar : meal.name_en}
+                //       className="w-full h-40 object-cover rounded-lg mb-3"
+                //     />
+                //     <h3 className="font-semibold text-lg">
+                //       {isArabic ? meal.name_ar : meal.name_en}
+                //     </h3>
+                //     <p className="text-sm text-gray-500">
+                //       {isArabic ? meal.category.name_ar : meal.category.name_en}
+                //     </p>
+                //     <div className="flex items-center justify-between mt-3">
+                //       <div>
+                //         {meal.sale_price ? (
+                //           <div className="flex items-center gap-2">
+                //             <span className="text-lg font-bold text-green-600">
+                //               {i18n.language === 'ar' ? country.currency_ar : country.currency_en} {meal.sale_price}
+                //             </span>
+                //             <span className="text-sm text-gray-400 line-through">
+                //               {i18n.language === 'ar' ? country.currency_ar : country.currency_en} {meal.price}
+                //             </span>
+                //           </div>
+                //         ) : (
+                //           <span className="text-lg font-bold">
+                //             {i18n.language === 'ar' ? country.currency_ar : country.currency_en} {meal.price}
+                //           </span>
+                //         )}
                 //       </div>
-                //     )}
-                //   </div>
-                //   <div className="flex-1 min-w-0">
-                //     <h3 className="font-semibold truncate">{meal.name}</h3>
-                //     <p className="text-sm text-muted-foreground truncate">{meal.category?.name}</p>
-                //     <p className="font-medium mt-1">{meal.price} {country?.currency_symbol}</p>
-                //   </div>
-                // </div>
+                //       <div className="flex gap-2">
+                //         <Button
 
-                <Card key={meal.id}>
-                  <CardContent className="p-4">
-                    <img
-                      src={meal.image}
-                      alt={isArabic ? meal.name_ar : meal.name_en}
-                      className="w-full h-40 object-cover rounded-lg mb-3"
-                    />
-                    <h3 className="font-semibold text-lg">
-                      {isArabic ? meal.name_ar : meal.name_en}
-                    </h3>
-                    <p className="text-sm text-gray-500">
-                      {isArabic ? meal.category.name_ar : meal.category.name_en}
-                    </p>
-                    <div className="flex items-center justify-between mt-3">
-                      <div>
-                        {meal.sale_price ? (
-                          <div className="flex items-center gap-2">
-                            <span className="text-lg font-bold text-green-600">
-                              {i18n.language === 'ar' ? country.currency_ar : country.currency_en} {meal.sale_price}
-                            </span>
-                            <span className="text-sm text-gray-400 line-through">
-                              {i18n.language === 'ar' ? country.currency_ar : country.currency_en} {meal.price}
-                            </span>
-                          </div>
-                        ) : (
-                          <span className="text-lg font-bold">
-                            {i18n.language === 'ar' ? country.currency_ar : country.currency_en} {meal.price}
-                          </span>
-                        )}
-                      </div>
-                      <div className="flex gap-2">
-                        <Button
-
-                          size="sm"
-                          variant="outline"
-                          onClick={() => {
-                            setEditingMeal(meal)
-                            setMealDialogOpen(true)
-                          }}
-                        >
-                          <Edit className="w-3 h-3" />
-                        </Button>
-                        <Button
-                          size="sm"
-                          variant="destructive"
-                          onClick={() => handleDeleteMeal(meal.id)}
-                        >
-                          <Trash2 className="w-3 h-3" />
-                        </Button>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
+                //           size="sm"
+                //           variant="outline"
+                //           onClick={() => {
+                //             setEditingMeal(meal)
+                //             setMealDialogOpen(true)
+                //           }}
+                //         >
+                //           <Edit className="w-3 h-3" />
+                //         </Button>
+                //         <Button
+                //           size="sm"
+                //           variant="destructive"
+                //           onClick={() => handleDeleteMeal(meal.id)}
+                //         >
+                //           <Trash2 className="w-3 h-3" />
+                //         </Button>
+                //       </div>
+                //     </div>
+                //   </CardContent>
+                // </Card>
+                
+                <MealCard meal={meal} country={country} setEditingMeal={setEditingMeal} setMealDialogOpen={setMealDialogOpen} handleDeleteMeal={handleDeleteMeal} />
               ))}
             </div>
           ) : (
