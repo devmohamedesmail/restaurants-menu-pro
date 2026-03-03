@@ -117,7 +117,14 @@ console.log("attributes from meals tab",attributes);
                 //   </CardContent>
                 // </Card>
                 
-                <MealCard meal={meal} country={country} setEditingMeal={setEditingMeal} setMealDialogOpen={setMealDialogOpen} handleDeleteMeal={handleDeleteMeal} />
+                <MealCard
+                 meal={meal} 
+                 country={country} 
+                 setEditingMeal={setEditingMeal} 
+                 setMealDialogOpen={setMealDialogOpen} 
+                 handleDeleteMeal={handleDeleteMeal}
+                 attributes={attributes}
+                 />
               ))}
             </div>
           ) : (

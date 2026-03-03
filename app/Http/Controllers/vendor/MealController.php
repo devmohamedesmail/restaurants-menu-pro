@@ -136,5 +136,59 @@ class MealController extends Controller
             ]);
         }
     }
+    /**
+     * Store attribute values for a meal (from the attribute dialog).
+     */
+    public function storeAttributeValues(Request $request, $mealId)
+    {
+        try {
+            $user  = Auth::user();
+            $store = Store::where('user_id', $user->id)->first();
+            $meal  = $store->meals()->findOrFail($mealId);
+
+            $request->validate([
+                'values'                => 'required|array|min:1',
+                'values.*.attribute_id' => 'required|exists:attributes,id',
+                'values.*.value'        => 'required|string|max:255',
+                'values.*.price'        => 'nullable|numeric|min:0',
+            ]);
+
+            foreach ($request->values as $row) {
+                \App\Models\AttributeValue::create([
+                    'attribute_id' => $row['attribute_id'],
+                    'meal_id'      => $meal->id,
+                    'value'        => $row['value'],
+                    'price'        => $row['price'] ?? 0,
+                ]);
+
+                \App\Models\MealAttribute::firstOrCreate([
+                    'meal_id'      => $meal->id,
+                    'attribute_id' => $row['attribute_id'],
+                ]);
+            }
+
+            return redirect()->back();
+        } catch (\Throwable $th) {
+            return redirect()->back()->withErrors(['error' => $th->getMessage()]);
+        }
+    }
+
+    /**
+     * Delete a single attribute value row.
+     */
+    public function deleteAttributeValue($id)
+    {
+        try {
+            $user  = Auth::user();
+            $store = Store::where('user_id', $user->id)->first();
+            $av    = \App\Models\AttributeValue::findOrFail($id);
+            // Ownership check
+            $store->meals()->findOrFail($av->meal_id);
+            $av->delete();
+            return redirect()->back();
+        } catch (\Throwable $th) {
+            return redirect()->back()->withErrors(['error' => $th->getMessage()]);
+        }
+    }
 
 }

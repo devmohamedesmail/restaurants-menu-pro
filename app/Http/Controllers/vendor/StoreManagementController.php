@@ -178,7 +178,7 @@ class StoreManagementController extends Controller
             $store = Store::where('id', $store_id)->first();
             if ($store) {
                 $categories = $store->categories()->withCount('meals')->get();
-                $meals      = $store->meals()->with('category')->get();
+                $meals      = $store->meals()->with(['category','attributeValues'])->get();
                 $country    = $store->country()->first();
 
                 return Inertia::render("vendor/menu/index", [
@@ -212,7 +212,7 @@ class StoreManagementController extends Controller
             $store = Store::where('user_id', $user->id)->first();
             if ($store) {
                 $categories = $store->categories()->withCount('meals')->get();
-                $meals      = $store->meals()->with('category')->get();
+                $meals      = $store->meals()->with(['category','attributeValues'])->get();
                 $country    = $store->country()->first();
                 $orders     = $store->orders()->get();
                 $tables     = $store->tables()->get();

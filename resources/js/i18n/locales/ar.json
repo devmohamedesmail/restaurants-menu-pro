@@ -270,7 +270,20 @@
         "create-first-meal": "أنشئ وجبتك الأولى لبدء البيع.",
         "create-first-category": "أنشئ قسمًا لتنظيم وجباتك.",
         "roles": " الادوار ",
-        "order": "طلب"
+        "order": "طلب",
+        "manage_attributes": "إدارة الخصائص",
+        "saved_values": "القيم المحفوظة",
+        "add_attribute_values": "إضافة قيم الخصائص",
+        "attribute": "الخاصية",
+        "select_attribute": "اختر الخاصية",
+        "value": "القيمة",
+        "value_placeholder": "مثال: كبير، وسط، جبن اضافي",
+        "extra_price": "سعر إضافي",
+        "add_another_row": "إضافة سطر آخر",
+        "save_attributes": "حفظ",
+        "attributes": "الخصائص",
+        "confirm-delete-attr-value": "هل أنت متأكد من حذف هذه القيمة؟",
+        "no_image": "لا توجد صورة"
     },
     "setting": {
         "page-title": "الإعدادات",

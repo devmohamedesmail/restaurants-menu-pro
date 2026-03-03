@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -10,7 +9,7 @@ class Meal extends Model
     /** @use HasFactory<\Database\Factories\MealFactory> */
     use HasFactory;
 
-      protected $fillable = [
+    protected $fillable = [
         'category_id',
         'store_id',
         'name_en',
@@ -30,5 +29,15 @@ class Meal extends Model
     public function store()
     {
         return $this->belongsTo(Store::class);
+    }
+
+    public function attributeValues()
+    {
+        return $this->hasMany(AttributeValue::class)->with('attribute');
+    }
+
+    public function attributes()
+    {
+        return $this->belongsToMany(Attribute::class, 'meal_attributes');
     }
 }
