@@ -31,13 +31,25 @@ class Meal extends Model
         return $this->belongsTo(Store::class);
     }
 
+    // public function attributeValues()
+    // {
+    //     return $this->hasMany(AttributeValue::class)->with('attribute');
+    // }
+
+    // public function attributes()
+    // {
+    //     return $this->belongsToMany(Attribute::class, 'meal_attributes');
+    // }
+
     public function attributeValues()
     {
-        return $this->hasMany(AttributeValue::class)->with('attribute');
+        return $this->hasMany(AttributeValue::class);
     }
 
     public function attributes()
     {
         return $this->belongsToMany(Attribute::class, 'meal_attributes');
     }
+
+    
 }

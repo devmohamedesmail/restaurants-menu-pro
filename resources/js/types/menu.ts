@@ -14,6 +14,19 @@ export interface Category {
     meals_count?: number;
 }
 
+export interface AttributeValue {
+    id: number;
+    value: string;
+    price: number | string;
+}
+
+export interface MealAttribute {
+    id: number;
+    name_en: string;
+    name_ar: string;
+    values: AttributeValue[];
+}
+
 export interface Meal {
     id: number;
     name_ar: string;
@@ -25,6 +38,7 @@ export interface Meal {
     image: string | null;
     category_id: number;
     is_popular?: number | boolean;
+    attributes?: MealAttribute[];
 }
 
 export interface Store {

@@ -155,12 +155,12 @@ class StoreManagementController extends Controller
             return redirect()->back();
 
         } catch (\Illuminate\Validation\ValidationException $e) {
-            
+
             return Inertia::render("404/index", [
                 "error" => $e->getMessage(),
             ]);
         } catch (\Throwable $th) {
-             
+
             return Inertia::render("404/index", [
                 "error" => $th->getMessage(),
             ]);
@@ -178,8 +178,32 @@ class StoreManagementController extends Controller
             $store = Store::where('id', $store_id)->first();
             if ($store) {
                 $categories = $store->categories()->withCount('meals')->get();
-                $meals      = $store->meals()->with(['category','attributeValues'])->get();
-                $country    = $store->country()->first();
+
+                // Load meals with both relationships in 2 eager queries (no N+1)
+                $meals = $store->meals()
+                    ->with(['category', 'attributes', 'attributeValues'])
+                    ->get()
+                    ->map(function ($meal) {
+                        // Group attribute_values by attribute_id
+                        $valuesByAttr = $meal->attributeValues->groupBy('attribute_id');
+
+                        // Attach filtered values onto each attribute
+                        $meal->attributes->each(function ($attr) use ($valuesByAttr) {
+                            $attr->values = $valuesByAttr->get($attr->id, collect())
+                                ->map(fn($v) => [
+                                    'id'    => $v->id,
+                                    'value' => $v->value,
+                                    'price' => $v->price,
+                                ])->values();
+                        });
+
+                        // Remove the flat attributeValues from the meal payload
+                        unset($meal->attributeValues);
+
+                        return $meal;
+                    });
+
+                $country = $store->country()->first();
 
                 return Inertia::render("vendor/menu/index", [
                     'store'      => $store,
@@ -212,7 +236,7 @@ class StoreManagementController extends Controller
             $store = Store::where('user_id', $user->id)->first();
             if ($store) {
                 $categories = $store->categories()->withCount('meals')->get();
-                $meals      = $store->meals()->with(['category','attributeValues'])->get();
+                $meals      = $store->meals()->with(['category', 'attributeValues'])->get();
                 $country    = $store->country()->first();
                 $orders     = $store->orders()->get();
                 $tables     = $store->tables()->get();
@@ -236,8 +260,8 @@ class StoreManagementController extends Controller
                     'attributes' => $attributes,
                 ]);
             } else {
-                return Inertia::render("vendor/create-store/index",[
-                    'countries'=>Country::all(),
+                return Inertia::render("vendor/create-store/index", [
+                    'countries' => Country::all(),
                 ]);
             }
         } catch (\Throwable $th) {

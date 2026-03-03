@@ -583,7 +583,10 @@
         "grid_view": "عرض شبكي",
         "list_view": "عرض قائمة",
         "sale": "خصم",
-        "popular": "شعبي"
+        "popular": "شعبي",
+        "customizable": "قابل للتخصيص",
+        "required": "مطلوب",
+        "includes_extras": "يشمل الإضافات"
     },
     "tables": {
         "add-table": "أضافة طاولة",

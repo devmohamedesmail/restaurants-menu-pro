@@ -55,6 +55,9 @@ export default function FloatCart({ store, table }: any) {
     });
     const [errors, setErrors] = useState<Partial<DeliveryInfo>>({});
 
+
+    console.log("cart", cart);
+
     // Calculate total items and price
     const totalItems = cart.reduce((acc: number, item: any) => acc + item.quantity, 0);
     const totalPrice = cart.reduce((acc: number, item: any) => {
@@ -332,6 +335,8 @@ export default function FloatCart({ store, table }: any) {
                                         <span className="font-bold text-primary">
                                             {((item.sale_price || item.price) * item.quantity).toFixed(2)}
                                         </span>
+
+                                        
 
                                         <div className="flex items-center gap-3 bg-secondary rounded-lg p-1">
                                             <button

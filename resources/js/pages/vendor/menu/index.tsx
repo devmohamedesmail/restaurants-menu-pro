@@ -28,7 +28,6 @@ export default function MenuPage({ store, categories, country, meals, table }: M
     const mealsContainerRef = useRef<HTMLDivElement>(null);
     const isAnimating = useRef(false);
     const pendingCategoryRef = useRef<number | null | undefined>(undefined);
-
     const filteredMeals = selectedCategory
         ? meals.filter((m) => m.category_id === selectedCategory)
         : meals;
@@ -105,7 +104,7 @@ export default function MenuPage({ store, categories, country, meals, table }: M
                     slidesPerView="auto"
                     spaceBetween={8}
                     grabCursor={true}
-                    className="!overflow-visible"
+                    className="overflow-visible!"
                 >
                     {/* "All" pill */}
                     <SwiperSlide style={{ width: 'auto' }}>
@@ -180,8 +179,8 @@ export default function MenuPage({ store, categories, country, meals, table }: M
                             onClick={() => setViewMode('grid')}
                             title={t('menu.grid_view')}
                             className={`p-2 rounded-lg transition-all duration-200 ${viewMode === 'grid'
-                                    ? 'bg-primary text-primary-foreground shadow-sm'
-                                    : 'text-muted-foreground hover:text-foreground'
+                                ? 'bg-primary text-primary-foreground shadow-sm'
+                                : 'text-muted-foreground hover:text-foreground'
                                 }`}
                         >
                             <LayoutGrid className="w-4 h-4" />
@@ -190,8 +189,8 @@ export default function MenuPage({ store, categories, country, meals, table }: M
                             onClick={() => setViewMode('list')}
                             title={t('menu.list_view')}
                             className={`p-2 rounded-lg transition-all duration-200 ${viewMode === 'list'
-                                    ? 'bg-primary text-primary-foreground shadow-sm'
-                                    : 'text-muted-foreground hover:text-foreground'
+                                ? 'bg-primary text-primary-foreground shadow-sm'
+                                : 'text-muted-foreground hover:text-foreground'
                                 }`}
                         >
                             <List className="w-4 h-4" />

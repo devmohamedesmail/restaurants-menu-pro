@@ -583,7 +583,10 @@
         "grid_view": "Grid View",
         "list_view": "List View",
         "sale": "Sale",
-        "popular": "Popular"
+        "popular": "Popular",
+        "customizable": "Customizable",
+        "required": "Required",
+        "includes_extras": "includes extras"
     },
     "tables": {
         "add-table": "Add Table",
