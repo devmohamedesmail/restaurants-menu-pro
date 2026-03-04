@@ -1,8 +1,28 @@
-import { MapPin, Phone, Share2, Star, Info } from 'lucide-react'
+import LangToggle from '@/components/ui/lang-toggle';
+import ThemeToggle from '@/components/ui/theme-toggle';
+import { MapPin, Phone, Share2, Star, Info,Languages } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
+import { Moon, Sun } from "lucide-react"
+import { useAppearance } from '@/hooks/use-appearance'
+
 
 export default function HeroSection({ store, table }: { store: any, table: any }) {
-    const { t } = useTranslation();
+    const { t,i18n } = useTranslation();
+
+    function changeLanguage(lang: string) {
+            i18n.changeLanguage(lang);
+        }
+     const switch_language = () =>{
+          if(i18n.language === 'en'){
+            changeLanguage('ar');
+          }else{
+            changeLanguage('en');
+          }
+        }
+
+
+         const { appearance, updateAppearance } = useAppearance();
+            const isDark = appearance === 'dark';
     return (
         <header className="relative h-75 sm:h-100 w-full overflow-hidden">
             <div className="absolute inset-0">
@@ -18,10 +38,10 @@ export default function HeroSection({ store, table }: { store: any, table: any }
                 <div className="absolute inset-0 bg-linear-to-t from-background via-background/60 to-transparent" />
             </div>
 
-            <div className="absolute bottom-0 left-0 w-full p-4 sm:p-8">
+            <div className="absolute -bottom-20 left-0 w-full p-4 sm:p-8">
                 <div className="container mx-auto max-w-5xl flex flex-col sm:flex-row items-end gap-6">
                     <div className="relative">
-                        <div className="w-24 h-24 sm:w-32 sm:h-32 rounded-2xl bg-card p-1 shadow-2xl ring-2 ring-background border border-border">
+                        <div className="w-24 h-24  sm:w-32 sm:h-32 rounded-2xl bg-card p-1 shadow-2xl ring-2 ring-background border border-border">
                             {store.image ? (
                                 <img
                                     src={store.image}
@@ -43,12 +63,12 @@ export default function HeroSection({ store, table }: { store: any, table: any }
 
                     <div className="flex-1 mb-2">
                         <h1 className="text-3xl sm:text-4xl font-bold text-foreground mb-2 drop-shadow-sm">{store.name}</h1>
-                        <p className="text-muted-foreground line-clamp-2 max-w-2xl mb-4 text-sm sm:text-base">
+                        {/* <p className="text-muted-foreground line-clamp-2 max-w-2xl mb-4 text-sm sm:text-base">
                             {store.description}
-                        </p>
+                        </p> */}
 
                         <div className="flex flex-wrap gap-3 sm:gap-6 text-sm font-medium">
-                            {store.address && (
+                            {/* {store.address && (
                                 <div className="flex items-center text-muted-foreground bg-background/50 backdrop-blur-md px-3 py-1 rounded-full border border-border/50">
                                     <MapPin className="w-4 h-4 mr-1.5 text-primary" />
                                     <span className="truncate max-w-50">{store.address}</span>
@@ -59,7 +79,7 @@ export default function HeroSection({ store, table }: { store: any, table: any }
                                     <Phone className="w-4 h-4 mr-1.5 text-primary" />
                                     <span>{store.phone}</span>
                                 </div>
-                            )}
+                            )} */}
                         </div>
                     </div>
 
@@ -72,15 +92,34 @@ export default function HeroSection({ store, table }: { store: any, table: any }
                         </div>
                     )}
 
-                    <div className="flex gap-2 mb-2 w-full sm:w-auto">
+                    <div className="flex gap-2 mb-13 w-full sm:w-auto py-3">
                         <button className="flex-1 sm:flex-none btn bg-background/80 backdrop-blur text-foreground border border-border hover:bg-background transition-colors p-3 rounded-xl flex items-center justify-center gap-2">
                             <Share2 className="w-5 h-5" />
                             <span className="sm:hidden">{t('menu.share')}</span>
                         </button>
-                        <button className="flex-1 sm:flex-none btn bg-primary text-primary-foreground hover:bg-primary/90 transition-colors p-3 rounded-xl flex items-center justify-center gap-2 shadow-lg shadow-primary/20">
+                        <button onClick={() => switch_language()} className="flex-1 sm:flex-none btn bg-background/80 backdrop-blur text-foreground border border-border hover:bg-background transition-colors p-3 rounded-xl flex items-center justify-center gap-2">
+                            <Languages className="w-5 h-5" />
+                            <span className="sm:hidden">{i18n.language === 'ar' ? 'English' : 'العربية'}</span>
+                        </button>
+
+
+                        <button onClick={() => updateAppearance(isDark ? 'light' : 'dark')} className="flex-1 sm:flex-none btn bg-background/80 backdrop-blur text-foreground border border-border hover:bg-background transition-colors p-3 rounded-xl flex items-center justify-center gap-2">
+                            {isDark ? (
+                                <Sun className="w-5 h-5" />
+                            ) : (
+                                <Moon className="w-5 h-5" />
+                            )}
+                            <span className="sm:hidden">{isDark ? 'Light' : 'Dark'}</span>
+                        </button>
+                        {/* <button className="flex-1 sm:flex-none btn bg-primary text-primary-foreground hover:bg-primary/90 transition-colors p-3 rounded-xl flex items-center justify-center gap-2 shadow-lg shadow-primary/20">
                             <Info className="w-5 h-5" />
                             <span className="sm:hidden">{t('menu.info')}</span>
-                        </button>
+                        </button> */}
+
+                        {/* <div className='flex items-center'>
+                            <LangToggle />
+                            <ThemeToggle />
+                        </div> */}
                     </div>
                 </div>
             </div>

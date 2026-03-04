@@ -14,6 +14,14 @@ export default function LangToggle() {
         function changeLanguage(lang: string) {
             i18n.changeLanguage(lang);
         }
+
+        const switch_language = () =>{
+          if(i18n.language === 'en'){
+            changeLanguage('ar');
+          }else{
+            changeLanguage('en');
+          }
+        }
   return (
     <>
     {/* <Select value={i18n.language} onValueChange={changeLanguage}>
@@ -27,10 +35,10 @@ export default function LangToggle() {
               </SelectContent>
           </Select> */}
     
-    
-    <button onClick={() => changeLanguage('en')} className='text-black dark:text-white text-xs'> English </button>
+    <button onClick={() => switch_language()}>{i18n.language === 'ar' ? 'English' : 'العربية'}</button>
+    {/* <button onClick={() => changeLanguage('en')} className='text-black dark:text-white text-xs'> English </button>
     <button onClick={() => changeLanguage('ar')} className='text-black dark:text-white text-xs'> العربية </button>
-    
+     */}
     </>
     
   )
