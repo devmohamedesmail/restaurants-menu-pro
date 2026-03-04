@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\admin\BannersController;
 use App\Http\Controllers\admin\CountryController;
+use App\Http\Controllers\admin\PlanController;
 use App\Http\Controllers\admin\RoleController;
 use App\Http\Controllers\admin\SettingController;
 use App\Http\Controllers\admin\StoresController;
@@ -53,4 +54,18 @@ Route::controller(StoresController::class)->group(function () {
     Route::post('/admin/update/store/{id}', 'update')->name('store.update');
     Route::post('/admin/store/toggle-status/{id}', 'toggleStatus')->name('store.toggle-status');
     Route::get('/admin/delete/store/{id}', 'delete')->name('store.delete');
+});
+
+
+
+Route::controller(PlanController::class)->group(function () {
+     
+    Route::get('/admin/plans', 'index')->name('plans.page')->middleware("auth");
+    Route::get('/admin/plans/create', 'CreatePlanPage')->name('plans.create.page')->middleware("auth");
+
+    // crud
+    Route::post('/admin/store/plan', 'create')->name('admin.plan.store')->middleware("auth");
+    Route::get('/admin/edit/plan/{id}', 'edit_page')->name('admin.plan.edit')->middleware("auth");
+    Route::post('/admin/update/plan/{id}', 'update')->name('admin.plan.update')->middleware("auth");
+    Route::delete('/admin/delete/plan/{id}', 'delete')->name('admin.plan.delete')->middleware("auth");
 });

@@ -2,6 +2,7 @@
 namespace App\Http\Controllers\visitors;
 
 use App\Http\Controllers\Controller;
+use App\Models\Banner;
 use App\Models\Order;
 use App\Models\Store;
 use App\Models\User;
@@ -14,9 +15,11 @@ class RedirectController extends Controller
     public function index()
     {
         try {
+            $banners = Banner::all();
             $stores = Store::where('is_active', true)->limit(10)->get();
             return Inertia::render('index', [
                 'stores' => $stores,
+                'banners' => $banners,
             ]);
         } catch (\Throwable $th) {
             return Inertia::render('404/index', [
@@ -38,19 +41,6 @@ class RedirectController extends Controller
             switch ($user->role_id) {
                 case 4: // Vendor
                     return redirect()->route('store.dashboard');
-                    // $store = $user->stores()->first();
-                    // if ($store) {
-                    //     return Inertia::render('vendor/dashboard/index', [
-                    //         'store'      => $store,
-                    //         'categories' => $store->categories()->withCount('meals')->get(),
-                    //         'meals'      => $store->meals()->with('category')->get(),
-                    //         'country'    => $store->country()->first(),
-                    //         'orders'     => $store->orders()->get(),
-                    //         'tables'     => $store->tables()->get(),
-                    //     ]);
-                    // } else {
-                    //     return redirect()->route('register.store.page');
-                    // }
                     break;
 
                 case 1: // user

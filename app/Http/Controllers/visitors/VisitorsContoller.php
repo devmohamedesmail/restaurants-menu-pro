@@ -2,6 +2,7 @@
 namespace App\Http\Controllers\visitors;
 
 use App\Http\Controllers\Controller;
+use App\Models\Plan;
 use Inertia\Inertia;
 
 class VisitorsContoller extends Controller
@@ -33,6 +34,18 @@ class VisitorsContoller extends Controller
     {
         try {
             return Inertia::render('visitors/terms-of-service/index');
+        } catch (\Throwable $th) {
+            return Inertia::render('404/index', ['error' => $th->getMessage()]);
+        }
+    }
+
+
+    public function plans(){
+        try {
+            $plans = Plan::all();
+            return Inertia::render('visitors/plans/index',[
+                'plans'=> $plans
+            ]);
         } catch (\Throwable $th) {
             return Inertia::render('404/index', ['error' => $th->getMessage()]);
         }

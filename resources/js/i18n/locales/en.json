@@ -712,5 +712,58 @@
     "orders": {
         "delivery": "Delivery",
         "table": "Table No."
+    },
+    "plans": {
+        "create": "Create Plan",
+        "edit": "Edit Plan",
+        "name-en": "Name (English)",
+        "name-ar": "Name (Arabic)",
+        "name-en-required": "English name is required",
+        "name-ar-required": "Arabic name is required",
+        "description-en": "Description (English)",
+        "description-ar": "Description (Arabic)",
+        "price": "Price",
+        "price-required": "Price is required",
+        "price-number": "Price must be a number",
+        "price-min": "Price must be 0 or more",
+        "interval-label": "Billing Cycle",
+        "interval-required": "Billing cycle is required",
+        "duration": "Duration (Days)",
+        "duration-required": "Duration is required",
+        "duration-number": "Duration must be a number",
+        "duration-min": "Duration must be at least 1 day",
+        "monthly": "Monthly",
+        "quarterly": "Quarterly",
+        "yearly": "Yearly",
+        "max-menus": "Menus Limit",
+        "max-menus-required": "Menus limit is required",
+        "max-categories": "Categories Limit",
+        "max-categories-required": "Categories limit is required",
+        "max-items": "Items Limit",
+        "max-items-required": "Items limit is required",
+        "qr-code": "QR Code",
+        "custom-domain": "Custom Domain",
+        "active": "Active",
+        "confirm-delete": "Are you sure you want to delete this plan?",
+        "updated": "Plan updated successfully",
+        "deleted": "Plan deleted successfully",
+        "no-plans": "No plans found",
+        "title": "Simple & Transparent Pricing",
+        "subtitle": "Choose the perfect plan for your restaurant and start building your digital menu today.",
+        "select": "Get Started",
+        "popular": "Most Popular",
+        "explore-plans": "Explore Plans",
+        "interval": {
+            "monthly": "Monthly",
+            "quarterly": "Quarterly",
+            "yearly": "Yearly"
+        },
+        "features": {
+            "menus": "Menus",
+            "categories": "Categories",
+            "items": "Items",
+            "qr": "QR Code Support",
+            "custom-domain": "Custom Domain"
+        }
     }
 }

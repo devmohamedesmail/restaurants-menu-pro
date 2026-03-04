@@ -88,6 +88,7 @@ export default function FloatCart({ store, table }: any) {
             name_ar: item.name_ar,
             quantity: item.quantity,
             price: item.sale_price || item.price,
+            attributes: item.selected_attributes,
         }));
 
         // Collect selected_attributes keyed by meal id (only items that have them)

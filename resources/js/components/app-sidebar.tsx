@@ -1,6 +1,5 @@
 import { Link } from '@inertiajs/react';
-import { BookOpen, Flag, Folder, LayoutGrid, MapPinHouse, Settings, Store, Users } from 'lucide-react';
-import { NavFooter } from '@/components/nav-footer';
+import { Flag, LayoutGrid, MapPinHouse, NotebookPen, Settings, Store, Users } from 'lucide-react';
 import { NavMain } from '@/components/nav-main';
 import { NavUser } from '@/components/nav-user';
 import {
@@ -58,6 +57,11 @@ export function AppSidebar() {
             title: t('dashboard.stores'),
             href: '/admin/stores',
             icon: Store,
+        },
+        {
+            title: t('dashboard.plans'),
+            href: '/admin/plans',
+            icon: NotebookPen,
         },
     ];
     return (

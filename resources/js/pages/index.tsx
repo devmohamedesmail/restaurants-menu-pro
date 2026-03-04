@@ -7,12 +7,12 @@ import Features from '@/components/landing/features';
 import Partners from '@/components/landing/partners';
 
 
-export default function Home({ stores }: { stores: any[] }) {
+export default function Home({ stores , banners }: { stores: any[] , banners: any[] }) {
    
     return (
         <div className="min-h-screen bg-background">
             <Header />
-            <Hero />
+            <Hero banners={banners} />
             <Partners stores={stores} />
             <Benefits />
             <Features />

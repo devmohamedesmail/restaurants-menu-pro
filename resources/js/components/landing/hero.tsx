@@ -4,7 +4,7 @@ import { Link } from '@inertiajs/react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 
-export default function Hero() {
+export default function Hero({banners}: {banners: any}) {
     const { t } = useTranslation();
     gsap.registerPlugin(useGSAP);
 
@@ -53,6 +53,28 @@ export default function Hero() {
                     <p className="text-base sm:text-lg md:text-xl text-muted-foreground mb-8 sm:mb-12 max-w-2xl mx-auto animate-fade-in-up delay-200 px-4">
                         {t('landing.hero.description')}
                     </p>
+
+
+
+
+
+
+{/* <div className='flex '>
+
+    {banners.map((banner: any) => (
+        <div key={banner.id} className='m-2'>
+            <img src={banner.image} alt={banner.title} />
+        </div>
+    ))}
+</div> */}
+
+
+
+
+
+
+
+
 
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 animate-fade-in-up delay-300 px-4">
                         <Link href='/register/store/page' className="w-full sm:w-auto group relative px-6 sm:px-8 py-3 sm:py-4 bg-primary text-white rounded-xl font-semibold text-sm sm:text-base overflow-hidden transition-all hover:shadow-lg hover:shadow-primary/25 hover:scale-105">
