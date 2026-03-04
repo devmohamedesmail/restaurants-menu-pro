@@ -9,11 +9,11 @@ export default function ThemeToggle() {
     return (
         <button
             onClick={() => updateAppearance(isDark ? 'light' : 'dark')}
-            className="group relative w-16 h-8 rounded-full bg-gradient-to-r from-primary/20 to-primary/30 border border-primary/30 hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/20 overflow-hidden"
+            className="group relative w-16 h-8 rounded-full bg-gradient-to-`r from-primary/20 to-primary/30 border border-primary/30 hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/20 overflow-hidden"
             aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
         >
             {/* Background gradient that shifts */}
-            <div className={`absolute inset-0 bg-gradient-to-r transition-opacity duration-500 ${isDark
+            <div className={`absolute inset-0 bg-linear-to-r transition-opacity duration-500 ${isDark
                     ? 'from-slate-800 to-slate-900 opacity-100'
                     : 'from-amber-400 to-orange-500 opacity-100'
                 }`} />
@@ -27,7 +27,7 @@ export default function ThemeToggle() {
 
             {/* Sliding toggle circle */}
             <div className={`absolute top-1 transition-all duration-500 ease-out ${isDark ? 'left-1' : 'left-[calc(100%-2rem)]'
-                } w-6 h-6 rounded-full bg-white shadow-lg flex items-center justify-center transform group-hover:scale-110`}>
+                } w-5 h-5 rounded-full bg-white shadow-lg flex items-center justify-center transform group-hover:scale-110`}>
                 {/* Sun icon */}
                 <Sun
                     className={`absolute text-amber-500 transition-all duration-500 ${isDark

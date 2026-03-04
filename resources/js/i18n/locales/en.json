@@ -1,5 +1,8 @@
 {
     "landing": {
+        "home":"Home",
+        "plans":"Plans",
+        "contact-us":"Contact us",
         "hero": {
             "title": "Transform Your Restaurant with Digital Menus",
             "subtitle": "Modern, Interactive, and Easy to Manage",

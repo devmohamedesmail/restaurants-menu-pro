@@ -21,12 +21,13 @@ export default function Header() {
     };
 
     return (
-        <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-lg bg-background/80 border-b border-border/50">
+        <header className="sticky top-0 left-0 right-0 z-50 backdrop-blur-lg bg-background/80 border-b border-border/50">
             {/* Top Header */}
-            <div className="border-b border-border/30">
+            <div className="border-b border-border/30 ">
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="flex items-center justify-between h-14 sm:h-16">
-                        <Logo />
+                    <div className="flex items-center justify-between h-8 sm:h-16">
+                        {/* <Logo /> */}
+                        <div></div>
                         <div className="flex items-center gap-2 sm:gap-3">
                             <LangToggle />
                             <ThemeToggle />
@@ -36,11 +37,17 @@ export default function Header() {
             </div>
 
             {/* Middle Header - Navigation */}
-            <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="flex items-center justify-between h-12 sm:h-14">
-                    <nav className="flex items-center gap-4 sm:gap-6">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex justify-between">
+                <Logo />
+
+                 <nav className="flex items-center gap-4 sm:gap-6">
                         {/* Add navigation links here if needed */}
+                        <Link href="/">{t('landing.home')}</Link>
+                        <Link href="/plans">{t('landing.plans')}</Link>
+                        <Link href="/contact-us">{t('landing.contact-us')}</Link>
                     </nav>
+                <div className="flex items-center justify-between h-12 sm:h-14">
+                   
 
                     {/* User Dropdown or Login/Register Buttons */}
                     <div className="flex items-center gap-2 sm:gap-3">
@@ -104,7 +111,7 @@ export default function Header() {
                                 </Link>
                                 <Link
                                     href="/register"
-                                    className="px-3 sm:px-4 py-2 rounded-lg bg-primary text-primary-foreground font-medium text-sm hover:bg-primary/90 transition-colors duration-200"
+                                    className="px-3 sm:px-4 py-2 rounded-lg bg-primary text-white font-medium text-sm hover:bg-primary/90 transition-colors duration-200"
                                 >
                                     {t('auth.register')}
                                 </Link>

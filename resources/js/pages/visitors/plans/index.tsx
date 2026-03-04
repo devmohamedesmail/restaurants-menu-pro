@@ -1,3 +1,4 @@
+import Header from '@/components/landing/header';
 import PlanItem from '@/components/landing/plan-item';
 import { Head } from '@inertiajs/react'
 import React from 'react'
@@ -8,9 +9,8 @@ export default function PlansPage({ plans }: any) {
     return (
         <div>
             <Head title={t('plans.title')} />
-
-
-            <section className="relative py-24 overflow-hidden">
+            <Header />
+            <section className="relative py-24 overflow-hidden ">
 
                 {/* Background Blur */}
                 <div className="absolute inset-0 -z-10">

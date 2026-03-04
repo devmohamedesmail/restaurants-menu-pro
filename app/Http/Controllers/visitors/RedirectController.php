@@ -16,9 +16,9 @@ class RedirectController extends Controller
     {
         try {
             $banners = Banner::all();
-            $stores = Store::where('is_active', true)->limit(10)->get();
+            $stores  = Store::where('is_active', true)->limit(10)->get();
             return Inertia::render('index', [
-                'stores' => $stores,
+                'stores'  => $stores,
                 'banners' => $banners,
             ]);
         } catch (\Throwable $th) {
@@ -48,11 +48,11 @@ class RedirectController extends Controller
                     break;
 
                 case 2: // admin
-                    $users = User::all();
+                    $users  = User::all();
                     $stores = Store::all();
                     $orders = Order::all();
                     return Inertia::render('dashboard', [
-                        'users' => $users,
+                        'users'  => $users,
                         'stores' => $stores,
                         'orders' => $orders,
                     ]);

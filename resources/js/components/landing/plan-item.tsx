@@ -57,12 +57,9 @@ export default function PlanItem({ plan, index }: { plan: any, index: number }) 
             {/* CTA */}
             <button
                 disabled={!plan.is_active}
-                className={`w-full py-4 rounded-2xl font-semibold transition
-                      ${index === 1
-                        ? 'bg-white text-black hover:opacity-90'
-                        : 'bg-black text-white hover:bg-gray-800'
-                    }
-                      disabled:bg-gray-400
+                className={`w-full py-4 rounded-2xl font-semibold transition bg-primary
+                      
+                      
                     `}
             >
                 {t('plans.select')}
