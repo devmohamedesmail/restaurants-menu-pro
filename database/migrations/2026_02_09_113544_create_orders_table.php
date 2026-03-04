@@ -20,6 +20,7 @@ return new class extends Migration
             $table->enum('status', ['pending', 'completed', 'cancelled'])->default('pending')->nullable();
             $table->string('total')->nullable();
             $table->json('order')->nullable();
+            $table->json('selected_attributes')->nullable();
             $table->longText('name')->nullable();
             $table->longText('address')->nullable();
             $table->longText('phone')->nullable();

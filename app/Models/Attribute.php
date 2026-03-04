@@ -9,13 +9,6 @@ class Attribute extends Model
     /** @use HasFactory<\Database\Factories\AttributeFactory> */
     use HasFactory;
 
-    //    get all values for this attribute
-    // public function values()
-    // {
-    //     return $this->hasMany(AttributeValue::class);
-    // }
-
-    // get values for meal
     public function valuesForMeal($mealId)
     {
         return $this->hasMany(AttributeValue::class)

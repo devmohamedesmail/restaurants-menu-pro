@@ -56,7 +56,6 @@ export default function FloatCart({ store, table }: any) {
     const [errors, setErrors] = useState<Partial<DeliveryInfo>>({});
 
 
-    console.log("cart", cart);
 
     // Calculate total items and price
     const totalItems = cart.reduce((acc: number, item: any) => acc + item.quantity, 0);
@@ -91,11 +90,21 @@ export default function FloatCart({ store, table }: any) {
             price: item.sale_price || item.price,
         }));
 
+        // Collect selected_attributes keyed by meal id (only items that have them)
+        const selectedAttributesMap: Record<string, any> = {};
+        cart.forEach((item: any) => {
+            if (item.selected_attributes && Object.keys(item.selected_attributes).length > 0) {
+                selectedAttributesMap[item.id] = item.selected_attributes;
+            }
+        });
+        const hasAttributes = Object.keys(selectedAttributesMap).length > 0;
+
         const payload: Record<string, any> = {
             store_id: store.id,
             order: JSON.stringify(orderItems),
             total: totalPrice.toFixed(2),
             note: extraData.note || '',
+            ...(hasAttributes ? { selected_attributes: JSON.stringify(selectedAttributesMap) } : {}),
         };
 
         // Table order
@@ -294,9 +303,9 @@ export default function FloatCart({ store, table }: any) {
                                 {t('menu.your_order')}
                             </SheetTitle>
                             <SheetClose asChild>
-                                <Button variant="ghost" size="icon" className="rounded-full hover:bg-secondary">
+                                {/* <Button variant="ghost" size="icon" className="rounded-full hover:bg-secondary">
                                     <X className="w-5 h-5" />
-                                </Button>
+                                </Button> */}
                             </SheetClose>
                         </div>
                     </SheetHeader>
@@ -320,9 +329,27 @@ export default function FloatCart({ store, table }: any) {
 
                                 <div className="flex-1 flex flex-col justify-between">
                                     <div className="flex justify-between items-start">
-                                        <h3 className="font-bold text-foreground line-clamp-1">
-                                            {getLocalized(item, 'name')}
-                                        </h3>
+                                        <div>
+                                            <h3 className="font-bold text-foreground line-clamp-1">
+                                                {getLocalized(item, 'name')}
+                                            </h3>
+                                            {/* Selected attributes */}
+                                            {item.selected_attributes && Object.keys(item.selected_attributes).length > 0 && (
+                                                <div className="flex flex-wrap gap-1 mt-1">
+                                                    {Object.values(item.selected_attributes).map((attr: any) => (
+                                                        <span
+                                                            key={attr.id}
+                                                            className="text-xs bg-primary/10 text-primary px-2 py-0.5 rounded-full font-medium"
+                                                        >
+                                                            {attr.value}
+                                                            {attr.price && parseFloat(attr.price) > 0 && (
+                                                                <span className="ms-1 text-primary/70">+{parseFloat(attr.price).toFixed(2)}</span>
+                                                            )}
+                                                        </span>
+                                                    ))}
+                                                </div>
+                                            )}
+                                        </div>
                                         <button
                                             onClick={() => dispatch(remove_from_cart(item.id))}
                                             className="text-muted-foreground hover:text-destructive transition-colors p-1"
@@ -336,7 +363,7 @@ export default function FloatCart({ store, table }: any) {
                                             {((item.sale_price || item.price) * item.quantity).toFixed(2)}
                                         </span>
 
-                                        
+
 
                                         <div className="flex items-center gap-3 bg-secondary rounded-lg p-1">
                                             <button

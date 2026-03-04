@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -10,7 +9,6 @@ class Order extends Model
     /** @use HasFactory<\Database\Factories\OrderFactory> */
     use HasFactory;
 
-
     protected $fillable = [
         'store_id',
         'user_id',
@@ -19,6 +17,7 @@ class Order extends Model
         'status',
         'total',
         'order',
+        'selected_attributes',
         'name',
         'address',
         'phone',
@@ -27,12 +26,13 @@ class Order extends Model
     ];
 
     protected $casts = [
-        "order"=> "array",
+        'order'               => 'array',
+        'selected_attributes' => 'array',
     ];
 
-
     // Define relationship to Store model
-    public function store(){
+    public function store()
+    {
         return $this->belongsTo(Store::class);
     }
 }

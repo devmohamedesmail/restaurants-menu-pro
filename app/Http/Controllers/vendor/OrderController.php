@@ -18,16 +18,17 @@ class OrderController extends Controller
         try {
             // Validate the request
             $validated = $request->validate([
-                'store_id' => 'required|exists:stores,id',
-                'table_id' => 'nullable|exists:tables,id',
-                'table'    => 'nullable|string',
-                'order'    => 'required|json',
-                'total'    => 'required|numeric|min:0',
-                'name'     => 'nullable|string|max:255',
-                'phone'    => 'nullable|string|max:50',
-                'address'  => 'nullable|string',
-                'location' => 'nullable|string',
-                'note'     => 'nullable|string',
+                'store_id'            => 'required|exists:stores,id',
+                'table_id'            => 'nullable|exists:tables,id',
+                'table'               => 'nullable|string',
+                'order'               => 'required|json',
+                'selected_attributes' => 'nullable|json',
+                'total'               => 'required|numeric|min:0',
+                'name'                => 'nullable|string|max:255',
+                'phone'               => 'nullable|string|max:50',
+                'address'             => 'nullable|string',
+                'location'            => 'nullable|string',
+                'note'                => 'nullable|string',
             ]);
 
             // Determine if this is a table order or delivery order
@@ -42,13 +43,19 @@ class OrderController extends Controller
             // Decode the order JSON string to array
             $orderArray = json_decode($validated['order'], true);
 
+            // Decode selected_attributes if provided
+            $selectedAttributes = isset($validated['selected_attributes'])
+                ? json_decode($validated['selected_attributes'], true)
+                : null;
+
             // Create the order
             $orderData = [
-                'store_id' => $validated['store_id'],
-                'user_id'  => auth()->check() ? auth()->id() : 8,
-                'order'    => $orderArray,
-                'total'    => $validated['total'],
-                'status'   => 'pending',
+                'store_id'            => $validated['store_id'],
+                'user_id'             => auth()->check() ? auth()->id() : null,
+                'order'               => $orderArray,
+                'selected_attributes' => $selectedAttributes,
+                'total'               => $validated['total'],
+                'status'              => 'pending',
             ];
 
             // Add table info if it's a table order
@@ -76,7 +83,7 @@ class OrderController extends Controller
             // Create the order in database
             $order = Order::create($orderData);
 
-            \broadcast(new OrderCreated($order))->toOthers();
+            // broadcast(new OrderCreated($order))->toOthers();
             return redirect()->back();
         } catch (ValidationException $e) {
             dd($e->getMessage());
@@ -84,7 +91,7 @@ class OrderController extends Controller
                 "error" => $e->getMessage(),
             ]);
         } catch (\Throwable $th) {
-             dd($th->getMessage());
+            dd($th->getMessage());
             return Inertia::render("500/index", [
                 "error" => $th->getMessage(),
             ]);
@@ -107,7 +114,7 @@ class OrderController extends Controller
             if (! $store) {
                 return back()->withErrors(['error' => 'Store not found']);
             }
-            $order = $store->orders()->findOrFail($id);
+            $order     = $store->orders()->findOrFail($id);
             $validated = $request->validate([
                 'status' => 'required|in:pending,completed,cancelled',
             ]);
