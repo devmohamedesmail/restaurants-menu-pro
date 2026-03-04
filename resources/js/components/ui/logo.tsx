@@ -15,9 +15,9 @@ export default function Logo() {
             <div className="w-12 h-12 sm:w-12 sm:h-12 rounded-lg flex items-center justify-center overflow-hidden">
                 <img src={settings?.logo} className='w-full h-full object-cover' alt={settings.title_en} />
             </div>
-            <span className="text-base sm:text-lg font-bold  bg-clip-text text-transparent">
+            {/* <span className="text-base sm:text-lg font-bold  bg-clip-text text-red-600">
                 {i18n.language === 'ar' ? settings.title_ar : settings.title_en}
-            </span>
+            </span> */}
         </div>
     )
 }

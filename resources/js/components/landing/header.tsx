@@ -40,11 +40,11 @@ export default function Header() {
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex justify-between">
                 <Logo />
 
-                 <nav className="flex items-center gap-4 sm:gap-6">
+                 <nav className="flex justify-center items-center gap-3 sm:gap-2  flex-1">
                         {/* Add navigation links here if needed */}
-                        <Link href="/">{t('landing.home')}</Link>
-                        <Link href="/plans">{t('landing.plans')}</Link>
-                        <Link href="/contact-us">{t('landing.contact-us')}</Link>
+                        <Link href="/" className='text-md md:text-lg'>{t('landing.home')}</Link>
+                        <Link href="/plans" className='text-md md:text-lg'>{t('landing.plans')}</Link>
+                        <Link href="/contact-us" className='text-md md:text-lg'>{t('landing.contact-us')}</Link>
                     </nav>
                 <div className="flex items-center justify-between h-12 sm:h-14">
                    
@@ -109,12 +109,12 @@ export default function Header() {
                                 >
                                     {t('auth.login')}
                                 </Link>
-                                <Link
+                                {/* <Link
                                     href="/register"
                                     className="px-3 sm:px-4 py-2 rounded-lg bg-primary text-white font-medium text-sm hover:bg-primary/90 transition-colors duration-200"
                                 >
                                     {t('auth.register')}
-                                </Link>
+                                </Link> */}
                             </>
                         )}
                     </div>
