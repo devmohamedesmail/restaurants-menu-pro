@@ -10,6 +10,7 @@ import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import store, { persistor } from './redux/store';
 import { configureEcho } from '@laravel/echo-react';
+import i18n from './i18n/index';
 
 
 configureEcho({
@@ -20,8 +21,21 @@ configureEcho({
     broadcaster: 'reverb',
 });
 
-const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
+const appName = import.meta.env.VITE_APP_NAME || 'Menu Pro';
 
+
+// change the language of the app
+const lang = i18n.language || 'en'
+
+document.documentElement.lang = lang
+document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr'
+
+// listen to language change
+i18n.on('languageChanged', (lng) => {
+    document.documentElement.lang = lng
+    document.documentElement.dir = lng === 'ar' ? 'rtl' : 'ltr'
+})
+// -------------------------------------------------------------
 createInertiaApp({
     title: (title) => (title ? `${title} - ${appName}` : appName),
     resolve: (name) =>

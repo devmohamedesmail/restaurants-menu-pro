@@ -10,4 +10,5 @@ Route::controller(VisitorsContoller::class)->group(function () {
     Route::get('/privacy-policy', 'privacy_policy')->name('privacy.policy');
     Route::get('/terms-of-service', 'terms_of_service')->name('terms.of.service');
     Route::get('/plans', 'plans')->name('plans');
+    Route::get('/checkout/{plan}', 'checkout_page')->name('checkout.page');
 });

@@ -40,6 +40,8 @@ class AppServiceProvider extends ServiceProvider
                 : ['user' => null];
         }
         ]);
+
+
     }
 
     /**

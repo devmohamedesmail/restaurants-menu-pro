@@ -1,7 +1,8 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import {Check} from 'lucide-react'
-
+import { Link } from '@inertiajs/react'
+declare function route(name: string, params?: any): string
 export default function PlanItem({ plan, index }: { plan: any, index: number }) {
     const { t, i18n } = useTranslation()
     const isAr = i18n.language === 'ar'
@@ -55,15 +56,15 @@ export default function PlanItem({ plan, index }: { plan: any, index: number }) 
             </ul>
 
             {/* CTA */}
-            <button
-                disabled={!plan.is_active}
-                className={`w-full py-4 rounded-2xl font-semibold transition bg-primary
+            <Link
+                href={route('checkout.page', plan.id)}
+                className={`w-full block text-center py-4 rounded-2xl font-semibold transition bg-primary
                       
                       
                     `}
             >
                 {t('plans.select')}
-            </button>
+            </Link>
         </div>
     )
 }

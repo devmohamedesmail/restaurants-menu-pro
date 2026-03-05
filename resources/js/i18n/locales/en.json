@@ -1,8 +1,8 @@
 {
     "landing": {
-        "home":"Home",
-        "plans":"Plans",
-        "contact-us":"Contact us",
+        "home": "Home",
+        "plans": "Plans",
+        "contact-us": "Contact us",
         "hero": {
             "title": "Transform Your Restaurant with Digital Menus",
             "subtitle": "Modern, Interactive, and Easy to Manage",
@@ -767,6 +767,45 @@
             "items": "Items",
             "qr": "QR Code Support",
             "custom-domain": "Custom Domain"
+        }
+    },
+    "checkout": {
+        "title": "Complete Your Order",
+        "subtitle": "You're one step away from going digital",
+        "secure_checkout": "100% Secure Checkout",
+        "back_to_plans": "Back to Plans",
+        "selected_plan": "Selected Plan",
+        "days_duration": "days duration",
+        "order_summary": "Order Summary",
+        "tax": "Tax",
+        "tax_included": "Included",
+        "total": "Total Due",
+        "payment_method": "Choose Payment Method",
+        "payment_method_desc": "Select your preferred way to pay. All transactions are encrypted and secure.",
+        "card_details": "Card Details",
+        "card_number": "Card Number",
+        "expiry": "Expiry Date",
+        "cvv": "CVV",
+        "card_holder": "Cardholder Name",
+        "card_holder_placeholder": "As it appears on your card",
+        "pay_now": "Pay {{amount}} Securely",
+        "secure_note": "Your payment is protected by 256-bit SSL encryption",
+        "trust": {
+            "secure": "Secure Payment",
+            "guaranteed": "Money-back Guarantee",
+            "instant": "Instant Access"
+        },
+        "payment": {
+            "card": "Credit / Debit Card",
+            "card_desc": "Visa, Mastercard, Amex, and more",
+            "paypal": "PayPal",
+            "paypal_desc": "Pay with your PayPal balance or linked accounts",
+            "bank": "Bank Transfer",
+            "bank_desc": "Direct transfer from your bank account",
+            "crypto": "Cryptocurrency",
+            "crypto_desc": "Bitcoin, Ethereum, and other assets",
+            "popular": "Popular",
+            "new": "New"
         }
     }
 }

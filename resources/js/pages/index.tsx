@@ -5,10 +5,10 @@ import Footer from '@/components/landing/footer';
 import CTA from '@/components/landing/cta';
 import Features from '@/components/landing/features';
 import Partners from '@/components/landing/partners';
-
+import { usePage } from '@inertiajs/react';
 
 export default function Home({ stores , banners }: { stores: any[] , banners: any[] }) {
-   
+    
     return (
         <div className="min-h-screen bg-background">
             <Header />

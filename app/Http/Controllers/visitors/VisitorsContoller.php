@@ -50,4 +50,32 @@ class VisitorsContoller extends Controller
             return Inertia::render('404/index', ['error' => $th->getMessage()]);
         }
     }
+
+
+
+
+
+public function checkout_page($plan_id){
+    try {
+        $plan = Plan::find($plan_id);
+        if(!$plan){
+            return Inertia::render('404/index', ['error' => 'Plan not found']);
+        }
+        return Inertia::render('visitors/checkout/index',[
+            'plan'=> $plan
+        ]);
+    } catch (\Throwable $th) {
+        return Inertia::render('404/index', ['error' => $th->getMessage()]);
+    }
+}
+
+
+
+
+
+
+
+
+
+
 }
