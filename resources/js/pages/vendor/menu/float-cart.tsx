@@ -57,11 +57,20 @@ export default function FloatCart({ store, table }: any) {
 
 
 
+    const getItemPrice = (item: any) => {
+        if (item.selected_attributes && Object.keys(item.selected_attributes).length > 0) {
+            return Object.values(item.selected_attributes).reduce(
+                (sum: number, attr: any) => sum + (parseFloat(attr.price) || 0),
+                0
+            );
+        }
+        return parseFloat(item.sale_price || item.price || 0);
+    };
+
     // Calculate total items and price
     const totalItems = cart.reduce((acc: number, item: any) => acc + item.quantity, 0);
     const totalPrice = cart.reduce((acc: number, item: any) => {
-        const price = item.sale_price || item.price;
-        return acc + (parseFloat(price) * item.quantity);
+        return acc + (getItemPrice(item) * item.quantity);
     }, 0);
 
     const getLocalized = (obj: any, field: string) => {
@@ -87,7 +96,7 @@ export default function FloatCart({ store, table }: any) {
             name_en: item.name_en,
             name_ar: item.name_ar,
             quantity: item.quantity,
-            price: item.sale_price || item.price,
+            price: getItemPrice(item),
             attributes: item.selected_attributes,
         }));
 
@@ -137,11 +146,9 @@ export default function FloatCart({ store, table }: any) {
     };
 
     const sendOrder = () => {
-        // If table is provided → table order, submit directly
         if (table) {
             submitOrder();
         } else {
-            // No table → delivery order, show modal first
             setShowDeliveryModal(true);
         }
     };
@@ -361,7 +368,7 @@ export default function FloatCart({ store, table }: any) {
 
                                     <div className="flex items-center justify-between mt-2">
                                         <span className="font-bold text-primary">
-                                            {((item.sale_price || item.price) * item.quantity).toFixed(2)}
+                                            {(getItemPrice(item) * item.quantity).toFixed(2)}
                                         </span>
 
 

@@ -8,11 +8,20 @@ export default function FloatCart() {
     const { t } = useTranslation();
     const cart = useSelector((state: any) => state.cart.meals || []);
 
+    const getItemPrice = (item: any) => {
+        if (item.selected_attributes && Object.keys(item.selected_attributes).length > 0) {
+            return Object.values(item.selected_attributes).reduce(
+                (sum: number, attr: any) => sum + (parseFloat(attr.price) || 0),
+                0
+            );
+        }
+        return parseFloat(item.sale_price || item.price || 0);
+    };
+
     // Calculate total items and price
     const totalItems = cart.reduce((acc: number, item: any) => acc + item.quantity, 0);
     const totalPrice = cart.reduce((acc: number, item: any) => {
-        const price = item.sale_price || item.price
-        return acc + (parseFloat(price) * item.quantity);
+        return acc + (getItemPrice(item) * item.quantity);
     }, 0);
 
     if (totalItems === 0) return null;

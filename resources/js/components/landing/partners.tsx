@@ -22,7 +22,7 @@ export default function Partners({ stores = [] }: { stores: Store[] }) {
     const displayStores = stores || [];
 
     return (
-        <section className="py-16 sm:py-24 bg-gradient-to-b from-background to-secondary/20 relative overflow-hidden">
+        <section className="py-16 sm:py-24 bg-linear-to-b from-background to-secondary/20 relative overflow-hidden">
             {/* Background Elements */}
             <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
                 <div className="absolute top-20 left-10 w-72 h-72 bg-primary/5 rounded-full blur-3xl" />
@@ -59,7 +59,7 @@ export default function Partners({ stores = [] }: { stores: Store[] }) {
                                             className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
                                         />
                                     ) : (
-                                        <div className="w-full h-full bg-gradient-to-br from-secondary to-muted flex items-center justify-center">
+                                        <div className="w-full h-full bg-linear-to-br from-secondary to-muted flex items-center justify-center">
                                             <span className="text-4xl opacity-20 font-bold tracking-widest text-muted-foreground uppercase">
                                                 {store?.name?.substring(0, 2)}
                                             </span>
@@ -67,7 +67,7 @@ export default function Partners({ stores = [] }: { stores: Store[] }) {
                                     )}
 
                                     {/* Overlay Gradient */}
-                                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-60" />
+                                    <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent opacity-60" />
 
                                     {/* Logo */}
                                     <div className="absolute bottom-2 left-6">

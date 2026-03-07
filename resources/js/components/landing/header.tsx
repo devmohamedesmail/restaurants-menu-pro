@@ -2,7 +2,7 @@ import LangToggle from '@/components/ui/lang-toggle';
 import ThemeToggle from '@/components/ui/theme-toggle';
 import { usePage, Link, router } from '@inertiajs/react';
 import { useTranslation } from 'react-i18next';
-import { LogOut, LayoutDashboard, User } from 'lucide-react';
+import { LogOut, LayoutDashboard, User, Languages } from 'lucide-react';
 import Logo from '@/components/ui/logo';
 import {
     DropdownMenu,
@@ -11,15 +11,32 @@ import {
     DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import { useAppearance } from '@/hooks/use-appearance'
+import { Sun, Moon } from 'lucide-react';
 
 export default function Header() {
     const { auth }: any = usePage().props;
-    const { t } = useTranslation();
+    const { t, i18n } = useTranslation();
 
     const handleLogout = () => {
         router.post('/logout');
     };
 
+
+    function changeLanguage(lang: string) {
+        i18n.changeLanguage(lang);
+    }
+    const switch_language = () => {
+        if (i18n.language === 'en') {
+            changeLanguage('ar');
+        } else {
+            changeLanguage('en');
+        }
+    }
+
+
+    const { appearance, updateAppearance } = useAppearance();
+    const isDark = appearance === 'dark';
     return (
         <header className="sticky top-0 left-0 right-0 z-50 backdrop-blur-lg bg-background/80 border-b border-border/50">
             {/* Top Header */}
@@ -29,8 +46,22 @@ export default function Header() {
                         {/* <Logo /> */}
                         <div></div>
                         <div className="flex items-center gap-2 sm:gap-3">
-                            <LangToggle />
-                            <ThemeToggle />
+                            {/* <LangToggle />
+                            <ThemeToggle /> */}
+
+                            <button onClick={() => updateAppearance(isDark ? 'light' : 'dark')} className="flex-1 sm:flex-none btn bg-background/80 backdrop-blur text-foreground border border-border hover:bg-background transition-colors py-1 px-2 rounded-xl flex items-center justify-center gap-2">
+                                {isDark ? (
+                                    <Sun className="w-5 h-5" />
+                                ) : (
+                                    <Moon className="w-5 h-5" />
+                                )}
+                                <span className="sm:hidden text-xs">{isDark ? 'Light' : 'Dark'}</span>
+                            </button>
+
+                            <button onClick={() => switch_language()} className="flex-1 sm:flex-none btn bg-background/80 backdrop-blur text-foreground border border-border hover:bg-background transition-colors py-1 px-2 rounded-xl flex items-center justify-center gap-2">
+                            <Languages className="w-5 h-5" />
+                            <span className="sm:hidden text-xs">{i18n.language === 'ar' ? 'English' : 'العربية'}</span>
+                        </button>
                         </div>
                     </div>
                 </div>
@@ -40,14 +71,14 @@ export default function Header() {
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex justify-between">
                 <Logo />
 
-                 <nav className="flex justify-center items-center gap-3 sm:gap-2  flex-1">
-                        {/* Add navigation links here if needed */}
-                        <Link href="/" className='text-md md:text-lg'>{t('landing.home')}</Link>
-                        <Link href="/plans" className='text-md md:text-lg'>{t('landing.plans')}</Link>
-                        <Link href="/contact-us" className='text-md md:text-lg'>{t('landing.contact-us')}</Link>
-                    </nav>
+                <nav className="flex justify-center items-center gap-3 sm:gap-2  flex-1">
+                    {/* Add navigation links here if needed */}
+                    <Link href="/" className='text-md md:text-lg'>{t('landing.home')}</Link>
+                    <Link href="/plans" className='text-md md:text-lg'>{t('landing.plans')}</Link>
+                    <Link href="/contact-us" className='text-md md:text-lg'>{t('landing.contact-us')}</Link>
+                </nav>
                 <div className="flex items-center justify-between h-12 sm:h-14">
-                   
+
 
                     {/* User Dropdown or Login/Register Buttons */}
                     <div className="flex items-center gap-2 sm:gap-3">
