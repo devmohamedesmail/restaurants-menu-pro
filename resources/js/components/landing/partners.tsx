@@ -103,24 +103,7 @@ export default function Partners({ stores = [] }: { stores: Store[] }) {
                                         </h3>
                                     </div>
 
-                                    {/* <p className="text-muted-foreground text-sm line-clamp-2 mb-4 grow">
-                                        {store.description}
-                                    </p> */}
-
-                                    {/* <div className="space-y-2 mb-4">
-                                        {store.address && (
-                                            <div className="flex items-center text-sm text-muted-foreground">
-                                                <MapPin className="w-4 h-4 mr-2 text-primary/70" />
-                                                <span className="truncate">{store.address}</span>
-                                            </div>
-                                        )}
-                                        {store.phone && (
-                                            <div className="flex items-center text-sm text-muted-foreground">
-                                                <Phone className="w-4 h-4 mr-2 text-primary/70" />
-                                                <span>{store.phone}</span>
-                                            </div>
-                                        )}
-                                    </div> */}
+                          
 
                                     <Link 
                                         href={`/store/menu/${store.slug}/${store.id}/table/`}
@@ -142,7 +125,7 @@ export default function Partners({ stores = [] }: { stores: Store[] }) {
                     <div className="mt-12 text-center">
                         <Link
                             href="/stores"
-                            className="inline-flex items-center justify-center px-8 py-3 rounded-full bg-primary text-primary-foreground font-medium hover:bg-primary/90 transition-colors shadow-lg shadow-primary/20 hover:shadow-primary/30"
+                            className="inline-flex items-center justify-center px-8 py-3 rounded-full bg-primary text-white font-medium hover:bg-primary/90 transition-colors shadow-lg shadow-primary/20 hover:shadow-primary/30"
                         >
                             {t('partners.exploreAllPartners')}
                             <ArrowRight className="w-4 h-4 ml-2" />

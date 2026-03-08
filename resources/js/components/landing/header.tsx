@@ -43,20 +43,17 @@ export default function Header() {
     return (
         <>
 
-            <header className="sticky  top-0 left-0 right-0 z-50 backdrop-blur-lg bg-background/80 border-b border-border/50">
-                <div className="container m-auto flex justify-between items-center">
+            <header className="sticky  top-0 left-0 right-0 z-50 backdrop-blur-lg bg-background/80 border-b border-border/50 shadow-sm">
+                <div className="container m-auto flex justify-between items-center py-2 px-5">
                     <Logo />
-
-
-
-                   <MobileMenu />
+                    <MobileMenu />
 
 
                     <nav className=" justify-center items-center gap-3 sm:gap-2  flex-1 hidden md:flex">
                         {/* Add navigation links here if needed */}
-                        <Link href="/" className='mx-2 text-md md:text-lg hover:bg-primary rounded-md py-1 px-2'>{t('landing.home')}</Link>
-                        <Link href="/plans" className='mx-2 text-md md:text-lg hover:bg-primary rounded-md py-1 px-2'>{t('landing.plans')}</Link>
-                        <Link href="/contact-us" className='mx-2 text-md md:text-lg hover:bg-primary rounded-md py-1 px-2'>{t('landing.contact-us')}</Link>
+                        <Link href="/" className='mx-2 text-white text-md md:text-lg hover:bg-primary rounded-md py-1 px-2'>{t('landing.home')}</Link>
+                        <Link href="/plans" className='mx-2 text-white text-md md:text-lg hover:bg-primary rounded-md py-1 px-2'>{t('landing.plans')}</Link>
+                        <Link href="/contact-us" className='mx-2 text-white text-md md:text-lg hover:bg-primary rounded-md py-1 px-2'>{t('landing.contact-us')}</Link>
                     </nav>
 
                     <div className="hidden md:flex items-center gap-2 sm:gap-3">
@@ -69,7 +66,7 @@ export default function Header() {
                                 <DropdownMenu>
                                     <DropdownMenuTrigger asChild>
                                         <button className="flex items-center gap-2 sm:gap-3 px-3 sm:px-4 py-2 rounded-lg hover:bg-accent/50 transition-all duration-200 outline-none">
-                                            <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-gradient-to-br from-primary to-primary/70 flex items-center justify-center text-white font-semibold text-sm">
+                                            <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-linear-to-br from-primary to-primary/70 flex items-center justify-center text-white font-semibold text-sm">
                                                 {auth.user.name?.charAt(0).toUpperCase()}
                                             </div>
                                             <div className="hidden sm:block text-left">
@@ -82,7 +79,7 @@ export default function Header() {
                                         {/* User Info Section */}
                                         <div className="p-4 border-b border-border bg-accent/20">
                                             <div className="flex items-center gap-3">
-                                                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-primary/70 flex items-center justify-center text-white font-bold text-lg">
+                                                <div className="w-12 h-12 rounded-full bg-linear-to-br from-primary to-primary/70 flex items-center justify-center text-white font-bold text-lg">
                                                     {auth.user.name?.charAt(0).toUpperCase()}
                                                 </div>
                                                 <div className="flex-1 min-w-0">

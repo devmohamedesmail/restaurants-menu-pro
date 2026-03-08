@@ -284,19 +284,19 @@ export default function FloatCart({ store, table }: any) {
                         >
                             <div className="flex items-center gap-3">
                                 <div className="bg-white/20 p-2 rounded-xl">
-                                    <ShoppingBag className="w-6 h-6" />
+                                    <ShoppingBag className="w-6 h-6 text-white" />
                                 </div>
                                 <div className="flex flex-col">
-                                    <span className="font-bold text-lg leading-tight">
+                                    <span className="font-bold text-lg leading-tight text-white">
                                         {totalItems} {t('menu.items')}
                                     </span>
-                                    <span className="text-primary-foreground/80 text-sm font-medium">
+                                    <span className="text-sm font-medium text-white">
                                         {totalPrice.toFixed(2)}
                                     </span>
                                 </div>
                             </div>
 
-                            <div className="flex items-center gap-1 font-bold bg-white/20 px-4 py-2 rounded-xl text-sm">
+                            <div className="flex items-center text-white gap-1 font-bold bg-white/20 px-4 py-2 rounded-xl text-sm">
                                 {t('menu.view_order')}
                                 <ChevronRight className={`w-4 h-4 ml-1 ${isRTL ? 'rotate-180' : ''}`} />
                             </div>

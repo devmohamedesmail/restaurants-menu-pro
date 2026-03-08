@@ -1,0 +1,1 @@
+import{c as i,b as n,j as s}from"./app-CtyY1fjg.js";function r(){const t=i.c(3),{settings:e}=n().props;let o;return t[0]!==e.logo||t[1]!==e.title_en?(o=s.jsx("div",{children:s.jsx("img",{src:e.logo,className:"w-fit ",alt:e.title_en})}),t[0]=e.logo,t[1]=e.title_en,t[2]=o):o=t[2],o}export{r as A};

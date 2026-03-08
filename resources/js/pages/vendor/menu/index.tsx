@@ -16,6 +16,7 @@ import FloatCart from './float-cart';
 import MealListCard from '@/components/vendor/menu/meal-list-card';
 import MealGridCard from '@/components/vendor/menu/meal-grid-card';
 import { Category, MenuPageProps } from '@/types/menu';
+import CategoriesSection from './categories-section';
 
 type ViewMode = 'grid' | 'list';
 
@@ -92,7 +93,7 @@ export default function MenuPage({ store, categories, country, meals, table }: M
             <SearchSection />
 
             {/* ── Category Swiper Bar ───────────────────────────────────── */}
-            <div className="sticky top-0 z-20 bg-background/95 backdrop-blur-md border-b border-border shadow-sm px-4 py-3 overflow-clip">
+            {/* <div className="sticky top-0 z-20 bg-background/95 backdrop-blur-md border-b border-border shadow-sm px-4 py-3 overflow-clip">
                 <Swiper
                     modules={[FreeMode]}
                     freeMode={{
@@ -154,7 +155,13 @@ export default function MenuPage({ store, categories, country, meals, table }: M
                         </SwiperSlide>
                     ))}
                 </Swiper>
-            </div>
+            </div> */}
+
+           <CategoriesSection 
+            categories={categories} 
+            selectedCategory={selectedCategory}  
+            handleCategoryClick={handleCategoryClick} 
+            />
 
             {/* ── Meals Section ────────────────────────────────────────────── */}
             <div className="container mx-auto px-4 py-6">

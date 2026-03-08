@@ -25,7 +25,7 @@ export default function Footer() {
                     {/* Column 1: Brand */}
                     <div className="flex flex-col gap-4">
                         <Logo />
-                        <p className="text-sm text-muted-foreground leading-relaxed max-w-xs">
+                        <p className="text-xs  leading-relaxed max-w-xs">
                             {i18n.language === 'ar' ? settings?.description_ar : settings?.description_en}
                         </p>
                     </div>
