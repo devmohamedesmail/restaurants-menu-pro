@@ -51,9 +51,9 @@ export default function Header() {
 
                     <nav className=" justify-center items-center gap-3 sm:gap-2  flex-1 hidden md:flex">
                         {/* Add navigation links here if needed */}
-                        <Link href="/" className='mx-2 text-white text-md md:text-lg hover:bg-primary rounded-md py-1 px-2'>{t('landing.home')}</Link>
-                        <Link href="/plans" className='mx-2 text-white text-md md:text-lg hover:bg-primary rounded-md py-1 px-2'>{t('landing.plans')}</Link>
-                        <Link href="/contact-us" className='mx-2 text-white text-md md:text-lg hover:bg-primary rounded-md py-1 px-2'>{t('landing.contact-us')}</Link>
+                        <Link href="/" className='mx-2 text-black dark:text-white text-md md:text-lg hover:bg-primary rounded-md py-1 px-2'>{t('landing.home')}</Link>
+                        <Link href="/plans" className='mx-2 text-black dark:text-white text-md md:text-lg hover:bg-primary rounded-md py-1 px-2'>{t('landing.plans')}</Link>
+                        <Link href="/contact-us" className='mx-2 text-black dark:text-white text-md md:text-lg hover:bg-primary rounded-md py-1 px-2'>{t('landing.contact-us')}</Link>
                     </nav>
 
                     <div className="hidden md:flex items-center gap-2 sm:gap-3">

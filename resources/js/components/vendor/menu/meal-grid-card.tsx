@@ -58,7 +58,7 @@ export default function MealGridCard({ meal, country }: { meal: Meal; country: C
                     )}
                     {/* Attributes badge */}
                     {hasAttributes && (
-                        <span className="absolute top-2 right-2 bg-primary/90 text-primary-foreground text-[10px] font-bold px-2 py-0.5 rounded-full">
+                        <span className="absolute top-2 right-2 bg-primary/90 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">
                             {t('menu.customizable')}
                         </span>
                     )}
@@ -113,7 +113,8 @@ export default function MealGridCard({ meal, country }: { meal: Meal; country: C
                             className="w-full bg-secondary hover:bg-primary hover:text-primary-foreground text-secondary-foreground font-medium py-2.5 rounded-xl transition-all duration-300 flex items-center justify-center gap-2 text-sm"
                         >
                             <ShoppingBag className="w-4 h-4" />
-                            {t('menu.add_to_order')}
+
+                            {hasAttributes ? t('menu.select_your_choices') : t('menu.add_to_order')}
                         </button>
                     )}
                 </div>

@@ -4,7 +4,7 @@ import { Link } from '@inertiajs/react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 
-export default function Hero({banners}: {banners: any}) {
+export default function Hero() {
     const { t } = useTranslation();
     gsap.registerPlugin(useGSAP);
 
@@ -33,7 +33,7 @@ export default function Hero({banners}: {banners: any}) {
     });
     return (
         <section className="relative pt-24 sm:pt-32 pb-16 sm:pb-24 overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/10 pointer-events-none" />
+            <div className="absolute inset-0 bg-linear-to-br from-primary/5 via-transparent to-primary/10 pointer-events-none" />
             <div className="absolute top-20 left-10 w-64 h-64 bg-primary/10 rounded-full blur-3xl animate-pulse" />
             <div className="absolute bottom-20 right-10 w-96 h-96 bg-primary/5 rounded-full blur-3xl animate-pulse delay-1000" />
 
@@ -45,7 +45,7 @@ export default function Hero({banners}: {banners: any}) {
                     </div>
 
                     <h1 className="text-3xl  sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 sm:mb-6 animate-fade-in-up delay-100">
-                        <span className="bg-gradient-to-r title from-foreground via-foreground/90 to-foreground/80 bg-clip-text text-transparent">
+                        <span className="bg-linear-to-r title from-foreground via-foreground/90 to-foreground/80 bg-clip-text text-transparent">
                             {t('landing.hero.title')}
                         </span>
                     </h1>
@@ -55,39 +55,19 @@ export default function Hero({banners}: {banners: any}) {
                     </p>
 
 
-
-
-
-
-{/* <div className='flex '>
-
-    {banners.map((banner: any) => (
-        <div key={banner.id} className='m-2'>
-            <img src={banner.image} alt={banner.title} />
-        </div>
-    ))}
-</div> */}
-
-
-
-
-
-
-
-
-
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 animate-fade-in-up delay-300 px-4">
                         <Link href='/register/store/page' className="w-full sm:w-auto group relative px-6 sm:px-8 py-3 sm:py-4 bg-primary text-white rounded-xl font-semibold text-sm sm:text-base overflow-hidden transition-all hover:shadow-lg hover:shadow-primary/25 hover:scale-105">
                             <span className="relative z-10 flex items-center justify-center gap-2">
                                 {t('landing.hero.cta')}
                                 <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
                             </span>
-                            <div className="absolute inset-0 bg-gradient-to-r from-primary to-primary/80 opacity-0 group-hover:opacity-100 transition-opacity" />
+                            <div className="absolute inset-0 bg-linear-to-r from-primary to-primary/80 opacity-0 group-hover:opacity-100 transition-opacity" />
                         </Link>
 
-                        <button className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 border-2 border-border rounded-xl font-semibold text-sm sm:text-base hover:border-primary/50 hover:bg-primary/5 transition-all">
-                            {t('landing.hero.cta_secondary')}
-                        </button>
+                        <Link 
+                        href={`/store/menu/${'مطعم-الطيب'}/${'2'}/table/`} className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 border-2 border-border rounded-xl font-semibold text-sm sm:text-base hover:border-primary/50 hover:bg-primary/5 transition-all">
+                            {t('landing.hero.cta_secondary')} 
+                        </Link>
                     </div>
                 </div>
             </div>

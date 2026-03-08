@@ -186,7 +186,7 @@ export default function MenuPage({ store, categories, country, meals, table }: M
                             onClick={() => setViewMode('grid')}
                             title={t('menu.grid_view')}
                             className={`p-2 rounded-lg transition-all duration-200 ${viewMode === 'grid'
-                                ? 'bg-primary text-primary-foreground shadow-sm'
+                                ? 'bg-primary text-white shadow-sm'
                                 : 'text-muted-foreground hover:text-foreground'
                                 }`}
                         >
@@ -196,7 +196,7 @@ export default function MenuPage({ store, categories, country, meals, table }: M
                             onClick={() => setViewMode('list')}
                             title={t('menu.list_view')}
                             className={`p-2 rounded-lg transition-all duration-200 ${viewMode === 'list'
-                                ? 'bg-primary text-primary-foreground shadow-sm'
+                                ? 'bg-primary text-white shadow-sm'
                                 : 'text-muted-foreground hover:text-foreground'
                                 }`}
                         >

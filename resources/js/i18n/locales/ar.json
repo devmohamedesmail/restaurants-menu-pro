@@ -589,7 +589,8 @@
         "popular": "شعبي",
         "customizable": "قابل للتخصيص",
         "required": "مطلوب",
-        "includes_extras": "يشمل الإضافات"
+        "includes_extras": "يشمل الإضافات",
+        "select_your_choices": "اختر خياراتك"
     },
     "tables": {
         "add-table": "أضافة طاولة",

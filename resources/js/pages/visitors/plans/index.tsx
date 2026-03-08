@@ -1,5 +1,6 @@
 import Header from '@/components/landing/header';
 import PlanItem from '@/components/landing/plan-item';
+import VisitorLayout from '@/layouts/visitor-layout';
 import { Head } from '@inertiajs/react'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
@@ -7,9 +8,9 @@ import { useTranslation } from 'react-i18next'
 export default function PlansPage({ plans }: any) {
     const { t } = useTranslation();
     return (
-        <div>
+
+        <VisitorLayout>
             <Head title={t('plans.title')} />
-            <Header />
             <section className="relative py-24 overflow-hidden ">
 
                 {/* Background Blur */}
@@ -38,6 +39,6 @@ export default function PlansPage({ plans }: any) {
                     </div>
                 </div>
             </section>
-        </div>
+        </VisitorLayout>
     )
 }

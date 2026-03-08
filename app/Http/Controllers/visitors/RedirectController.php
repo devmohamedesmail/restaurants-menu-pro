@@ -15,12 +15,7 @@ class RedirectController extends Controller
     public function index()
     {
         try {
-            $banners = Banner::all();
-            $stores  = Store::where('is_active', true)->limit(10)->get();
-            return Inertia::render('index', [
-                'stores'  => $stores,
-                'banners' => $banners,
-            ]);
+            return Inertia::render('index');
         } catch (\Throwable $th) {
             return Inertia::render('404/index', [
                 "error"   => $th->getMessage(),

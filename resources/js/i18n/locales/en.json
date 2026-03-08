@@ -589,7 +589,8 @@
         "popular": "Popular",
         "customizable": "Customizable",
         "required": "Required",
-        "includes_extras": "includes extras"
+        "includes_extras": "includes extras",
+        "select_your_choices": "Select Your Choices"
     },
     "tables": {
         "add-table": "Add Table",

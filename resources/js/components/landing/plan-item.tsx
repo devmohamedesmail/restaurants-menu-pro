@@ -1,7 +1,9 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
-import {Check} from 'lucide-react'
+import { Check } from 'lucide-react'
 import { Link } from '@inertiajs/react'
+
+
 declare function route(name: string, params?: any): string
 export default function PlanItem({ plan, index }: { plan: any, index: number }) {
     const { t, i18n } = useTranslation()
@@ -48,20 +50,19 @@ export default function PlanItem({ plan, index }: { plan: any, index: number }) 
             {/* Features */}
             <ul className={`space-y-3 mb-10 ${index === 1 ? 'text-gray-200' : 'text-gray-600'
                 }`}>
-                <li className='flex items-center gap-2'><Check /> {plan.max_menus} {t('plans.features.menus')}</li>
-                <li className='flex items-center gap-2'><Check /> {plan.max_categories} {t('plans.features.categories')}</li>
-                <li className='flex items-center gap-2'><Check /> {plan.max_items} {t('plans.features.items')}</li>
-                {plan.qr_code && <li className='flex items-center gap-2'><Check /> {t('plans.features.qr')}</li>}
-                {plan.custom_domain && <li className='flex items-center gap-2'><Check /> {t('plans.features.custom-domain')}</li>}
+                <li className='flex items-center gap-2 text-black dark:text-white'><Check /> {plan.max_menus} {t('plans.features.menus')}</li>
+                <li className='flex items-center gap-2 text-black dark:text-white'><Check /> {plan.max_categories} {t('plans.features.categories')}</li>
+                <li className='flex items-center gap-2 text-black dark:text-white'><Check /> {plan.max_items} {t('plans.features.items')}</li>
+                {plan.qr_code === true && 
+                  <li className='flex items-center gap-2 text-black dark:text-white'><Check /> {t('plans.features.qr')}
+                </li>}
+                {plan.custom_domain === true && <li className='flex items-center gap-2 text-black dark:text-white'><Check /> {t('plans.features.custom-domain')}</li>}
             </ul>
 
             {/* CTA */}
             <Link
                 href={route('checkout.page', plan.id)}
-                className={`w-full block text-center py-4 rounded-2xl font-semibold transition bg-primary
-                      
-                      
-                    `}
+                className={`w-full block text-center py-4 rounded-2xl font-semibold text-white transition bg-primary `}
             >
                 {t('plans.select')}
             </Link>
